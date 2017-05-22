@@ -1,3 +1,10 @@
+Commands
+===
+* Update dependencies: `composer update`
+* Run tests: `./vendor/run/phpunit`
+
+To do
+===
 * Move tests into namespaces
 * Use latest PHP Unit
 * ~~Fix last 4 test cases~~
