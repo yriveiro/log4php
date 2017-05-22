@@ -35,8 +35,8 @@
 
 namespace Log4Php\Pattern;
 
+use DateTime;
 use Log4Php\LoggerLoggingEvent;
-use Nette\Utils\DateTime;
 
 class LoggerPatternConverterDate extends LoggerPatternConverter
 {
