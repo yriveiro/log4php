@@ -14,24 +14,16 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the number of milliseconds elapsed since the start of the
- * application until the creation of the logging event.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the number of milliseconds elapsed since the start of the
+ * application until the creation of the logging event.
+ */
 class LoggerPatternConverterRelative extends LoggerPatternConverter
 {
     public function convert(LoggerLoggingEvent $event)

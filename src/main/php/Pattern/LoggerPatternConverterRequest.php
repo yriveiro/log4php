@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Pattern;
 
 /**
  * Returns a value from the $_REQUEST superglobal array corresponding to the
@@ -24,15 +24,7 @@
  *
  * Options:
  *  [0] $_REQUEST key value
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
-
-namespace Log4Php\Pattern;
-
 class LoggerPatternConverterRequest extends LoggerPatternConverterSuperglobal
 {
     protected $name = '_REQUEST';

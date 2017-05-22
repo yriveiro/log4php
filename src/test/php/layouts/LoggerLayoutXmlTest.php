@@ -41,7 +41,7 @@ class LoggerLayoutXmlTest extends TestCase
         $actual = $layout->format($event);
 
         $thread = $event->getThreadName();
-        $timestamp = number_format(($event->getTimeStamp() * 1000), 0, '', '');
+        $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
         $expected = "<log4php:event logger=\"test\" level=\"ERROR\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4php:message><![CDATA[testmessage]]></log4php:message>" . PHP_EOL .
@@ -62,7 +62,7 @@ class LoggerLayoutXmlTest extends TestCase
         $actual = $layout->format($event);
 
         $thread = $event->getThreadName();
-        $timestamp = number_format(($event->getTimeStamp() * 1000), 0, '', '');
+        $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
         $expected = "<log4php:event logger=\"test\" level=\"WARN\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4php:message><![CDATA[testmessage]]></log4php:message>" . PHP_EOL .
@@ -84,7 +84,7 @@ class LoggerLayoutXmlTest extends TestCase
         $actual = $layout->format($event);
 
         $thread = $event->getThreadName();
-        $timestamp = number_format(($event->getTimeStamp() * 1000), 0, '', '');
+        $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
         $expected = "<log4j:event logger=\"test\" level=\"ERROR\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4j:message><![CDATA[testmessage]]></log4j:message>" . PHP_EOL .
@@ -108,7 +108,7 @@ class LoggerLayoutXmlTest extends TestCase
         $actual = $layout->format($event);
 
         $thread = $event->getThreadName();
-        $timestamp = number_format(($event->getTimeStamp() * 1000), 0, '', '');
+        $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
         $expected = "<log4php:event logger=\"test\" level=\"ERROR\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4php:message><![CDATA[testmessage]]></log4php:message>" . PHP_EOL .
@@ -135,7 +135,7 @@ class LoggerLayoutXmlTest extends TestCase
         $actual = $layout->format($event);
 
         $thread = $event->getThreadName();
-        $timestamp = number_format(($event->getTimeStamp() * 1000), 0, '', '');
+        $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
         $expected = "<log4php:event logger=\"test\" level=\"ERROR\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4php:message><![CDATA[testmessage]]></log4php:message>" . PHP_EOL .

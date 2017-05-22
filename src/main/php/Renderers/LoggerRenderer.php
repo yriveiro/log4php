@@ -14,21 +14,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Implement this interface in order to render objects to strings.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage renderers
- * @since 0.3
  */
 
 namespace Log4Php\Renderers;
 
+/**
+ * Implement this interface in order to render objects to strings.
+ */
 interface LoggerRenderer
 {
     /**

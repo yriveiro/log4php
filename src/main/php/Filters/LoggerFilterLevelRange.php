@@ -14,9 +14,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Filters;
+
+use Log4Php\LoggerFilter;
+use Log4Php\LoggerLevel;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * This is a very simple filter based on level matching, which can be
@@ -56,19 +60,7 @@
  *
  * @author Simon Kitching
  * @author based on the org.apache.log4j.varia.LevelRangeFilte Java code by Ceki G&uuml;lc&uuml;
- *
- * @version $Revision$
- * @package log4php
- * @subpackage filters
- * @since 0.6
  */
-
-namespace Log4Php\Filters;
-
-use Log4Php\LoggerFilter;
-use Log4Php\LoggerLevel;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerFilterLevelRange extends LoggerFilter
 {
 

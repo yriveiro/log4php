@@ -14,20 +14,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * The internal representation of caller location information.
- *
- * @version $Revision$
- * @package log4php
- * @since 0.3
  */
 
 namespace Log4Php;
 
+/**
+ * The internal representation of caller location information.
+ */
 class LoggerLocationInfo
 {
     /** The value to return when the location information is not available. */

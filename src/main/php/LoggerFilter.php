@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
 
 /**
  * Users should extend this class to implement customized logging
@@ -49,13 +49,7 @@
  *
  * <p>The philosophy of log4php filters is largely inspired from the
  * Linux ipchains.
- *
- * @version $Revision$
- * @package log4php
  */
-
-namespace Log4Php;
-
 abstract class LoggerFilter extends LoggerConfigurable
 {
 
@@ -130,5 +124,4 @@ abstract class LoggerFilter extends LoggerConfigurable
     {
         return $this->next;
     }
-
 }

@@ -14,22 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Most of the work of the {@link LoggerPatternLayout} class
- * is delegated to the {@link LoggerPatternParser} class.
- *
- * <p>It is this class that parses conversion patterns and creates
- * a chained list of {@link LoggerPatternConverter} converters.</p>
- *
- * @version $Revision$
- * @package log4php
- * @subpackage helpers
- *
- * @since 0.3
  */
 
 namespace Log4Php\Helpers;
@@ -38,9 +22,15 @@ use Log4Php\LoggerException;
 use Log4Php\Pattern\LoggerPatternConverter;
 use Log4Php\Pattern\LoggerPatternConverterLiteral;
 
+/**
+ * Most of the work of the {@link LoggerPatternLayout} class
+ * is delegated to the {@link LoggerPatternParser} class.
+ *
+ * <p>It is this class that parses conversion patterns and creates
+ * a chained list of {@link LoggerPatternConverter} converters.</p>
+ */
 class LoggerPatternParser
 {
-
     /** Escape character for conversion words in the conversion pattern. */
     const ESCAPE_CHAR = '%';
 
@@ -104,7 +94,6 @@ class LoggerPatternParser
         $prevEnd = 0;
 
         foreach ($matches[0] as $key => $item) {
-
             // Locate where the conversion command starts and ends
             $length = strlen($item[0]);
             $start = $item[1];
@@ -233,7 +222,10 @@ class LoggerPatternParser
         // Validate
         $pattern = '/^(-?[0-9]+)?\.?-?[0-9]+$/';
         if (!preg_match($pattern, $modifiers)) {
-            trigger_error("log4php: Invalid modifier in conversion pattern: [$modifiers]. Ignoring modifier.", E_USER_WARNING);
+            trigger_error(
+                "log4php: Invalid modifier in conversion pattern: [$modifiers]. Ignoring modifier.",
+                E_USER_WARNING
+            );
             return $info;
         }
 

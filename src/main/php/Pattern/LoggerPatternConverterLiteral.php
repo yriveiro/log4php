@@ -18,19 +18,13 @@
  * @package log4php
  */
 
-/**
- * Returns the literal value passed in the constructor, without modifications.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
- */
-
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the literal value passed in the constructor, without modifications.
+ */
 class LoggerPatternConverterLiteral extends LoggerPatternConverter
 {
     private $literalValue;

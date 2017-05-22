@@ -14,15 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * The internal representation of logging event.
- *
- * @version $Revision$
- * @package log4php
  */
 
 namespace Log4Php;
@@ -30,6 +21,9 @@ namespace Log4Php;
 use Exception;
 use Throwable;
 
+/**
+ * The internal representation of logging event.
+ */
 class LoggerLoggingEvent
 {
 
@@ -167,7 +161,6 @@ class LoggerLoggingEvent
     public function getLocationInformation()
     {
         if ($this->locationInfo === null) {
-
             $locationInfo = [];
             $trace = debug_backtrace();
             $prevHop = null;
@@ -195,7 +188,6 @@ class LoggerLoggingEvent
                 $prevHop['function'] !== 'require' and
                 $prevHop['function'] !== 'require_once'
             ) {
-
                 $locationInfo['function'] = $prevHop['function'];
             } else {
                 $locationInfo['function'] = 'main';
@@ -313,7 +305,7 @@ class LoggerLoggingEvent
     /**
      * @return float
      */
-    public function getTimeStamp()
+    public function getTimestamp()
     {
         return $this->timeStamp;
     }
@@ -340,7 +332,7 @@ class LoggerLoggingEvent
      */
     public function getTime()
     {
-        $eventTime = $this->getTimeStamp();
+        $eventTime = $this->getTimestamp();
         $eventStartTime = LoggerLoggingEvent::getStartTime();
         return number_format(($eventTime - $eventStartTime) * 1000, 0, '', '');
     }
@@ -391,7 +383,6 @@ class LoggerLoggingEvent
             'locationInfo',
         ];
     }
-
 }
 
 LoggerLoggingEvent::getStartTime();

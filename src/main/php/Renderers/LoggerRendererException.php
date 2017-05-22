@@ -14,20 +14,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Renderer used for Exceptions.
- *
- * @package log4php
- * @subpackage renderers
- * @since 2.1
  */
 
 namespace Log4Php\Renderers;
 
+/**
+ * Renderer used for Exceptions.
+ */
 class LoggerRendererException implements LoggerRenderer
 {
 

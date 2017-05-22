@@ -14,21 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Layout which formats the events using PHP's serialize() function.
- *
- * Available options:
- * - locationInfo - If set to true, the event's location information will also
- *                  be serialized (slow, defaults to false).
- *
- * @version $Revision$
- * @package log4php
- * @subpackage layouts
- * @since 2.2
  */
 
 namespace Log4Php\Layouts;
@@ -36,6 +21,13 @@ namespace Log4Php\Layouts;
 use Log4Php\LoggerLayout;
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Layout which formats the events using PHP's serialize() function.
+ *
+ * Available options:
+ * - locationInfo - If set to true, the event's location information will also
+ *                  be serialized (slow, defaults to false).
+ */
 class LoggerLayoutSerialized extends LoggerLayout
 {
     /**

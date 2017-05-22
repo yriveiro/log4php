@@ -16,6 +16,10 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * An Appender that automatically creates a new logfile each day.
  *
@@ -33,18 +37,7 @@
  *     substituted by the date.
  * - **append** - If set to true, the appender will append to the file,
  *     otherwise the file contents will be overwritten. Defaults to true.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/daily-file.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderDailyFile extends LoggerAppenderFile
 {
 
@@ -58,7 +51,7 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile
     /**
      * Current date which was used when opening a file.
      * Used to determine if a rollover is needed when the date changes.
-     * @var string
+     * @var string|bool
      */
     protected $currentDate;
 
@@ -90,7 +83,7 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile
         if (!isset($this->currentDate)) {
             $this->currentDate = $eventDate;
         } // Check if rollover is needed
-        else if ($this->currentDate !== $eventDate) {
+        elseif ($this->currentDate !== $eventDate) {
             $this->currentDate = $eventDate;
 
             // Close the file if it's open.
@@ -108,7 +101,7 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile
     }
 
     /** Renders the date using the configured <var>datePattern<var>.
-     * @param int|null $timestamp
+     * @param float|int|null $timestamp
      * @return false|string
      */
     protected function getDate($timestamp = null)

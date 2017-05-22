@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
 
 /**
  * Defines the minimum set of levels recognized by the system, that is
@@ -26,14 +26,7 @@
  *
  * <p>The <i>LoggerLevel</i> class may be inherited from to define a larger
  * level set.</p>
- *
- * @version $Revision$
- * @package log4php
- * @since 0.5
  */
-
-namespace Log4Php;
-
 // @todo need to align this with PSR
 class LoggerLevel
 {

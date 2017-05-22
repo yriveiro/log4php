@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Layouts;
+
+use Log4Php\LoggerLayout;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * The output of the LoggerXmlLayout consists of a series of log4php:event elements.
@@ -48,17 +51,7 @@
  *    </log4php:event>
  * </log4php:eventSet>
  * </pre>
- *
- * @version $Revision$
- * @package log4php
- * @subpackage layouts
  */
-
-namespace Log4Php\Layouts;
-
-use Log4Php\LoggerLayout;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerLayoutXml extends LoggerLayout
 {
     const LOG4J_NS_PREFIX = 'log4j';
@@ -126,7 +119,7 @@ class LoggerLayoutXml extends LoggerLayout
         $ns = $this->namespacePrefix;
 
         $loggerName = $event->getLoggerName();
-        $timeStamp = number_format($event->getTimeStamp() * 1000.0, 0, '', '');
+        $timeStamp = number_format($event->getTimestamp() * 1000.0, 0, '', '');
         $thread = $event->getThreadName();
         $level = $event->getLevel()->toString();
 
@@ -225,4 +218,3 @@ class LoggerLayoutXml extends LoggerLayout
         return self::CDATA_START . $string . self::CDATA_END;
     }
 }
-

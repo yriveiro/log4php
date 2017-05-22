@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Pattern;
+
+use Log4Php\Helpers\LoggerFormattingInfo;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * LoggerPatternConverter is an abstract class that provides the formatting
@@ -25,18 +28,7 @@
  * <p>Conversion specifiers in a conversion patterns are parsed to
  * individual PatternConverters. Each of which is responsible for
  * converting a logging event in a converter specific manner.</p>
- *
- * @version $Revision$
- * @package log4php
- * @subpackage helpers
- * @since 0.3
  */
-
-namespace Log4Php\Pattern;
-
-use Log4Php\Helpers\LoggerFormattingInfo;
-use Log4Php\LoggerLoggingEvent;
-
 abstract class LoggerPatternConverter
 {
     /**
@@ -82,6 +74,7 @@ abstract class LoggerPatternConverter
      * converters must implement this method.
      *
      * @param LoggerLoggingEvent $event
+     * @todo check if possible to add signature
      */
     abstract public function convert(LoggerLoggingEvent $event);
 
@@ -121,7 +114,7 @@ abstract class LoggerPatternConverter
                 $sbuf .= substr($string, 0, $fi->max);
             }
         } // Add padding if needed
-        else if ($len < $fi->min) {
+        elseif ($len < $fi->min) {
             if ($fi->padLeft) {
                 $sbuf .= str_repeat(' ', $fi->min - $len);
                 $sbuf .= $string;

@@ -101,24 +101,24 @@ class LoggerPatternConverterTest extends TestCase
 
         $converter = new LoggerPatternConverterDate($this->info, 'c');
         $actual = $converter->convert($this->event);
-        $expected = date('c', $this->event->getTimeStamp());
+        $expected = date('c', $this->event->getTimestamp());
         self::assertSame($expected, $actual);
 
         // Format defaults to 'c'
         $converter = new LoggerPatternConverterDate($this->info);
         $actual = $converter->convert($this->event);
-        $expected = date('c', $this->event->getTimeStamp());
+        $expected = date('c', $this->event->getTimestamp());
         self::assertSame($expected, $actual);
 
         $converter = new LoggerPatternConverterDate($this->info, '');
         $actual = $converter->convert($this->event);
-        $expected = date('c', $this->event->getTimeStamp());
+        $expected = date('c', $this->event->getTimestamp());
         self::assertSame($expected, $actual);
 
         // Test ABSOLUTE
         $converter = new LoggerPatternConverterDate($this->info, 'ABSOLUTE');
         $actual = $converter->convert($this->event);
-        $expected = date('H:i:s', $this->event->getTimeStamp());
+        $expected = date('H:i:s', $this->event->getTimestamp());
         self::assertSame($expected, $actual);
     }
 
@@ -283,7 +283,7 @@ class LoggerPatternConverterTest extends TestCase
     public function testRelative()
     {
         $converter = new LoggerPatternConverterRelative($this->info);
-        $expected = number_format($this->event->getTimeStamp() - $this->event->getStartTime(), 4);
+        $expected = number_format($this->event->getTimestamp() - $this->event->getStartTime(), 4);
         $actual = $converter->convert($this->event);
         self::assertSame($expected, $actual);
     }

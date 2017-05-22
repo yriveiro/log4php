@@ -107,7 +107,7 @@ class LoggerAppenderDailyFileTest extends TestCase
         $file = PHPUNIT_TEMP_DIR . '/lazy-file.%s.log';
         $pattern = 'Y-m-d';
 
-        $date = date($pattern, $event->getTimeStamp());
+        $date = date($pattern, $event->getTimestamp());
         $path = PHPUNIT_TEMP_DIR . "/lazy-file.$date.log";
 
         if (file_exists($path)) {

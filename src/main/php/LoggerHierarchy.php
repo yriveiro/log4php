@@ -14,9 +14,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
+
+use Log4Php\Renderers\LoggerRendererMap;
 
 /**
  * This class is specialized in retrieving loggers by name and also maintaining
@@ -43,18 +45,9 @@
  * then it creates a provision node for the ancestor and adds itself
  * to the provision node. Other descendants of the same ancestor add
  * themselves to the previously created provision node.</p>
- *
- * @version $Revision$
- * @package log4php
  */
-
-namespace Log4Php;
-
-use Log4Php\Renderers\LoggerRendererMap;
-
 class LoggerHierarchy
 {
-
     /**
      * @var Logger[] Array holding all Logger instances.
      */
@@ -276,4 +269,4 @@ class LoggerHierarchy
             }
         }
     }
-} 
+}

@@ -14,17 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * A convenience class to convert property values to specific types.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage helpers
- * @since 0.5
  */
 
 namespace Log4Php\Helpers;
@@ -32,6 +21,9 @@ namespace Log4Php\Helpers;
 use Log4Php\LoggerException;
 use Log4Php\LoggerLevel;
 
+/**
+ * A convenience class to convert property values to specific types.
+ */
 class LoggerOptionConverter
 {
 
@@ -64,9 +56,9 @@ class LoggerOptionConverter
     {
         if (defined($key)) {
             return (string)constant($key);
-        } else if (isset($_SERVER[$key])) {
+        } elseif (isset($_SERVER[$key])) {
             return (string)$_SERVER[$key];
-        } else if (isset($_ENV[$key])) {
+        } elseif (isset($_ENV[$key])) {
             return (string)$_ENV[$key];
         } else {
             return $def;
@@ -94,7 +86,8 @@ class LoggerOptionConverter
             }
         }
 
-        throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to boolean.");
+        $valueString = var_export($value, true);
+        throw new LoggerException('Given value [' . $valueString . '] cannot be converted to boolean.');
     }
 
     /**
@@ -113,7 +106,8 @@ class LoggerOptionConverter
             return (integer)$value;
         }
 
-        throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to integer.");
+        $valueString = var_export($value, true);
+        throw new LoggerException('Given value [' . $valueString . '] cannot be converted to integer.');
     }
 
     /**
@@ -132,7 +126,8 @@ class LoggerOptionConverter
             return (integer)$value;
         }
 
-        throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a positive integer.");
+        $valueString = var_export($value, true);
+        throw new LoggerException('Given value [' . $valueString . '] cannot be converted to a positive integer.');
     }
 
     /**
@@ -148,7 +143,8 @@ class LoggerOptionConverter
         }
         $level = LoggerLevel::toLevel($value);
         if ($level === null) {
-            throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a logger level.");
+            $valueString = var_export($value, true);
+            throw new LoggerException('Given value [' . $valueString . '] cannot be converted to logger level.');
         }
         return $level;
     }
@@ -182,7 +178,8 @@ class LoggerOptionConverter
         }
 
         if (!is_string($value)) {
-            throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a file size.");
+            $valueString = var_export($value, true);
+            throw new LoggerException('Given value [' . $valueString . '] cannot be converted to a file size.');
         }
 
         $str = strtoupper(trim($value));
@@ -232,7 +229,8 @@ class LoggerOptionConverter
             return (string)$value;
         }
 
-        throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to string.");
+        $valueString = var_export($value, true);
+        throw new LoggerException('Given value [' . $valueString . '] cannot be converted to string.');
     }
 
     /**

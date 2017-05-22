@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
+
+use Exception;
+use Log4Php\Configurators\LoggerConfiguratorDefault;
 
 /**
  * This is the central class in the log4php package. All logging operations
@@ -31,21 +34,9 @@
  *        <li>{@link error()}</li>
  *        <li>{@link fatal()}</li>
  *    </ul>
- *
- * @package    log4php
- * @license       http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version       SVN: $Id$
- * @link       http://logging.apache.org/log4php
  */
-
-namespace Log4Php;
-
-use Exception;
-use Log4Php\Configurators\LoggerConfiguratorDefault;
-
 class Logger
 {
-
     /**
      * Logger additivity. If set to true then child loggers will inherit
      * the appenders of their ancestors by default.
@@ -57,7 +48,7 @@ class Logger
      * The Logger's fully qualified class name.
      * TODO: Determine if this is useful.
      */
-    private $fqcn = 'Logger';
+    private $fqcn = Logger::class;
 
     /** The assigned Logger level. */
     private $level;
@@ -183,7 +174,7 @@ class Logger
      * @param LoggerLevel $level The logging level.
      * @param mixed $message Message to log.
      * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     *        in the logging event.
      */
     public function log(LoggerLevel $level, $message, $throwable = null)
     {
@@ -194,7 +185,6 @@ class Logger
 
         // Forward the event upstream if additivity is turned on
         if (isset($this->parent) && $this->getAdditivity()) {
-
             // Use the event if already created
             if (isset($event)) {
                 $this->parent->logEvent($event);
@@ -370,7 +360,7 @@ class Logger
         if ($appender instanceof LoggerAppender) {
             $appender->close();
             unset($this->appenders[$appender->getName()]);
-        } else if (is_string($appender) and isset($this->appenders[$appender])) {
+        } elseif (is_string($appender) and isset($this->appenders[$appender])) {
             $this->appenders[$appender]->close();
             unset($this->appenders[$appender]);
         }
@@ -618,28 +608,32 @@ class Logger
             if ($configurator instanceof LoggerConfigurator) {
                 return $configurator;
             } else {
-                trigger_error("log4php: Given configurator object [$configurator] does not implement the LoggerConfigurator interface. Reverting to default configurator.", E_USER_WARNING);
+                trigger_error("log4php: Given configurator object [$configurator] does not implement "
+                    . "the LoggerConfigurator interface. Reverting to default configurator.", E_USER_WARNING);
                 return new LoggerConfiguratorDefault();
             }
         }
 
         if (is_string($configurator)) {
             if (!class_exists($configurator)) {
-                trigger_error("log4php: Specified configurator class [$configurator] does not exist. Reverting to default configurator.", E_USER_WARNING);
+                trigger_error("log4php: Specified configurator class [$configurator] does not exist. "
+                    . "Reverting to default configurator.", E_USER_WARNING);
                 return new LoggerConfiguratorDefault();
             }
 
             $instance = new $configurator();
 
             if (!($instance instanceof LoggerConfigurator)) {
-                trigger_error("log4php: Specified configurator class [$configurator] does not implement the LoggerConfigurator interface. Reverting to default configurator.", E_USER_WARNING);
+                trigger_error("log4php: Specified configurator class [$configurator] does not implement "
+                    . "the LoggerConfigurator interface. Reverting to default configurator.", E_USER_WARNING);
                 return new LoggerConfiguratorDefault();
             }
 
             return $instance;
         }
 
-        trigger_error("log4php: Invalid configurator specified. Expected either a string or a LoggerConfigurator instance. Reverting to default configurator.", E_USER_WARNING);
+        trigger_error("log4php: Invalid configurator specified. Expected either a string or "
+            . "a LoggerConfigurator instance. Reverting to default configurator.", E_USER_WARNING);
         return new LoggerConfiguratorDefault();
     }
 

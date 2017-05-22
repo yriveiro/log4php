@@ -16,6 +16,12 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLevel;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * LoggerAppenderPhp logs events by creating a PHP user-level message using
  * the PHP's trigger_error()function.
@@ -27,20 +33,7 @@
  * - <b>level < WARN</b> mapped to E_USER_NOTICE
  * - <b>WARN <= level < ERROR</b> mapped to E_USER_WARNING
  * - <b>level >= ERROR</b> mapped to E_USER_ERROR
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/php.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLevel;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderPhp extends LoggerAppender
 {
     public function append(LoggerLoggingEvent $event)
@@ -48,7 +41,7 @@ class LoggerAppenderPhp extends LoggerAppender
         $level = $event->getLevel();
         if ($level->isGreaterOrEqual(LoggerLevel::getLevelError())) {
             trigger_error($this->layout->format($event), E_USER_ERROR);
-        } else if ($level->isGreaterOrEqual(LoggerLevel::getLevelWarn())) {
+        } elseif ($level->isGreaterOrEqual(LoggerLevel::getLevelWarn())) {
             trigger_error($this->layout->format($event), E_USER_WARNING);
         } else {
             trigger_error($this->layout->format($event), E_USER_NOTICE);

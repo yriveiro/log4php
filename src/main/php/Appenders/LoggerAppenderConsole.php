@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * LoggerAppenderConsole appends log events either to the standard output
  * stream (php://stdout) or the standard error stream (php://stderr).
@@ -28,19 +33,7 @@
  * ## Configurable parameters: ##
  *
  * - **target** - the target stream: "stdout" or "stderr"
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/console.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderConsole extends LoggerAppender
 {
 

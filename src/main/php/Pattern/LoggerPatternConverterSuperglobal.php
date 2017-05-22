@@ -14,9 +14,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Pattern;
+
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * Returns a value from a superglobal array corresponding to the
@@ -30,20 +32,9 @@
  *
  * @see http://php.net/manual/en/language.variables.superglobals.php
  * @see http://www.php.net/manual/en/ini.core.php#ini.variables-order
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
-
-namespace Log4Php\Pattern;
-
-use Log4Php\LoggerLoggingEvent;
-
 abstract class LoggerPatternConverterSuperglobal extends LoggerPatternConverter
 {
-
     /**
      * Name of the superglobal variable, to be defined by subclasses.
      * For example: "_SERVER" or "_ENV".

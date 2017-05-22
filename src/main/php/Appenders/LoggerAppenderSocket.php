@@ -16,6 +16,12 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\Layouts\LoggerLayoutSerialized;
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * LoggerAppenderSocket appends to a network socket.
  *
@@ -27,23 +33,9 @@
  *     'default_socket_timeout' from php.ini)
  *
  * The socket will by default be opened in blocking mode.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/socket.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\Layouts\LoggerLayoutSerialized;
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderSocket extends LoggerAppender
 {
-
     /**
      * Target host.
      * @see http://php.net/manual/en/function.fsockopen.php

@@ -14,20 +14,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Contains various helper methods.
- *
- * @package log4php
- * @subpackage helpers
- * @since 2.3
  */
 
 namespace Log4Php\Helpers;
 
+/**
+ * Contains various helper methods.
+ */
 class LoggerUtils
 {
     /**
@@ -38,7 +31,6 @@ class LoggerUtils
      * well.
      *
      * @param string $name
-     *
      * @return array Class name split into fragments.
      */
     public static function tokenizeClassName($name)
@@ -101,7 +93,6 @@ class LoggerUtils
         }
 
         foreach ($fragments as $key => &$fragment) {
-
             // Never shorten last fragment
             if ($key == $count - 1) {
                 break;
@@ -126,4 +117,3 @@ class LoggerUtils
         return implode('\\', $fragments);
     }
 }
-

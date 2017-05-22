@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Pattern;
+
+use DateTime;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * Returns the date/time of the logging request.
@@ -26,18 +29,7 @@
  *
  * There are several "special" values which can be given for this option:
  * 'ISO8601', 'ABSOLUTE' and 'DATE'.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
-
-namespace Log4Php\Pattern;
-
-use DateTime;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerPatternConverterDate extends LoggerPatternConverter
 {
     const DATE_FORMAT_ISO8601 = 'c';
@@ -66,7 +58,7 @@ class LoggerPatternConverterDate extends LoggerPatternConverter
 
     public function convert(LoggerLoggingEvent $event)
     {
-        $time = DateTime::createFromFormat('U.u', number_format($event->getTimeStamp(), 6, '.', ''));
+        $time = DateTime::createFromFormat('U.u', number_format($event->getTimestamp(), 6, '.', ''));
         return $time->format($this->format);
     }
 }

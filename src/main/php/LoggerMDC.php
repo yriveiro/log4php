@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
 
 /**
  * The LoggerMDC class provides _mapped diagnostic contexts_.
@@ -28,14 +28,7 @@
  *
  * This class is similar to the {@link LoggerNDC} class except that
  * it is based on a map instead of a stack.
- *
- * @version $Revision$
- * @since 0.3
- * @package log4php
  */
-
-namespace Log4Php;
-
 class LoggerMDC
 {
 

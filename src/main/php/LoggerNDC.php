@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
 
 /**
  * The NDC class implements <i>nested diagnostic contexts</i>.
@@ -88,14 +88,7 @@
  * 2009-09-13 19:04:27 DEBUG root conn=1234 client=ab23: now related to a client in src/examples/php/ndc.php at 26
  * 2009-09-13 19:04:27 DEBUG root : back and waiting for new connections in src/examples/php/ndc.php at 29
  * </pre>
- *
- * @version $Revision$
- * @package log4php
- * @since 0.3
  */
-
-namespace Log4Php;
-
 class LoggerNDC
 {
 

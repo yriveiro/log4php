@@ -14,9 +14,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php;
 
 /**
  * Pool implementation for LoggerAppender instances.
@@ -25,13 +25,7 @@
  * are created in the pool. Afterward, they are linked to loggers, each
  * appender can be linked to multiple loggers. This makes sure duplicate
  * appenders are not created.
- *
- * @version $Revision$
- * @package log4php
  */
-
-namespace Log4Php;
-
 class LoggerAppenderPool
 {
     /** Holds appenders indexed by their name */
@@ -52,7 +46,8 @@ class LoggerAppenderPool
         }
 
         if (isset(self::$appenders[$name])) {
-            trigger_error("log4php: Appender [$name] already exists in pool. Overwriting existing appender.", E_USER_WARNING);
+            trigger_error("log4php: Appender [$name] already exists in pool. " .
+                "Overwriting existing appender.", E_USER_WARNING);
         }
 
         self::$appenders[$name] = $appender;

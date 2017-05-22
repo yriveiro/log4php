@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Layouts;
+
+use Log4Php\LoggerLayout;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * A simple layout.
@@ -33,17 +36,7 @@
  * would result in:
  *
  * <samp>INFO - Hello World!</samp>
- *
- * @version $Revision$
- * @package log4php
- * @subpackage layouts
  */
-
-namespace Log4Php\Layouts;
-
-use Log4Php\LoggerLayout;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerLayoutSimple extends LoggerLayout
 {
     /**

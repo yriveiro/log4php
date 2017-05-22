@@ -14,29 +14,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the Mapped Diagnostic Context value corresponding to the given key.
- *
- * Options:
- *  [0] the MDC key
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the Mapped Diagnostic Context value corresponding to the given key.
+ *
+ * Options:
+ *  [0] the MDC key
+ */
 class LoggerPatternConverterMDC extends LoggerPatternConverter
 {
-
     private $key;
 
     public function activateOptions()
@@ -60,4 +51,3 @@ class LoggerPatternConverterMDC extends LoggerPatternConverter
         }
     }
 }
- 

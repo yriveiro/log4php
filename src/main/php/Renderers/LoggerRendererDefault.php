@@ -14,22 +14,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Renderers;
 
 /**
  * The default renderer, which is used when no other renderer is found.
  *
  * Renders the input using <var>print_r</var>.
- *
- * @package log4php
- * @subpackage renderers
- * @since 0.3
  */
-
-namespace Log4Php\Renderers;
-
 class LoggerRendererDefault implements LoggerRenderer
 {
     public function render($input): string

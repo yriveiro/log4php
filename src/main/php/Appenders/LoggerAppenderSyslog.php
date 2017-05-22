@@ -16,6 +16,12 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLevel;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * Log events to a system log using the PHP syslog() function.
  *
@@ -62,20 +68,7 @@
  * - <b>INFO</b> to LOG_INFO
  * - <b>DEBUG</b> to LOG_DEBUG
  * - <b>TRACE</b> to LOG_DEBUG
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/syslog.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLevel;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderSyslog extends LoggerAppender
 {
 
@@ -244,7 +237,9 @@ class LoggerAppenderSyslog extends LoggerAppender
         $this->closed = false;
     }
 
-    /** Parses the priority string and returns the corresponding int value. */
+    /**
+     * Parses the priority string and returns the corresponding int value.
+     */
     private function parsePriority()
     {
         if (!empty($this->priority)) {
@@ -258,7 +253,9 @@ class LoggerAppenderSyslog extends LoggerAppender
         return null;
     }
 
-    /** Parses a syslog option string and returns the correspodning int value. */
+    /**
+     * Parses a syslog option string and returns the correspodning int value.
+     */
     private function parseOption()
     {
         $value = 0;
@@ -270,14 +267,19 @@ class LoggerAppenderSyslog extends LoggerAppender
                 if (defined($constant)) {
                     $value |= constant($constant);
                 } else {
-                    trigger_error("log4php: Invalid syslog option provided: $option. Whole option string: {$this->option}.", E_USER_WARNING);
+                    trigger_error(
+                        "log4php: Invalid syslog option provided: $option. Whole option string: {$this->option}.",
+                        E_USER_WARNING
+                    );
                 }
             }
         }
         return $value;
     }
 
-    /** Parses the facility string and returns the corresponding int value. */
+    /**
+     * Parses the facility string and returns the corresponding int value.
+     */
     private function parseFacility()
     {
         if (!empty($this->facility)) {

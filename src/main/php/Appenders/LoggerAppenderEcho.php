@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * LoggerAppenderEcho uses the PHP echo() function to output events.
  *
@@ -25,19 +30,7 @@
  *
  * - **htmlLineBreaks** - If set to true, a <br /> element will be inserted
  *     before each line break in the logged message. Default is false.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/echo.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderEcho extends LoggerAppender
 {
     /**
@@ -96,4 +89,3 @@ class LoggerAppenderEcho extends LoggerAppender
         $this->setBoolean('htmlLineBreaks', $value);
     }
 }
-

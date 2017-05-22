@@ -14,9 +14,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerException;
 
 /**
  * LoggerAppenderRollingFile writes logging events to a specified file. The
@@ -35,18 +37,7 @@
  *     Default is 10M.
  * - **compress** - If set to true, rolled-over files will be compressed.
  *     Requires the zlib extension.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/rolling-file.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerException;
-
 class LoggerAppenderRollingFile extends LoggerAppenderFile
 {
 
@@ -200,9 +191,8 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
         }
 
         // Lock the file while writing and possible rolling over
-        // @todo this seems crazy, why lock exclusively, if we can append, and then check the size, and only then roll over
+        // @todo this seems crazy, why lock exclusively, if we can append, and only then try to roll over
         if (flock($this->fp, LOCK_EX)) {
-
             // Write to locked file
             if (fwrite($this->fp, $string) === false) {
                 $this->warn("Failed writing to file. Closing appender.");
@@ -237,7 +227,8 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
     /**
      * Implements the usual roll over behaviour.
      *
-     * If MaxBackupIndex is positive, then files File.1, ..., File.MaxBackupIndex -1 are renamed to File.2, ..., File.MaxBackupIndex.
+     * If MaxBackupIndex is positive, then files
+     * File.1, ..., File.MaxBackupIndex -1 are renamed to File.2, ..., File.MaxBackupIndex.
      * Moreover, File is renamed File.1 and closed. A new File is created to receive further log output.
      *
      * If MaxBackupIndex is equal to zero, then the File is truncated with no backup files created.
@@ -272,7 +263,6 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
     private function renameArchivedLogs($fileName)
     {
         for ($i = $this->maxBackupIndex - 1; $i >= 1; $i--) {
-
             $source = $fileName . "." . $i;
             if ($this->compress) {
                 $source .= '.gz';

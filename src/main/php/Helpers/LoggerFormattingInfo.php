@@ -14,21 +14,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * This class encapsulates the information obtained when parsing
- * formatting modifiers in conversion modifiers.
- *
- * @package log4php
- * @subpackage helpers
- * @since 0.3
  */
 
 namespace Log4Php\Helpers;
 
+/**
+ * This class encapsulates the information obtained when parsing
+ * formatting modifiers in conversion modifiers.
+ */
 class LoggerFormattingInfo
 {
     /**

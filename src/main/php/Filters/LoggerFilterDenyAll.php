@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Filters;
+
+use Log4Php\LoggerFilter;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * This filter drops all logging events.
@@ -35,18 +38,7 @@
  * The corresponding XML file:
  *
  * {@example ../../examples/resources/filter_denyall.xml 18}
- *
- * @version $Revision$
- * @package log4php
- * @subpackage filters
- * @since 0.3
  */
-
-namespace Log4Php\Filters;
-
-use Log4Php\LoggerFilter;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerFilterDenyAll extends LoggerFilter
 {
     /**

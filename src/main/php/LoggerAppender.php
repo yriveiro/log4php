@@ -14,21 +14,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Abstract class that defines output logs strategies.
- *
- * @version $Revision$
- * @package log4php
  */
 
 namespace Log4Php;
 
 use Log4Php\Layouts\LoggerLayoutSimple;
 
+/**
+ * Abstract class that defines output logs strategies.
+ */
 abstract class LoggerAppender extends LoggerConfigurable
 {
     /**

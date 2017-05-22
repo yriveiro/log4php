@@ -16,23 +16,15 @@
  * limitations under the License.
  */
 
-/**
- * A NullAppender merely exists, it never outputs a message to any device.
- *
- * This appender has no configurable parameters.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/null.html Appender documentation
- */
-
 namespace Log4Php\Appenders;
 
 use Log4Php\LoggerAppender;
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * A NullAppender merely exists, it never outputs a message to any device.
+ * This appender has no configurable parameters.
+ */
 class LoggerAppenderNull extends LoggerAppender
 {
 

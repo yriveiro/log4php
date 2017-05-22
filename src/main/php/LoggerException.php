@@ -14,21 +14,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * LoggerException class
- *
- * @version $Revision$
- * @package log4php
  */
 
 namespace Log4Php;
 
 use Exception;
 
+/**
+ * LoggerException class
+ */
 class LoggerException extends Exception
 {
 }

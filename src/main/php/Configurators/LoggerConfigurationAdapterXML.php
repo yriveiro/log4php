@@ -14,18 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Converts XML configuration files to a PHP array.
- *
- * @package log4php
- * @subpackage configurators
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version $Revision$
- * @since 2.2
  */
 
 namespace Log4Php\Configurators;
@@ -33,6 +21,9 @@ namespace Log4Php\Configurators;
 use Log4Php\LoggerException;
 use SimpleXMLElement;
 
+/**
+ * Converts XML configuration files to a PHP array.
+ */
 class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
 {
     /** Path to the XML schema used for validation. */
@@ -104,7 +95,6 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
         // Load XML
         $xml = @simplexml_load_file($url);
         if ($xml === false) {
-
             $errorStr = "";
             foreach (libxml_get_errors() as $error) {
                 $errorStr .= $error->message;
@@ -344,4 +334,3 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
         $this->config['defaultRenderer'] = $renderingClass;
     }
 }
-

@@ -16,6 +16,11 @@
  * limitations under the License.
  */
 
+namespace Log4Php\Appenders;
+
+use Log4Php\LoggerAppender;
+use Log4Php\LoggerLoggingEvent;
+
 /**
  * LoggerAppenderFile appends log events to a file.
  *
@@ -27,22 +32,9 @@
  *     the working directory.
  * - **append** - If set to true, the appender will append to the file,
  *     otherwise the file contents will be overwritten.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage appenders
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link http://logging.apache.org/log4php/docs/appenders/file.html Appender documentation
  */
-
-namespace Log4Php\Appenders;
-
-use Log4Php\LoggerAppender;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerAppenderFile extends LoggerAppender
 {
-
     /**
      * If set to true, the file is locked before appending. This allows
      * concurrent access. However, appending without locking is faster so
@@ -68,7 +60,7 @@ class LoggerAppenderFile extends LoggerAppender
 
     /**
      * The file resource.
-     * @var resource
+     * @var resource|bool|null
      */
     protected $fp;
 

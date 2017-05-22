@@ -14,19 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Default implementation of the logger configurator.
- *
- * Configures log4php based on a provided configuration file or array.
- *
- * @package log4php
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version $Revision$
- * @since 2.2
  */
 
 namespace Log4Php\Configurators;
@@ -43,6 +30,11 @@ use Log4Php\LoggerHierarchy;
 use Log4Php\LoggerLayout;
 use Log4Php\LoggerLevel;
 
+/**
+ * Default implementation of the logger configurator.
+ *
+ * Configures log4php based on a provided configuration file or array.
+ */
 class LoggerConfiguratorDefault implements LoggerConfigurator
 {
     /** XML configuration file format. */
@@ -128,10 +120,10 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
         if (!isset($input)) {
             $config = self::$defaultConfiguration;
         } // Array input - contains configuration within the array
-        else if (is_array($input)) {
+        elseif (is_array($input)) {
             $config = $input;
         } // String input - contains path to configuration file
-        else if (is_string($input)) {
+        elseif (is_string($input)) {
             try {
                 $config = $this->parseFile($input);
             } catch (LoggerException $e) {
@@ -219,7 +211,8 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             if (isset($threshold)) {
                 $hierarchy->setThreshold($threshold);
             } else {
-                $this->warn("Invalid threshold value [{$config['threshold']}] specified. Ignoring threshold definition.");
+                $threshold = var_export($config['threshold'] ?? null, true);
+                $this->warn("Invalid threshold value [$threshold] specified. Ignoring threshold definition.");
             }
         }
 
@@ -266,7 +259,8 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
         // TODO: add this check to other places where it might be useful
         if (!is_array($config)) {
             $type = gettype($config);
-            $this->warn("Invalid configuration provided for appender [$name]. Expected an array, found <$type>. Skipping appender definition.");
+            $this->warn("Invalid configuration provided for appender [$name]. "
+                . "Expected an array, found <$type>. Skipping appender definition.");
             return;
         }
 
@@ -277,14 +271,16 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             return;
         }
         if (!class_exists($class)) {
-            $this->warn("Invalid class [$class] given for appender [$name]. Class does not exist. Skipping appender definition.");
+            $this->warn("Invalid class [$class] given for appender [$name]. "
+                . "Class does not exist. Skipping appender definition.");
             return;
         }
 
         // Instantiate the appender
         $appender = new $class($name);
         if (!($appender instanceof LoggerAppender)) {
-            $this->warn("Invalid class [$class] given for appender [$name]. Not a valid LoggerAppender class. Skipping appender definition.");
+            $this->warn("Invalid class [$class] given for appender [$name]. "
+                . "Not a valid LoggerAppender class. Skipping appender definition.");
             return;
         }
 
@@ -294,7 +290,8 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             if ($threshold instanceof LoggerLevel) {
                 $appender->setThreshold($threshold);
             } else {
-                $this->warn("Invalid threshold value [{$config['threshold']}] specified for appender [$name]. Ignoring threshold definition.");
+                $this->warn("Invalid threshold value [{$config['threshold']}] specified for appender [$name]. "
+                    . "Ignoring threshold definition.");
             }
         }
 
@@ -445,7 +442,8 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             if (isset($level)) {
                 $logger->setLevel($level);
             } else {
-                $this->warn("Invalid level value [{$config['level']}] specified for logger [$loggerName]. Ignoring level definition.");
+                $this->warn("Invalid level value [{$config['level']}] specified for logger [$loggerName]. "
+                    . "Ignoring level definition.");
             }
         }
 
@@ -466,7 +464,8 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
                 $additivity = LoggerOptionConverter::toBooleanEx($config['additivity']);
                 $logger->setAdditivity($additivity);
             } catch (Exception $ex) {
-                $this->warn("Invalid additivity value [{$config['additivity']}] specified for logger [$loggerName]. Ignoring additivity setting.");
+                $this->warn("Invalid additivity value [{$config['additivity']}] specified for logger [$loggerName]. "
+                    . "Ignoring additivity setting.");
             }
         }
     }

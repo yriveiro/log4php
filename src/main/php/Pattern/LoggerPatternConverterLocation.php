@@ -14,24 +14,16 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the line number within the file from which the logging request was
- * issued.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the line number within the file from which the logging request was
+ * issued.
+ */
 class LoggerPatternConverterLocation extends LoggerPatternConverter
 {
     public function convert(LoggerLoggingEvent $event)

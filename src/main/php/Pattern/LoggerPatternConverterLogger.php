@@ -14,20 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the name of the logger which created the logging request.
- *
- * Takes one option, which is an integer. If the option is given, the logger
- * name will be shortened to the given length, if possible.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
@@ -35,6 +21,12 @@ namespace Log4Php\Pattern;
 use Log4Php\Helpers\LoggerUtils;
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the name of the logger which created the logging request.
+ *
+ * Takes one option, which is an integer. If the option is given, the logger
+ * name will be shortened to the given length, if possible.
+ */
 class LoggerPatternConverterLogger extends LoggerPatternConverter
 {
     /** Length to which to shorten the name. */

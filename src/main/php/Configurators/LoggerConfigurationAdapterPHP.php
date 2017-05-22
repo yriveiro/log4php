@@ -14,9 +14,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Configurators;
+
+use Log4Php\LoggerException;
 
 /**
  * Converts PHP configuration files to a PHP array.
@@ -42,18 +44,7 @@
  * )
  * ?>
  * </code>
- *
- * @package log4php
- * @subpackage configurators
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version $Revision$
- * @since 2.2
  */
-
-namespace Log4Php\Configurators;
-
-use Log4Php\LoggerException;
-
 class LoggerConfigurationAdapterPHP implements LoggerConfigurationAdapter
 {
     public function convert($url)
@@ -78,4 +69,3 @@ class LoggerConfigurationAdapterPHP implements LoggerConfigurationAdapter
         return $config;
     }
 }
-

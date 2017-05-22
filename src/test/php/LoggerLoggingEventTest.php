@@ -77,7 +77,7 @@ class LoggerLoggingEventTest extends TestCase
         $l = LoggerLevel:: getLevelDebug();
         $timestamp = microtime(true);
         $e = new LoggerLoggingEvent('fqcn', 'TestLogger', $l, 'test', $timestamp);
-        self::assertEquals($e->getTimeStamp(), $timestamp);
+        self::assertEquals($e->getTimestamp(), $timestamp);
     }
 
     public function testGetStartTime()

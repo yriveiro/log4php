@@ -14,41 +14,33 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Manages defined renderers and determines which renderer to use for a given
- * input.
- *
- * @version $Revision$
- * @package log4php
- * @subpackage renderers
- * @since 0.3
  */
 
 namespace Log4Php\Renderers;
 
 use Exception;
 
+/**
+ * Manages defined renderers and determines which renderer to use for a given input.
+ */
 class LoggerRendererMap
 {
     /**
      * Maps class names to appropriate renderers.
+     *
      * @var array
      */
     private $map = [];
 
     /**
      * The default renderer to use if no specific renderer is found.
+     *
      * @var LoggerRenderer
      */
     private $defaultRenderer;
 
     public function __construct()
     {
-
         // Set default config
         $this->reset();
     }
@@ -77,7 +69,8 @@ class LoggerRendererMap
 
         // Check the class implements the right interface
         if (!($renderer instanceof LoggerRenderer)) {
-            trigger_error("log4php: Failed adding renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
+            trigger_error("log4php: Failed adding renderer. "
+                . "Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
             return;
         }
 
@@ -110,7 +103,8 @@ class LoggerRendererMap
 
         // Check the class implements the right interface
         if (!($renderer instanceof LoggerRenderer)) {
-            trigger_error("log4php: Failed setting default renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
+            trigger_error("log4php: Failed setting default renderer. "
+                . "Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
             return;
         }
 
@@ -119,6 +113,7 @@ class LoggerRendererMap
 
     /**
      * Returns the default renderer.
+     *
      * @return LoggerRenderer
      */
     public function getDefaultRenderer()
@@ -170,7 +165,7 @@ class LoggerRendererMap
      *
      * If no renderer could be found, returns NULL.
      *
-     * @param string $class
+     * @param string $class Class nane
      * @return LoggerRenderer|null logger renderer or null if not found.
      */
     public function getByClassName($class)

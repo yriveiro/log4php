@@ -14,30 +14,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Converts ini configuration files to a PHP array.
- *
- * These used to be called "properties" files (inherited from log4j), and that
- * file extension is still supported.
- *
- * @package log4php
- * @subpackage configurators
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version $Revision$
- * @since 2.2
  */
 
 namespace Log4Php\Configurators;
 
 use Log4Php\LoggerException;
 
+/**
+ * Converts ini configuration files to a PHP array.
+ *
+ * These used to be called "properties" files (inherited from log4j), and that
+ * file extension is still supported.
+ */
 class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
 {
-
     /** Name to assign to the root logger. */
     const ROOT_LOGGER_NAME = "root";
 
@@ -96,10 +86,10 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
                 $name = substr($key, strlen(self::ADDITIVITY_PREFIX));
                 $this->config['loggers'][$name]['additivity'] = $value;
             } // Parse appenders
-            else if ($this->beginsWith($key, self::APPENDER_PREFIX)) {
+            elseif ($this->beginsWith($key, self::APPENDER_PREFIX)) {
                 $this->parseAppender($key, $value);
             } // Parse renderers
-            else if ($this->beginsWith($key, self::RENDERER_PREFIX)) {
+            elseif ($this->beginsWith($key, self::RENDERER_PREFIX)) {
                 $this->parseRenderer($key, $value);
             }
         }
@@ -258,12 +248,11 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
             $this->config['appenders'][$name]['class'] = $value;
             return;
         } // Two parts - either a parameter, a threshold or layout class
-        else if ($count == 2) {
-
+        elseif ($count == 2) {
             if ($parts[1] == 'layout') {
                 $this->config['appenders'][$name]['layout']['class'] = $value;
                 return;
-            } else if ($parts[1] == 'threshold') {
+            } elseif ($parts[1] == 'threshold') {
                 $this->config['appenders'][$name]['threshold'] = $value;
                 return;
             } else {
@@ -271,7 +260,7 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
                 return;
             }
         } // Three parts - this can only be a layout parameter
-        else if ($count == 3) {
+        elseif ($count == 3) {
             if ($parts[1] == 'layout') {
                 $this->config['appenders'][$name]['layout']['params'][$parts[2]] = $value;
                 return;

@@ -14,9 +14,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
  */
+
+namespace Log4Php\Filters;
+
+use Log4Php\LoggerFilter;
+use Log4Php\LoggerLoggingEvent;
 
 /**
  * This is a very simple filter based on string matching.
@@ -39,18 +42,7 @@
  * The corresponding XML file:
  *
  * {@example ../../examples/resources/filter_stringmatch.xml 18}
- *
- * @version $Revision$
- * @package log4php
- * @subpackage filters
- * @since 0.3
  */
-
-namespace Log4Php\Filters;
-
-use Log4Php\LoggerFilter;
-use Log4Php\LoggerLoggingEvent;
-
 class LoggerFilterStringMatch extends LoggerFilter
 {
     /**
@@ -81,7 +73,7 @@ class LoggerFilterStringMatch extends LoggerFilter
 
     /**
      * @param LoggerLoggingEvent $event
-     * @return int a <a href='psi_element://LOGGER_FILTER_NEUTRAL'>LOGGER_FILTER_NEUTRAL</a> is there is no string match.
+     * @return int a <a href='psi_element://LOGGER_FILTER_NEUTRAL'>LOGGER_FILTER_NEUTRAL</a> is there is no string match
      * is there is no string match.
      */
     public function decide(LoggerLoggingEvent $event)

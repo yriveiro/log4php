@@ -356,7 +356,7 @@ class LoggerConfiguratorTest extends TestCase
 
     /**
      * @expectedException \PHPUnit\Framework\Error\Error
-     * @expectedExceptionMessage Invalid threshold value [FOO] specified. Ignoring threshold definition.
+     * @expectedExceptionMessage Invalid threshold value ['FOO'] specified. Ignoring threshold definition.
      */
     public function testInvalidThreshold()
     {

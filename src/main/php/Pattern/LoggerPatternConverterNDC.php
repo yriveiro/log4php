@@ -14,29 +14,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the full Nested Diagnostic Context.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the full Nested Diagnostic Context.
+ */
 class LoggerPatternConverterNDC extends LoggerPatternConverter
 {
-
     public function convert(LoggerLoggingEvent $event)
     {
         return $event->getNDC();
     }
 }
- 

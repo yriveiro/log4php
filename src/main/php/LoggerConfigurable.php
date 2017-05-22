@@ -14,18 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * A base class from which all classes which have configurable properties are
- * extended. Provides a generic setter with integrated validation.
- *
- * @package log4php
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @version $Revision $
- * @since 2.2
  */
 
 namespace Log4Php;
@@ -33,6 +21,10 @@ namespace Log4Php;
 use Exception;
 use Log4Php\Helpers\LoggerOptionConverter;
 
+/**
+ * A base class from which all classes which have configurable properties are
+ * extended. Provides a generic setter with integrated validation.
+ */
 abstract class LoggerConfigurable
 {
     /** Setter function for boolean type.
@@ -45,7 +37,8 @@ abstract class LoggerConfigurable
             $this->$property = LoggerOptionConverter::toBooleanEx($value);
         } catch (Exception $ex) {
             $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected a boolean value. Property not changed.");
+            $this->warn("Invalid value given for '$property' property: [$value]. "
+                . "Expected a boolean value. Property not changed.");
         }
     }
 
@@ -60,7 +53,8 @@ abstract class LoggerConfigurable
             $this->$property = LoggerOptionConverter::toIntegerEx($value);
         } catch (Exception $ex) {
             $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected an integer. Property not changed.");
+            $this->warn("Invalid value given for '$property' property: [$value]. "
+                . "Expected an integer. Property not changed.");
         }
     }
 
@@ -75,7 +69,8 @@ abstract class LoggerConfigurable
             $this->$property = LoggerOptionConverter::toLevelEx($value);
         } catch (Exception $ex) {
             $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected a level value. Property not changed.");
+            $this->warn("Invalid value given for '$property' property: [$value]. "
+                . "Expected a level value. Property not changed.");
         }
     }
 
@@ -90,7 +85,8 @@ abstract class LoggerConfigurable
             $this->$property = LoggerOptionConverter::toPositiveIntegerEx($value);
         } catch (Exception $ex) {
             $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected a positive integer. Property not changed.");
+            $this->warn("Invalid value given for '$property' property: [$value]. "
+                . "Expected a positive integer. Property not changed.");
         }
     }
 
@@ -105,7 +101,8 @@ abstract class LoggerConfigurable
             $this->$property = LoggerOptionConverter::toFileSizeEx($value);
         } catch (Exception $ex) {
             $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected a file size value.  Property not changed.");
+            $this->warn("Invalid value given for '$property' property: [$value]. "
+                . "Expected a file size value.  Property not changed.");
         }
     }
 
@@ -129,7 +126,8 @@ abstract class LoggerConfigurable
                 $this->$property = LoggerOptionConverter::substConstants($value);
             } catch (Exception $ex) {
                 $value = var_export($value, true);
-                $this->warn("Invalid value given for '$property' property: [$value]. Expected a string. Property not changed.");
+                $this->warn("Invalid value given for '$property' property: [$value]. "
+                    . "Expected a string. Property not changed.");
             }
         }
     }

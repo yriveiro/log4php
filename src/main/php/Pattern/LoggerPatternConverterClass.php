@@ -14,18 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Returns the fully qualified class name of the class from which the logging
- * request was issued.
- *
- * @package log4php
- * @subpackage pattern
- * @version $Revision$
- * @since 2.3
  */
 
 namespace Log4Php\Pattern;
@@ -33,6 +21,9 @@ namespace Log4Php\Pattern;
 use Log4Php\Helpers\LoggerUtils;
 use Log4Php\LoggerLoggingEvent;
 
+/**
+ * Returns the fully qualified class name of the class from which the logging request was issued.
+ */
 class LoggerPatternConverterClass extends LoggerPatternConverter
 {
     /** Length to which to shorten the class name. */
@@ -64,4 +55,3 @@ class LoggerPatternConverterClass extends LoggerPatternConverter
         return $this->cache[$name];
     }
 }
- 

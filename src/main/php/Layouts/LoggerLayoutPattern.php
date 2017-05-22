@@ -14,21 +14,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * A flexible layout configurable with a pattern string.
- *
- * Configurable parameters:
- *
- * * conversionPattern - A string which controls the formatting of logging
- *   events. See docs for full specification.
- *
- * @package log4php
- * @subpackage layouts
- * @version $Revision$
  */
 
 namespace Log4Php\Layouts;
@@ -60,6 +45,14 @@ use Log4Php\Pattern\LoggerPatternConverterSession;
 use Log4Php\Pattern\LoggerPatternConverterSessionID;
 use Log4Php\Pattern\LoggerPatternConverterThrowable;
 
+/**
+ * A flexible layout configurable with a pattern string.
+ *
+ * Configurable parameters:
+ *
+ * * conversionPattern - A string which controls the formatting of logging
+ *   events. See docs for full specification.
+ */
 class LoggerLayoutPattern extends LoggerLayout
 {
 

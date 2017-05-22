@@ -14,22 +14,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package log4php
- */
-
-/**
- * Provides methods for reflective use on php objects
- * @package log4php
  */
 
 namespace Log4Php;
 
 use Exception;
 
+/**
+ * Provides methods for reflective use on php objects
+ */
 class LoggerReflectionUtils
 {
-    /** the target object */
+    /**
+     * the target object
+     */
     private $obj;
 
     /**
@@ -119,7 +117,8 @@ class LoggerReflectionUtils
         $method = "set" . ucfirst($name);
 
         if (!method_exists($this->obj, $method)) {
-            throw new Exception("Error setting log4php property $name to $value: no method $method in class " . get_class($this->obj) . "!");
+            throw new Exception("Error setting log4php property $name to $value: "
+                . "no method $method in class " . get_class($this->obj) . "!");
         } else {
             return call_user_func([$this->obj, $method], $value);
         }
@@ -165,5 +164,4 @@ class LoggerReflectionUtils
             return false;
         }
     }
-
 }
