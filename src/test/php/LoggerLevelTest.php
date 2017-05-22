@@ -21,17 +21,15 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
-use Log4Php\LoggerLevel;
 
-/**
- * @group main
- */
-class LoggerLevelTest extends PHPUnit_Framework_TestCase
+use Log4Php\LoggerLevel;
+use PHPUnit\Framework\TestCase;
+
+class LoggerLevelTest extends TestCase
 {
 
-    protected function doTestLevel($level, $code, $str, $syslog)
+    protected function doTestLevel(LoggerLevel $level, $code, $str, $syslog)
     {
-        self::assertTrue($level instanceof LoggerLevel);
         self::assertEquals($level->toInt(), $code);
         self::assertEquals($level->toString(), $str);
         self::assertEquals($level->getSyslogEquivalent(), $syslog);

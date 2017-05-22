@@ -29,6 +29,8 @@ use Log4Php\Renderers\LoggerRenderer;
 use Log4Php\Renderers\LoggerRendererDefault;
 use Log4Php\Renderers\LoggerRendererException;
 use Log4Php\Renderers\LoggerRendererMap;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 
 /** Renders everything as 'foo'. */
 class FooRenderer implements LoggerRenderer
@@ -66,15 +68,10 @@ class SampleObject
 {
 }
 
-/**
- * @group renderers
- */
-class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
+class LoggerRendererMapTest extends TestCase
 {
-
     public function testDefaults()
     {
-
         $map = new LoggerRendererMap();
         $actual = $map->getByClassName(Exception::class);
         self::assertInstanceOf(LoggerRendererException::class, $actual);
@@ -121,7 +118,7 @@ class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
 
     /**
      * Try adding a non-existant class as renderer.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [DoesNotExist] not found.
      */
     public function testAddRendererError1()
@@ -132,7 +129,7 @@ class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
 
     /**
      * Try adding a class which does not implement LoggerRenderer as renderer.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [stdClass] does not implement the LoggerRenderer interface.
      */
     public function testAddRendererError2()
@@ -153,7 +150,7 @@ class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
 
     /**
      * Try setting a non-existant class as default renderer.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed setting default renderer. Rendering class [DoesNotExist] not found.
      */
     public function testSetDefaultRendererError1()
@@ -164,7 +161,7 @@ class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
 
     /**
      * Try setting a class which does not implement LoggerRenderer as default renderer.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed setting default renderer. Rendering class [stdClass] does not implement the LoggerRenderer interface.
      */
     public function testSetDefaultRendererError2()
@@ -191,6 +188,7 @@ class LoggerRendererMapTest extends PHPUnit_Framework_TestCase
     {
         $map = new LoggerRendererMap();
         $map->addRenderer(Fruit3::class, FruitRenderer3::class);
+        Assert::assertTrue(true);
     }
 
     public function testDefaultRenderer()

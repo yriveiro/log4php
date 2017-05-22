@@ -22,14 +22,12 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Helpers\LoggerUtils;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group helpers
- */
-class LoggerUtilsTest extends PHPUnit_Framework_TestCase
+class LoggerUtilsTest extends TestCase
 {
-
     public function testShorten()
     {
         $name = 'org\\apache\\logging\\log4php\\Foo';
@@ -88,5 +86,4 @@ class LoggerUtilsTest extends PHPUnit_Framework_TestCase
         $actual = LoggerUtils::shortenClassName($name, 30);
         self::assertSame('org\apache\logging\log4php\Foo', $actual);
     }
-
 }

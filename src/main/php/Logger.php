@@ -397,11 +397,11 @@ class Logger
 
     /**
      * Sets the additivity flag.
-     * @param boolean $additive
+     * @param $additive
      */
-    public function setAdditivity($additive)
+    public function setAdditivity(bool $additive)
     {
-        $this->additive = (bool)$additive;
+        $this->additive = $additive;
     }
 
     /**
@@ -569,7 +569,7 @@ class Logger
     /**
      * Returns an array this whole Logger instances.
      * @see Logger
-     * @return array
+     * @return Logger[]
      */
     public static function getCurrentLoggers()
     {

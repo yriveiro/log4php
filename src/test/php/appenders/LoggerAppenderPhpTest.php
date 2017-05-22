@@ -27,14 +27,16 @@
 use Log4Php\Appenders\LoggerAppenderPhp;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 
 function errorHandler($errno, $errstr, $errfile, $errline)
 {
-    PHPUnit_Framework_TestCase::assertEquals(LoggerAppenderPhpTest::$expectedError, $errno);
-    PHPUnit_Framework_TestCase::assertEquals(LoggerAppenderPhpTest::$expectedMessage, $errstr);
+    Assert::assertEquals(LoggerAppenderPhpTest::$expectedError, $errno);
+    Assert::assertEquals(LoggerAppenderPhpTest::$expectedMessage, $errstr);
 }
 
-class LoggerAppenderPhpTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderPhpTest extends TestCase
 {
     public static $expectedMessage;
 

@@ -22,12 +22,11 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
-use Log4Php\LoggerNDC;
 
-/**
- * @group main
- */
-class LoggerNDCTest extends PHPUnit_Framework_TestCase
+use Log4Php\LoggerNDC;
+use PHPUnit\Framework\TestCase;
+
+class LoggerNDCTest extends TestCase
 {
 
     public function testItemHandling()
@@ -90,5 +89,3 @@ class LoggerNDCTest extends PHPUnit_Framework_TestCase
         self::assertSame(0, LoggerNDC::getDepth());
     }
 }
-
-?>

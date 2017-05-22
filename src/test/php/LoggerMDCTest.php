@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -22,13 +21,12 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Layouts\LoggerLayoutPattern;
 use Log4Php\LoggerMDC;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group main
- */
-class LoggerMDCTest extends PHPUnit_Framework_TestCase
+class LoggerMDCTest extends TestCase
 {
     /** A pattern with 1 key. */
     private $pattern1 = "%-5p %c: %X{key1} %m";
@@ -57,17 +55,16 @@ class LoggerMDCTest extends PHPUnit_Framework_TestCase
 
     public function testPatterns()
     {
-
         // Create some data to test with
         LoggerMDC::put('key1', 'valueofkey1');
         LoggerMDC::put('key2', 'valueofkey2');
         LoggerMDC::put(3, 'valueofkey3');
 
-        $expected = array(
+        $expected = [
             'key1' => 'valueofkey1',
             'key2' => 'valueofkey2',
             3 => 'valueofkey3',
-        );
+        ];
         $actual = LoggerMDC::getMap();
 
         self::assertSame($expected, $actual);

@@ -22,19 +22,16 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderDailyFile;
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Configurators\LoggerConfigurationAdapterINI;
 use Log4Php\Helpers\LoggerOptionConverter;
 use Log4Php\Layouts\LoggerLayoutPattern;
-use Log4Php\Layouts\LoggerLayoutTTCC;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group configurators
- */
-class LoggerConfigurationAdapterINITest extends PHPUnit_Framework_TestCase
+class LoggerConfigurationAdapterINITest extends TestCase
 {
-
     /** Expected output of parsing config1.ini. */
     private $expected1 = [
         'threshold' => 'debug',
@@ -46,7 +43,7 @@ class LoggerConfigurationAdapterINITest extends PHPUnit_Framework_TestCase
             'default' => [
                 'class' => LoggerAppenderEcho::class,
                 'layout' => [
-                    'class' => LoggerLayoutTTCC::class,
+                    'class' => LoggerLayoutPattern::class,
                 ],
             ],
             'file' => [
@@ -126,7 +123,7 @@ class LoggerConfigurationAdapterINITest extends PHPUnit_Framework_TestCase
 
     /**
      * Test a warning is triggered when configurator doesn't understand a line.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Don't know how to parse the following line: "log4php.appender.default.layout.param.bla = Log4Php\Layouts\LoggerLayoutTTCC". Skipping.
      */
     public function testInvalidLineWarning1()
@@ -138,7 +135,7 @@ class LoggerConfigurationAdapterINITest extends PHPUnit_Framework_TestCase
 
     /**
      * Test a warning is triggered when configurator doesn't understand a line.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Don't know how to parse the following line: "log4php.appender.default.not-layout.param = Log4Php\Layouts\LoggerLayoutTTCC". Skipping.
      */
     public function testInvalidLineWarning2()
@@ -180,5 +177,4 @@ class LoggerConfigurationAdapterINITest extends PHPUnit_Framework_TestCase
         $actual = LoggerOptionConverter::toBooleanEx($values['unquoted_zero']);
         self::assertFalse($actual);
     }
-
 }

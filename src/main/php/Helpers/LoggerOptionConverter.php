@@ -76,7 +76,7 @@ class LoggerOptionConverter
     /**
      * Converts $value to boolean, or throws an exception if not possible.
      * @param $value
-     * @return bool|string
+     * @return bool
      * @throws LoggerException
      */
     public static function toBooleanEx($value)

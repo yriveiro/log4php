@@ -21,17 +21,16 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderConsole;
 use Log4Php\LoggerHierarchy;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerRoot;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group main
- */
-class LoggerHierarchyTest extends PHPUnit_Framework_TestCase
+class LoggerHierarchyTest extends TestCase
 {
-
+    /** @var LoggerHierarchy */
     private $hierarchy;
 
     protected function setUp()

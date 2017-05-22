@@ -29,8 +29,9 @@ use Log4Php\Layouts\LoggerLayoutSerialized;
 use Log4Php\Logger;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\TestCase;
 
-class LoggerLayoutSerializedTest extends PHPUnit_Framework_TestCase
+class LoggerLayoutSerializedTest extends TestCase
 {
     public function testLocationInfo()
     {
@@ -43,7 +44,7 @@ class LoggerLayoutSerializedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid value given for 'locationInfo' property: ['foo']. Expected a boolean value. Property not changed.
      */
     public function testLocationInfoFail()

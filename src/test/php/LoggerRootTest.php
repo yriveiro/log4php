@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -21,14 +22,13 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Logger;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerRoot;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group main
- */
-class LoggerRootTest extends PHPUnit_Framework_TestCase
+class LoggerRootTest extends TestCase
 {
 
     public function testInitialSetup()
@@ -41,7 +41,7 @@ class LoggerRootTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: LoggerRoot cannot have a parent.
      */
     public function testSetParentWarning()
@@ -60,7 +60,7 @@ class LoggerRootTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Cannot set LoggerRoot level to null.
      */
     public function testNullLevelWarning()

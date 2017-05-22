@@ -1,6 +1,7 @@
 <?php
 
 use Log4Php\LoggerException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -31,7 +32,7 @@ class MyException extends Exception
 /**
  * @group main
  */
-class LoggerExceptionTest extends PHPUnit_Framework_TestCase
+class LoggerExceptionTest extends TestCase
 {
     /**
      * @expectedException Log4Php\LoggerException

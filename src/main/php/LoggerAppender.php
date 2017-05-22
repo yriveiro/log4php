@@ -40,7 +40,7 @@ abstract class LoggerAppender extends LoggerConfigurable
 
     /**
      * The first filter in the filter chain.
-     * @var LoggerFilter
+     * @var LoggerFilter|null
      */
     protected $filter;
 

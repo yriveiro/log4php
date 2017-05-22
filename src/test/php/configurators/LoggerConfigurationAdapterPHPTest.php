@@ -23,15 +23,13 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Configurators\LoggerConfigurationAdapterPHP;
 use Log4Php\Layouts\LoggerLayoutSimple;
-use Log4Php\LoggerException;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group configurators
- */
-class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase
+class LoggerConfigurationAdapterPHPTest extends TestCase
 {
     private $expected1 = [
         'rootLogger' => [

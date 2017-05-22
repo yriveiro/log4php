@@ -22,14 +22,13 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Layouts\LoggerLayoutXml;
 use Log4Php\LoggerMDC;
 use Log4Php\LoggerNDC;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group layouts
- */
-class LoggerLayoutXmlTest extends PHPUnit_Framework_TestCase
+class LoggerLayoutXmlTest extends TestCase
 {
 
     public function testErrorLayout()

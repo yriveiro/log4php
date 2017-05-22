@@ -25,7 +25,7 @@
 
 use Log4Php\Appenders\LoggerAppenderFile;
 use Log4Php\Helpers\LoggerOptionConverter;
-use Log4Php\LoggerException;
+use PHPUnit\Framework\TestCase;
 
 define('MY_CONSTANT_CONSTANT', 'DEFINE');
 define('MY_CONSTANT_CONSTANT_OTHER', 'DEFINE_OTHER');
@@ -33,7 +33,7 @@ define('MY_CONSTANT_CONSTANT_OTHER', 'DEFINE_OTHER');
 /**
  * @group helpers
  */
-class LoggerOptionConverterTest extends PHPUnit_Framework_TestCase
+class LoggerOptionConverterTest extends TestCase
 {
 
     public function testToBoolean()

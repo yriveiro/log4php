@@ -25,11 +25,9 @@
 use Log4Php\Appenders\LoggerAppenderRollingFile;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group appenders
- */
-class LoggerAppenderRollingFileTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderRollingFileTest extends TestCase
 {
     const WARNING_MASSAGE = 'WARN - my messageXYZ';
 

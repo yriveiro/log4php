@@ -25,30 +25,10 @@
  */
 
 use Log4Php\Appenders\LoggerAppenderNull;
-use Log4Php\Logger;
-use Log4Php\LoggerLevel;
-use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\TestCase;
 
-class LoggerAppenderNullTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderNullTest extends TestCase
 {
-    /**
-     * The Null appender does nothing - nothing to assert.
-     * Just here for the sake of completeness and a good testing ratio :-)
-     */
-    public function testActivateOptions()
-    {
-        $event = new LoggerLoggingEvent(
-            LoggerAppenderNullTest::class,
-            new Logger("TEST"),
-            LoggerLevel::getLevelInfo(),
-            "Null appender test message"
-        );
-        $appender = new LoggerAppenderNull("TEST");
-        $appender->activateOptions();
-        $appender->append($event);
-        $appender->close();
-    }
-
     public function testRequiresLayout()
     {
         $appender = new LoggerAppenderNull();

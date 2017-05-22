@@ -113,7 +113,7 @@ class LoggerAppenderSyslog extends LoggerAppender
      * in {@link $priority}, otherwise the priority will be determined by the
      * message's log level.
      *
-     * @var string
+     * @var string|bool
      */
     protected $overridePriority = false;
 
@@ -198,7 +198,7 @@ class LoggerAppenderSyslog extends LoggerAppender
     /**
      * Returns the 'overridePriority' parameter.
      *
-     * @return string
+     * @return string|bool
      */
     public function getOverridePriority()
     {

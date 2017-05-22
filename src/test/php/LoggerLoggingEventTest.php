@@ -5,6 +5,7 @@ use Log4Php\LoggerLayout;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
 use Log4Php\LoggerThrowableInformation;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -58,7 +59,7 @@ class LoggerLoggingEventTestCaseLayout extends LoggerLayout
 /**
  * @group main
  */
-class LoggerLoggingEventTest extends PHPUnit_Framework_TestCase
+class LoggerLoggingEventTest extends TestCase
 {
 
     public static $locationInfo;
@@ -142,6 +143,7 @@ class LoggerLoggingEventTest extends PHPUnit_Framework_TestCase
         $logger->debug('test', $ex);
         $hierarchy->shutdown();
 
+        /** @var LoggerThrowableInformation $ti */
         $ti = self::$throwableInfo;
 
         self::assertTrue($ti instanceof LoggerThrowableInformation);

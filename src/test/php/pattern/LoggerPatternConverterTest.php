@@ -44,6 +44,7 @@ use Log4Php\Pattern\LoggerPatternConverterServer;
 use Log4Php\Pattern\LoggerPatternConverterSession;
 use Log4Php\Pattern\LoggerPatternConverterSessionID;
 use Log4Php\Pattern\LoggerPatternConverterSuperglobal;
+use PHPUnit\Framework\TestCase;
 
 /** Converter referencing non-existant superglobal variable. */
 class LoggerInvalidSuperglobalConverter extends LoggerPatternConverterSuperglobal
@@ -51,10 +52,7 @@ class LoggerInvalidSuperglobalConverter extends LoggerPatternConverterSupergloba
     protected $name = '_FOO';
 }
 
-/**
- * @group pattern
- */
-class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
+class LoggerPatternConverterTest extends TestCase
 {
     /**
      * A logging event for testing.
@@ -340,7 +338,7 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: LoggerInvalidSuperglobalConverter: Cannot find superglobal variable $_FOO
      */
     public function testNonexistantSuperglobal()

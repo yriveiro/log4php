@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -24,8 +25,9 @@
 
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Logger;
+use PHPUnit\Framework\TestCase;
 
-class LoggerTest extends PHPUnit_Framework_TestCase
+class LoggerTest extends TestCase
 {
     private $testConfig1 = [
         'rootLogger' => [

@@ -24,11 +24,9 @@
  */
 
 use Log4Php\Logger;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group layouts
- */
-class LoggerLayoutPatternTest extends PHPUnit_Framework_TestCase
+class LoggerLayoutPatternTest extends TestCase
 {
     /** Pattern used for testing. */
     private $pattern = "%-6level %logger: %msg from %class::%method() in %file at %line%n";

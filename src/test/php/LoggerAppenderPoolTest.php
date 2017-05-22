@@ -40,7 +40,7 @@ class LoggerAppenderPoolTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Cannot add unnamed appender to pool.
      */
     public function testAppenderHasNoName()
@@ -53,7 +53,7 @@ class LoggerAppenderPoolTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Appender [foo] already exists in pool. Overwriting existing appender.
      */
     public function testAppenderIsAdded()

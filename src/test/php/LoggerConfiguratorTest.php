@@ -90,7 +90,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid configuration param given. Reverting to default configuration.
      */
     public function testInputIsInteger()
@@ -99,7 +99,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Configuration failed. Unsupported configuration file extension: yml
      */
     public function testYAMLFile()
@@ -108,7 +108,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid configuration provided for appender
      */
     public function testAppenderConfigNotArray()
@@ -127,7 +127,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage No class given for appender
      */
     public function testNoAppenderClassSet()
@@ -136,7 +136,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid class [unknownClass] given for appender [foo]. Class does not exist. Skipping appender definition.
      */
     public function testNotExistingAppenderClassSet()
@@ -145,7 +145,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid class [stdClass] given for appender [foo]. Not a valid LoggerAppender class. Skipping appender definition.
      */
     public function testInvalidAppenderClassSet()
@@ -154,7 +154,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Unknown filter class [Foo] specified on appender [foo]. Skipping filter definition.
      */
     public function testNotExistingAppenderFilterClassSet()
@@ -163,7 +163,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Unknown option [fooParameter] specified on [Log4Php\Filters\LoggerFilterStringMatch]. Skipping.
      */
     public function testInvalidAppenderFilterParameter()
@@ -172,7 +172,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid filter class [stdClass] specified on appender [foo]. Skipping filter definition.
      */
     public function testInvalidAppenderFilterClassSet()
@@ -181,7 +181,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Unknown layout class [Foo] specified for appender [foo]. Reverting to default layout.
      */
     public function testNotExistingAppenderLayoutClassSet()
@@ -190,7 +190,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid layout class [stdClass] specified for appender [foo]. Reverting to default layout.
      */
     public function testInvalidAppenderLayoutClassSet()
@@ -199,7 +199,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Layout class not specified for appender [foo]. Reverting to default layout.
      */
     public function testNoAppenderLayoutClassSet()
@@ -208,7 +208,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [stdClass] does not implement the LoggerRenderer interface.
      */
     public function testInvalidRenderingClassSet()
@@ -217,7 +217,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Rendering class not specified. Skipping renderer definition.
      */
     public function testNoRenderingClassSet()
@@ -226,7 +226,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Rendered class not specified. Skipping renderer definition.
      */
     public function testNoRenderedClassSet()
@@ -235,7 +235,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [DoesNotExistRenderer] not found.
      */
     public function testNotExistingRenderingClassSet()
@@ -244,7 +244,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid additivity value [4711] specified for logger [myLogger].
      */
     public function testInvalidLoggerAddivity()
@@ -253,7 +253,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Unknown appender [unknownAppender] linked to logger [myLogger].
      */
     public function testNotExistingLoggerAppendersClass()
@@ -263,7 +263,7 @@ class LoggerConfiguratorTest extends TestCase
 
     /**
      * Test that an error is reported when config file is not found.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Configuration failed. File not found
      */
     public function testNonexistantFile()
@@ -355,7 +355,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid threshold value [FOO] specified. Ignoring threshold definition.
      */
     public function testInvalidThreshold()
@@ -394,7 +394,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid threshold value [FOO] specified for appender [default]. Ignoring threshold definition.
      */
     public function testAppenderInvalidThreshold()
@@ -444,7 +444,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid level value [FOO] specified for logger [default]. Ignoring level definition.
      */
     public function testInvalidLoggerThreshold()
@@ -465,7 +465,7 @@ class LoggerConfiguratorTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Invalid level value [FOO] specified for logger [root]. Ignoring level definition.
      */
     public function testInvalidRootLoggerThreshold()

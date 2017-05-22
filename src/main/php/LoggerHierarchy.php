@@ -213,7 +213,7 @@ class LoggerHierarchy
 
         $root->setLevel(LoggerLevel::getLevelDebug());
         $this->setThreshold(LoggerLevel::getLevelAll());
-        $this->shutDown();
+        $this->shutdown();
 
         foreach ($this->loggers as $logger) {
             $logger->setLevel(null);

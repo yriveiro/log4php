@@ -67,9 +67,8 @@ class LoggerLocationInfo
      * Instantiate location information based on a {@link PHP_MANUAL#debug_backtrace}.
      *
      * @param array $trace
-     * @param $fqcn
      */
-    public function __construct($trace, $fqcn = null)
+    public function __construct($trace)
     {
         $this->lineNumber = isset($trace['line']) ? $trace['line'] : null;
         $this->fileName = isset($trace['file']) ? $trace['file'] : null;

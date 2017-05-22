@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -22,16 +23,15 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group appenders
- */
-class LoggerAppenderEchoTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderEchoTest extends TestCase
 {
 
     private $config1 = [

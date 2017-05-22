@@ -201,7 +201,7 @@ class LoggerLoggingEvent
                 $locationInfo['function'] = 'main';
             }
 
-            $this->locationInfo = new LoggerLocationInfo($locationInfo, $this->fqcn);
+            $this->locationInfo = new LoggerLocationInfo($locationInfo);
         }
         return $this->locationInfo;
     }

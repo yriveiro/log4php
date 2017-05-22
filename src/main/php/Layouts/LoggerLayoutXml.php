@@ -126,7 +126,7 @@ class LoggerLayoutXml extends LoggerLayout
         $ns = $this->namespacePrefix;
 
         $loggerName = $event->getLoggerName();
-        $timeStamp = number_format((float)($event->getTimeStamp() * 1000), 0, '', '');
+        $timeStamp = number_format($event->getTimeStamp() * 1000.0, 0, '', '');
         $thread = $event->getThreadName();
         $level = $event->getLevel()->toString();
 

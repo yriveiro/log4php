@@ -1,6 +1,7 @@
 <?php
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\LoggerReflectionUtils;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -50,10 +51,7 @@ class Simple
     }
 }
 
-/**
- * @group main
- */
-class LoggerReflectionUtilsTest extends PHPUnit_Framework_TestCase
+class LoggerReflectionUtilsTest extends TestCase
 {
 
     public function testSimpleSet()

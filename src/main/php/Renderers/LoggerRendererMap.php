@@ -131,7 +131,7 @@ class LoggerRendererMap
      * renders it (i.e. converts it to a string).
      *
      * @param mixed $input Input to render.
-     * @return string The rendered contents.
+     * @return string|null The rendered contents.
      */
     public function findAndRender($input)
     {

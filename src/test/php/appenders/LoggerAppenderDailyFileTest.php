@@ -27,6 +27,7 @@ use Log4Php\Appenders\LoggerAppenderDailyFile;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 class LoggerAppenderDailyFileTest extends TestCase
@@ -52,7 +53,7 @@ class LoggerAppenderDailyFileTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Required parameter 'file' not set.
      */
     public function testRequiredParamWarning1()
@@ -62,7 +63,7 @@ class LoggerAppenderDailyFileTest extends TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage Required parameter 'datePattern' not set.
      */
     public function testRequiredParamWarning2()
@@ -95,8 +96,9 @@ class LoggerAppenderDailyFileTest extends TestCase
     {
         $appender = new LoggerAppenderDailyFile();
         $appender->setFile('file.log');
-        $appender->setDatePattern('');
-        @$appender->activateOptions();
+        $appender->setDatePattern('c');
+        $appender->activateOptions();
+        Assert::assertTrue(true);
     }
 
     public function testLazyFileOpen()

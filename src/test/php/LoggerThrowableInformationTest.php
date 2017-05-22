@@ -21,12 +21,11 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
-use Log4Php\LoggerThrowableInformation;
 
-/**
- * @group main
- */
-class LoggerThrowableInformationTest extends PHPUnit_Framework_TestCase
+use Log4Php\LoggerThrowableInformation;
+use PHPUnit\Framework\TestCase;
+
+class LoggerThrowableInformationTest extends TestCase
 {
 
     public function testConstructor()

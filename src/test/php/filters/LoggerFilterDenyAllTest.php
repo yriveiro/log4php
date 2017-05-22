@@ -22,15 +22,14 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Configurators\LoggerConfiguratorDefault;
 use Log4Php\Filters\LoggerFilterDenyAll;
 use Log4Php\Logger;
 use Log4Php\LoggerFilter;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group filters
- */
-class LoggerFilterDenyAllTest extends PHPUnit_Framework_TestCase
+class LoggerFilterDenyAllTest extends TestCase
 {
 
     public function testDecide()

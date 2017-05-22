@@ -117,7 +117,7 @@ class LoggerNDC
 
     /**
      * Never use this method directly, use the {@link LoggerLoggingEvent::getNDC()} method instead.
-     * @return array
+     * @return string
      */
     public static function get()
     {
@@ -178,9 +178,9 @@ class LoggerNDC
      *
      * @param string $message The new diagnostic context information.
      */
-    public static function push($message)
+    public static function push(string $message)
     {
-        array_push(self::$stack, (string)$message);
+        array_push(self::$stack, $message);
     }
 
     /**
@@ -205,9 +205,8 @@ class LoggerNDC
      * @param integer $maxDepth
      * @see getDepth()
      */
-    public static function setMaxDepth($maxDepth)
+    public static function setMaxDepth(int $maxDepth)
     {
-        $maxDepth = (int)$maxDepth;
         if (LoggerNDC::getDepth() > $maxDepth) {
             self::$stack = array_slice(self::$stack, 0, $maxDepth);
         }

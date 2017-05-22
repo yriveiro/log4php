@@ -23,20 +23,17 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderDailyFile;
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Configurators\LoggerConfigurationAdapterXML;
 use Log4Php\Filters\LoggerFilterDenyAll;
 use Log4Php\Filters\LoggerFilterLevelRange;
 use Log4Php\Layouts\LoggerLayoutPattern;
-use Log4Php\Layouts\LoggerLayoutTTCC;
 use Log4Php\Logger;
-use Log4Php\LoggerException;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group configurators
- */
-class LoggerConfigurationAdapterXMLTest extends PHPUnit_Framework_TestCase
+class LoggerConfigurationAdapterXMLTest extends TestCase
 {
 
     /** Expected output of parsing config1.xml.*/
@@ -162,7 +159,7 @@ class LoggerConfigurationAdapterXMLTest extends PHPUnit_Framework_TestCase
     /**
      * Test that a warning is triggered when two loggers with the same name
      * are defined.
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      * @expectedExceptionMessage log4php: Duplicate logger definition [foo]. Overwriting
      */
     public function testDuplicateLoggerWarning()

@@ -22,34 +22,34 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderFile;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group appenders
- */
-class LoggerAppenderFileTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderFileTest extends TestCase
 {
-    private $config1 = array(
-        'rootLogger' => array(
-            'appenders' => array('default'),
-        ),
-        'appenders' => array(
-            'default' => array(
+    private $config1 = [
+        'rootLogger' => [
+            'appenders' => ['default'],
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderFile::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutSimple::class
-                ),
-                'params' => array()
-            )
-        )
-    );
+                ],
+                'params' => []
+            ]
+        ]
+    ];
 
     private $testPath;
 
     public function __construct()
     {
+        parent::__construct();
         $this->testPath = PHPUNIT_TEMP_DIR . '/TEST.txt';
     }
 

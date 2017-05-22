@@ -22,11 +22,14 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderSyslog;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests the syslog appender.
@@ -35,12 +38,9 @@ use Log4Php\LoggerLoggingEvent;
  * will be skipped if run on a lower version.
  *
  * This test will only write a single entry to the syslog.
- *
- * @group appenders
  */
-class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderSyslogTest extends TestCase
 {
-
     public function testSettersGetters()
     {
 
@@ -81,6 +81,9 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase
 
         $event = new LoggerLoggingEvent(__CLASS__, new Logger("TestLogger"), LoggerLevel::getLevelError(), "testmessage");
         $appender->append($event);
+
+        // @todo not sure what this test does
+        Assert::assertTrue(true);
     }
 
     /** Tests parsing of "option" parameter. */
@@ -217,7 +220,7 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      */
     public function testInvalidOption()
     {
@@ -227,7 +230,7 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      */
     public function testInvalidPriority()
     {
@@ -237,7 +240,7 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Error\Error
      */
     public function testInvalidFacility()
     {

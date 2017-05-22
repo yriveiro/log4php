@@ -60,7 +60,7 @@ abstract class LoggerLayout extends LoggerConfigurable
 
     /**
      * Returns the footer for the layout format.
-     * @return string
+     * @return string|null
      */
     public function getFooter()
     {
@@ -69,7 +69,7 @@ abstract class LoggerLayout extends LoggerConfigurable
 
     /**
      * Returns the header for the layout format.
-     * @return string
+     * @return string|null
      */
     public function getHeader()
     {

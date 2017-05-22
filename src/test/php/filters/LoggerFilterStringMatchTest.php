@@ -22,16 +22,15 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Filters\LoggerFilterStringMatch;
 use Log4Php\Logger;
 use Log4Php\LoggerFilter;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group filters
- */
-class LoggerFilterStringMatchTest extends PHPUnit_Framework_TestCase
+class LoggerFilterStringMatchTest extends TestCase
 {
 
     public function testDecideAccept()
