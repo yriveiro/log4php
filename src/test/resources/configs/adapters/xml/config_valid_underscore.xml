@@ -22,7 +22,7 @@
     <renderer renderedClass="Fruit" renderingClass="FruitRenderer"/>
     <renderer renderedClass="Beer" renderingClass="BeerRenderer"/>
     <appender name="default" class="Log4Php\Appenders\LoggerAppenderEcho">
-        <layout class="Log4Php\Layouts\LoggerLayoutTTCC"/>
+        <layout class="Log4Php\Layouts\LoggerLayoutPattern"/>
         <filter class="Log4Php\Filters\LoggerFilterLevelRange">
             <param name="levelMin" value="ERROR"/>
             <param name="levelMax" value="FATAL"/>

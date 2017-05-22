@@ -101,7 +101,9 @@ class LoggerAppenderSocket extends LoggerAppender
     // *** Accessor methods                   ***
     // ******************************************
 
-    /** Returns the target host. */
+    /**
+     * Returns the target host.
+     */
     public function getRemoteHost()
     {
         return $this->getRemoteHost();
@@ -131,7 +133,9 @@ class LoggerAppenderSocket extends LoggerAppender
         $this->setPositiveInteger('port', $port);
     }
 
-    /** Returns the timeout */
+    /**
+     * Returns the timeout
+     */
     public function getTimeout()
     {
         return $this->timeout;

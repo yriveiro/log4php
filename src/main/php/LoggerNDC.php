@@ -100,7 +100,7 @@ class LoggerNDC
 {
 
     /** This is the repository of NDC stack */
-    private static $stack = array();
+    private static $stack = [];
 
     /**
      * Clear any nested diagnostic information if any. This method is
@@ -112,7 +112,7 @@ class LoggerNDC
      */
     public static function clear()
     {
-        self::$stack = array();
+        self::$stack = [];
     }
 
     /**

@@ -31,11 +31,10 @@ namespace Log4Php\Renderers;
 class LoggerRendererException implements LoggerRenderer
 {
 
-    public function render($input)
+    public function render($input): string
     {
-
         // Exception class has a very decent __toString method
         // so let's just use that instead of writing lots of code.
-        return (string)$input;
+        return (string) $input;
     }
 }

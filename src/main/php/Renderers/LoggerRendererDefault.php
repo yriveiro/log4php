@@ -32,9 +32,7 @@ namespace Log4Php\Renderers;
 
 class LoggerRendererDefault implements LoggerRenderer
 {
-
-    /** @inheritdoc */
-    public function render($input)
+    public function render($input): string
     {
         return print_r($input, true);
     }

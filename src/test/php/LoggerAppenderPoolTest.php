@@ -22,19 +22,21 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
+use Log4Php\Appenders\LoggerAppenderConsole;
 use Log4Php\LoggerAppenderPool;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group filters
- */
-class LoggerAppenderPoolTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderPoolTest extends TestCase
 {
-
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject|LoggerAppenderConsole
+     */
     private $appenderMock;
 
     public function setUp()
     {
-        $this->appenderMock = $this->getMock('LoggerAppenderConsole', array(), array(), '', false);
+        $this->appenderMock = $this->createMock(LoggerAppenderConsole::class);
     }
 
     /**

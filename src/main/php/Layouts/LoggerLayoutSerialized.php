@@ -38,8 +38,10 @@ use Log4Php\LoggerLoggingEvent;
 
 class LoggerLayoutSerialized extends LoggerLayout
 {
-
-    /** Whether to include the event's location information (slow). */
+    /**
+     * Whether to include the event's location information (slow).
+     * @var bool
+     */
     protected $locationInfo = false;
 
     /**
@@ -52,12 +54,12 @@ class LoggerLayoutSerialized extends LoggerLayout
     }
 
     /** Returns the location information flag. */
-    public function getLocationInfo()
+    public function getLocationInfo(): bool
     {
         return $this->locationInfo;
     }
 
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         // If required, initialize the location data
         if ($this->locationInfo) {

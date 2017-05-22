@@ -24,7 +24,7 @@
  * <i>WARN</i>, <i>INFO</i>, <i>DEBUG</i> and
  * <i>ALL</i>.
  *
- * <p>The <i>LoggerLevel</i> class may be subclassed to define a larger
+ * <p>The <i>LoggerLevel</i> class may be inherited from to define a larger
  * level set.</p>
  *
  * @version $Revision$
@@ -34,17 +34,18 @@
 
 namespace Log4Php;
 
+// @todo need to align this with PSR
 class LoggerLevel
 {
 
-    const OFF = 2147483647;
+    const OFF   = 2147483647;
     const FATAL = 50000;
     const ERROR = 40000;
-    const WARN = 30000;
-    const INFO = 20000;
+    const WARN  = 30000;
+    const INFO  = 20000;
     const DEBUG = 10000;
     const TRACE = 5000;
-    const ALL = -2147483647;
+    const ALL   = -2147483647;
 
     /** Integer level value. */
     private $level;
@@ -87,9 +88,8 @@ class LoggerLevel
             if ($this->level == $other->level) {
                 return true;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**

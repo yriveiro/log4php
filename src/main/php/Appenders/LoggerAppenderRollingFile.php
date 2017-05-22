@@ -79,7 +79,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
     protected $maxBackupIndex = 1;
 
     /**
-     * The <var>compress</var> parameter determindes the compression with zlib.
+     * The <var>compress</var> parameter determines the compression with zlib.
      * If set to true, the rollover files are compressed and saved with the .gz extension.
      * @var boolean
      */
@@ -117,7 +117,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
 
         if ($this->compress && !extension_loaded('zlib')) {
             $this->warn("The 'zlib' extension is required for file compression. Disabling compression.");
-            $this->compression = false;
+            $this->compress = false;
         }
     }
 
@@ -258,7 +258,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
             }
 
             // Map {(maxBackupIndex - 1), ..., 2, 1} to {maxBackupIndex, ..., 3, 2}
-            $this->renameArchievedLogs($this->file);
+            $this->renameArchivedLogs($this->file);
 
             // Backup the active file
             $this->moveToBackup($this->file);
@@ -269,7 +269,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
         rewind($this->fp);
     }
 
-    private function renameArchievedLogs($fileName)
+    private function renameArchivedLogs($fileName)
     {
         for ($i = $this->maxBackupIndex - 1; $i >= 1; $i--) {
 

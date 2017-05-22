@@ -73,6 +73,8 @@ class LoggerTestHelper
 
     /**
      * Returns a test logging event with level set to ERROR.
+     * @param string $message
+     * @param string $logger
      * @return LoggerLoggingEvent
      */
     public static function getErrorEvent($message = 'test', $logger = "test")
@@ -134,44 +136,44 @@ class LoggerTestHelper
     /** Returns a simple configuration with one echo appender tied to root logger. */
     public static function getEchoConfig()
     {
-        return array(
+        return [
             'threshold' => 'ALL',
-            'rootLogger' => array(
+            'rootLogger' => [
                 'level' => 'trace',
-                'appenders' => array('default'),
-            ),
-            'appenders' => array(
-                'default' => array(
+                'appenders' => ['default'],
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                    'layout' => array(
+                    'layout' => [
                         'class' => LoggerLayoutSimple::class,
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
     }
 
     /** Returns a simple configuration with one echo appender using the pattern layout. */
     public static function getEchoPatternConfig($pattern)
     {
-        return array(
+        return [
             'threshold' => 'ALL',
-            'rootLogger' => array(
+            'rootLogger' => [
                 'level' => 'trace',
-                'appenders' => array('default'),
-            ),
-            'appenders' => array(
-                'default' => array(
+                'appenders' => ['default'],
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                    'layout' => array(
+                    'layout' => [
                         'class' => LoggerLayoutPattern::class,
-                        'params' => array(
+                        'params' => [
                             'conversionPattern' => $pattern
-                        )
-                    ),
-                ),
-            ),
-        );
+                        ]
+                    ],
+                ],
+            ],
+        ];
     }
 }
 

@@ -1,15 +1,4 @@
 <?php
-
-use Log4Php\Appenders\LoggerAppenderEcho;
-use Log4Php\Configurators\LoggerConfiguratorDefault;
-use Log4Php\Filters\LoggerFilterStringMatch;
-use Log4Php\Layouts\LoggerLayoutPattern;
-use Log4Php\Layouts\LoggerLayoutSimple;
-use Log4Php\Logger;
-use Log4Php\LoggerLevel;
-use Log4Php\Renderers\LoggerRenderer;
-use Log4Php\Renderers\LoggerRendererDefault;
-
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -33,20 +22,27 @@ use Log4Php\Renderers\LoggerRendererDefault;
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
+use Log4Php\Appenders\LoggerAppenderEcho;
+use Log4Php\Configurators\LoggerConfiguratorDefault;
+use Log4Php\Filters\LoggerFilterStringMatch;
+use Log4Php\Layouts\LoggerLayoutPattern;
+use Log4Php\Layouts\LoggerLayoutSimple;
+use Log4Php\Logger;
+use Log4Php\LoggerHierarchy;
+use Log4Php\LoggerLevel;
+use Log4Php\Renderers\LoggerRenderer;
+use Log4Php\Renderers\LoggerRendererDefault;
+use PHPUnit\Framework\TestCase;
+
 class CostumDefaultRenderer implements LoggerRenderer
 {
-    public function render($o)
+    public function render($o): string
     {
     }
 }
 
-
-/**
- *
- * @group configurators
- *
- */
-class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
+class LoggerConfiguratorTest extends TestCase
 {
     /** Reset configuration after each test. */
     public function setUp()
@@ -117,13 +113,14 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
      */
     public function testAppenderConfigNotArray()
     {
-        $hierachyMock = $this->getMock('LoggerHierarchy', array(), array(), '', false);
+        /** @var PHPUnit_Framework_MockObject_MockObject|LoggerHierarchy $hierachyMock */
+        $hierachyMock = $this->createMock(LoggerHierarchy::class);
 
-        $config = array(
-            'appenders' => array(
+        $config = [
+            'appenders' => [
                 'default',
-            ),
-        );
+            ],
+        ];
 
         $configurator = new LoggerConfiguratorDefault();
         $configurator->configure($hierachyMock, $config);
@@ -158,7 +155,7 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessage Nonexistant filter class [Foo] specified on appender [foo]. Skipping filter definition.
+     * @expectedExceptionMessage Unknown filter class [Foo] specified on appender [foo]. Skipping filter definition.
      */
     public function testNotExistingAppenderFilterClassSet()
     {
@@ -167,7 +164,7 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessage Non-existent option [fooParameter] specified on [Log4Php\Filters\LoggerFilterStringMatch]. Skipping.
+     * @expectedExceptionMessage Unknown option [fooParameter] specified on [Log4Php\Filters\LoggerFilterStringMatch]. Skipping.
      */
     public function testInvalidAppenderFilterParameter()
     {
@@ -185,7 +182,7 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessage Nonexistant layout class [Foo] specified for appender [foo]. Reverting to default layout.
+     * @expectedExceptionMessage Unknown layout class [Foo] specified for appender [foo]. Reverting to default layout.
      */
     public function testNotExistingAppenderLayoutClassSet()
     {
@@ -257,7 +254,7 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessage Nonexistnant appender [unknownAppender] linked to logger [myLogger].
+     * @expectedExceptionMessage Unknown appender [unknownAppender] linked to logger [myLogger].
      */
     public function testNotExistingLoggerAppendersClass()
     {
@@ -284,49 +281,49 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     public function testAppendersWithLayout()
     {
-        Logger::configure(array(
-            'rootLogger' => array(
-                'appenders' => array('app1', 'app2')
-            ),
-            'loggers' => array(
-                'myLogger' => array(
-                    'appenders' => array('app1'),
+        Logger::configure([
+            'rootLogger' => [
+                'appenders' => ['app1', 'app2']
+            ],
+            'loggers' => [
+                'myLogger' => [
+                    'appenders' => ['app1'],
                     'additivity' => true
-                )
-            ),
-            'renderers' => array(
-                array('renderedClass' => 'stdClass', 'renderingClass' => LoggerRendererDefault::class)
-            ),
-            'appenders' => array(
-                'app1' => array(
+                ]
+            ],
+            'renderers' => [
+                ['renderedClass' => 'stdClass', 'renderingClass' => LoggerRendererDefault::class]
+            ],
+            'appenders' => [
+                'app1' => [
                     'class' => LoggerAppenderEcho::class,
-                    'layout' => array(
+                    'layout' => [
                         'class' => LoggerLayoutSimple::class
-                    ),
-                    'params' => array(
+                    ],
+                    'params' => [
                         'htmlLineBreaks' => false
-                    )
-                ),
-                'app2' => array(
+                    ]
+                ],
+                'app2' => [
                     'class' => LoggerAppenderEcho::class,
-                    'layout' => array(
+                    'layout' => [
                         'class' => LoggerLayoutPattern::class,
-                        'params' => array(
+                        'params' => [
                             'conversionPattern' => 'message: %m%n'
-                        )
-                    ),
-                    'filters' => array(
-                        array(
+                        ]
+                    ],
+                    'filters' => [
+                        [
                             'class' => LoggerFilterStringMatch::class,
-                            'params' => array(
+                            'params' => [
                                 'stringToMatch' => 'foo',
                                 'acceptOnMatch' => false
-                            )
-                        )
-                    )
-                ),
-            )
-        ));
+                            ]
+                        ]
+                    ]
+                ],
+            ]
+        ]);
 
         ob_start();
         Logger::getRootLogger()->info('info');
@@ -339,17 +336,17 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
 
     public function testThreshold()
     {
-        Logger::configure(array(
+        Logger::configure([
             'threshold' => 'WARN',
-            'rootLogger' => array(
-                'appenders' => array('default')
-            ),
-            'appenders' => array(
-                'default' => array(
+            'rootLogger' => [
+                'appenders' => ['default']
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
 
         $actual = Logger::getHierarchy()->getThreshold();
         $expected = LoggerLevel::getLevelWarn();
@@ -363,32 +360,32 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidThreshold()
     {
-        Logger::configure(array(
+        Logger::configure([
             'threshold' => 'FOO',
-            'rootLogger' => array(
-                'appenders' => array('default')
-            ),
-            'appenders' => array(
-                'default' => array(
+            'rootLogger' => [
+                'appenders' => ['default']
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
     }
 
     public function testAppenderThreshold()
     {
-        Logger::configure(array(
-            'rootLogger' => array(
-                'appenders' => array('default')
-            ),
-            'appenders' => array(
-                'default' => array(
+        Logger::configure([
+            'rootLogger' => [
+                'appenders' => ['default']
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
                     'threshold' => 'INFO'
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
 
         $actual = Logger::getRootLogger()->getAppender('default')->getThreshold();
         $expected = LoggerLevel::getLevelInfo();
@@ -402,38 +399,38 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
      */
     public function testAppenderInvalidThreshold()
     {
-        Logger::configure(array(
-            'rootLogger' => array(
-                'appenders' => array('default')
-            ),
-            'appenders' => array(
-                'default' => array(
+        Logger::configure([
+            'rootLogger' => [
+                'appenders' => ['default']
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
                     'threshold' => 'FOO'
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
     }
 
     public function testLoggerThreshold()
     {
-        Logger::configure(array(
-            'rootLogger' => array(
-                'appenders' => array('default'),
+        Logger::configure([
+            'rootLogger' => [
+                'appenders' => ['default'],
                 'level' => 'ERROR'
-            ),
-            'loggers' => array(
-                'default' => array(
-                    'appenders' => array('default'),
+            ],
+            'loggers' => [
+                'default' => [
+                    'appenders' => ['default'],
                     'level' => 'WARN'
-                )
-            ),
-            'appenders' => array(
-                'default' => array(
+                ]
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
 
         // Check root logger
         $actual = Logger::getRootLogger()->getLevel();
@@ -452,19 +449,19 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidLoggerThreshold()
     {
-        Logger::configure(array(
-            'loggers' => array(
-                'default' => array(
-                    'appenders' => array('default'),
+        Logger::configure([
+            'loggers' => [
+                'default' => [
+                    'appenders' => ['default'],
                     'level' => 'FOO'
-                )
-            ),
-            'appenders' => array(
-                'default' => array(
+                ]
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
     }
 
     /**
@@ -473,16 +470,16 @@ class LoggerConfiguratorTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidRootLoggerThreshold()
     {
-        Logger::configure(array(
-            'rootLogger' => array(
-                'appenders' => array('default'),
+        Logger::configure([
+            'rootLogger' => [
+                'appenders' => ['default'],
                 'level' => 'FOO'
-            ),
-            'appenders' => array(
-                'default' => array(
+            ],
+            'appenders' => [
+                'default' => [
                     'class' => LoggerAppenderEcho::class,
-                ),
-            )
-        ));
+                ],
+            ]
+        ]);
     }
 }

@@ -66,7 +66,6 @@ if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
 } else {
     class LoggerThrowableInformationTestException extends Exception
     {
-
         protected $previous;
 
         public function __construct($message = '', $code = 0, Exception $previous = null)
@@ -81,4 +80,3 @@ if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
         }
     }
 }
-?>

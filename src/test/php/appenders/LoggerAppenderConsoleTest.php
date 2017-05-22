@@ -22,16 +22,14 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderConsole;
 use Log4Php\Layouts\LoggerLayoutPattern;
 use Log4Php\Logger;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group appenders
- */
-class LoggerAppenderConsoleTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderConsoleTest extends TestCase
 {
-
     private $config = [
         'rootLogger' => [
             'appenders' => ['default'],
@@ -61,9 +59,9 @@ class LoggerAppenderConsoleTest extends PHPUnit_Framework_TestCase
         Logger::configure($this->config);
         $log = Logger::getRootLogger();
 
-        $expected = LoggerAppenderConsole::STDOUT;
-        $actual = $log->getAppender('default')->getTarget();
-        $this->assertSame($expected, $actual);
+        /** @var LoggerAppenderConsole $defaultAppender */
+        $defaultAppender = $log->getAppender('default');
+        $this->assertSame(LoggerAppenderConsole::STDOUT, $defaultAppender->getTarget());
 
         $log->info("hello");
     }
@@ -75,9 +73,9 @@ class LoggerAppenderConsoleTest extends PHPUnit_Framework_TestCase
         Logger::configure($this->config);
         $log = Logger::getRootLogger();
 
-        $expected = LoggerAppenderConsole::STDOUT;
-        $actual = $log->getAppender('default')->getTarget();
-        $this->assertSame($expected, $actual);
+        /** @var LoggerAppenderConsole $defaultAppender */
+        $defaultAppender = $log->getAppender('default');
+        $this->assertSame(LoggerAppenderConsole::STDOUT, $defaultAppender->getTarget());
 
         $log->info("hello");
     }
@@ -85,12 +83,13 @@ class LoggerAppenderConsoleTest extends PHPUnit_Framework_TestCase
     public function testAppendStderr()
     {
         $this->config['appenders']['default']['params']['target'] = 'stderr';
+
         Logger::configure($this->config);
         $log = Logger::getRootLogger();
-        $expected = LoggerAppenderConsole::STDERR;
 
-        $actual = $log->getAppender('default')->getTarget();
-        $this->assertSame($expected, $actual);
+        /** @var LoggerAppenderConsole $defaultAppender */
+        $defaultAppender = $log->getAppender('default');
+        $this->assertSame(LoggerAppenderConsole::STDERR, $defaultAppender->getTarget());
 
         $log->info("hello");
     }

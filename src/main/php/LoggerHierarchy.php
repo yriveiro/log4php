@@ -55,18 +55,18 @@ use Log4Php\Renderers\LoggerRendererMap;
 class LoggerHierarchy
 {
 
-    /** Array holding all Logger instances. */
-    protected $loggers = array();
+    /**
+     * @var Logger[] Array holding all Logger instances.
+     */
+    protected $loggers = [];
 
     /**
-     * The root logger.
-     * @var LoggerRoot
+     * @var LoggerRoot The root logger.
      */
     protected $root;
 
     /**
-     * The logger renderer map.
-     * @var LoggerRendererMap
+     * @var LoggerRendererMap The logger renderer map.
      */
     protected $rendererMap;
 
@@ -93,7 +93,7 @@ class LoggerHierarchy
      */
     public function clear()
     {
-        $this->loggers = array();
+        $this->loggers = [];
     }
 
     /**
@@ -108,7 +108,7 @@ class LoggerHierarchy
 
     /**
      * Returns all the currently defined loggers in this hierarchy as an array.
-     * @return array
+     * @return Logger[]
      */
     public function getCurrentLoggers()
     {
@@ -116,7 +116,7 @@ class LoggerHierarchy
     }
 
     /**
-     * Returns a named logger instance logger. If it doesn't exist, one is created.
+     * Returns a named logger instance logger. If it does not exist, one is created.
      *
      * @param string $name Logger name
      * @return Logger Logger instance.
@@ -188,7 +188,7 @@ class LoggerHierarchy
      * @param LoggerLevel $level
      * @return bool
      */
-    public function isDisabled(LoggerLevel $level)
+    public function isDisabled(LoggerLevel $level): bool
     {
         return ($this->threshold->toInt() > $level->toInt());
     }
@@ -271,7 +271,7 @@ class LoggerHierarchy
         echo $current->getName() . "\n";
 
         foreach ($this->loggers as $logger) {
-            if ($logger->getParent() == $current) {
+            if ($logger->getParent() === $current) {
                 $this->printHierarchyInner($logger, $level + 1);
             }
         }

@@ -43,7 +43,6 @@ use Log4Php\LoggerLoggingEvent;
 
 class LoggerAppenderPhp extends LoggerAppender
 {
-
     public function append(LoggerLoggingEvent $event)
     {
         $level = $event->getLevel();

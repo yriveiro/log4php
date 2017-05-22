@@ -53,14 +53,14 @@ abstract class LoggerPatternConverter
 
     /**
      * Converter-specific formatting options.
-     * @var array
+     * @var mixed
      */
     protected $option;
 
     /**
      * Constructor
      * @param LoggerFormattingInfo $formattingInfo
-     * @param array $option
+     * @param array|string $option
      */
     public function __construct(LoggerFormattingInfo $formattingInfo = null, $option = null)
     {

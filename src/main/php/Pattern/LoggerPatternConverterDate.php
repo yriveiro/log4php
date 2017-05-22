@@ -36,29 +36,24 @@
 namespace Log4Php\Pattern;
 
 use Log4Php\LoggerLoggingEvent;
+use Nette\Utils\DateTime;
 
 class LoggerPatternConverterDate extends LoggerPatternConverter
 {
-
     const DATE_FORMAT_ISO8601 = 'c';
-
     const DATE_FORMAT_ABSOLUTE = 'H:i:s';
-
     const DATE_FORMAT_DATE = 'd M Y H:i:s.u';
 
     private $format = self::DATE_FORMAT_ISO8601;
 
-    private $specials = array(
-        'ISO8601' => self::DATE_FORMAT_ISO8601,
+    private $specials = [
+        'ISO8601'  => self::DATE_FORMAT_ISO8601,
         'ABSOLUTE' => self::DATE_FORMAT_ABSOLUTE,
-        'DATE' => self::DATE_FORMAT_DATE,
-    );
-
-    private $useLocalDate = false;
+        'DATE'     => self::DATE_FORMAT_DATE,
+    ];
 
     public function activateOptions()
     {
-
         // Parse the option (date format)
         if (!empty($this->option)) {
             if (isset($this->specials[$this->option])) {
@@ -67,37 +62,11 @@ class LoggerPatternConverterDate extends LoggerPatternConverter
                 $this->format = $this->option;
             }
         }
-
-        // Check whether the pattern contains milliseconds (u)
-        if (preg_match('/(?<!\\\\)u/', $this->format)) {
-            $this->useLocalDate = true;
-        }
     }
 
     public function convert(LoggerLoggingEvent $event)
     {
-        if ($this->useLocalDate) {
-            return $this->date($this->format, $event->getTimeStamp());
-        }
-        return date($this->format, $event->getTimeStamp());
-    }
-
-    /**
-     * Currently, PHP date() function always returns zeros for milliseconds (u)
-     * on Windows. This is a replacement function for date() which correctly
-     * displays milliseconds on all platforms.
-     *
-     * It is slower than PHP date() so it should only be used if necessary.
-     * @param string $format
-     * @param int $utimestamp
-     * @return false|string
-     */
-    private function date(string $format, int $utimestamp)
-    {
-        $timestamp = floor($utimestamp);
-        $ms = floor(($utimestamp - $timestamp) * 1000);
-        $ms = str_pad($ms, 3, '0', STR_PAD_LEFT);
-
-        return date(preg_replace('`(?<!\\\\)u`', $ms, $format), $timestamp);
+        $time = DateTime::createFromFormat('U.u', number_format($event->getTimeStamp(), 6, '.', ''));
+        return $time->format($this->format);
     }
 }

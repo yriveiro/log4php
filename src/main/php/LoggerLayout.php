@@ -44,7 +44,7 @@ abstract class LoggerLayout extends LoggerConfigurable
      * @param LoggerLoggingEvent
      * @return string
      */
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         return $event->getRenderedMessage();
     }

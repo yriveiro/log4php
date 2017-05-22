@@ -51,7 +51,7 @@ class LoggerPatternConverterMDC extends LoggerPatternConverter
         if (isset($this->key)) {
             return $event->getMDC($this->key);
         } else {
-            $buff = array();
+            $buff = [];
             $map = $event->getMDCMap();
             foreach ($map as $key => $value) {
                 $buff [] = "$key=$value";

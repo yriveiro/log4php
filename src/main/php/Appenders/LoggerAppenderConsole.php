@@ -44,7 +44,7 @@ use Log4Php\LoggerLoggingEvent;
 class LoggerAppenderConsole extends LoggerAppender
 {
 
-    /** The standard otuput stream.  */
+    /** The standard output stream.  */
     const STDOUT = 'php://stdout';
 
     /** The standard error stream.*/

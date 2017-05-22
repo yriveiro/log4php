@@ -22,15 +22,14 @@
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
  */
+
 use Log4Php\Appenders\LoggerAppenderDailyFile;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\LoggerLevel;
 use Log4Php\LoggerLoggingEvent;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @group appenders
- */
-class LoggerAppenderDailyFileTest extends PHPUnit_Framework_TestCase
+class LoggerAppenderDailyFileTest extends TestCase
 {
 
     protected function setUp()
@@ -130,7 +129,6 @@ class LoggerAppenderDailyFileTest extends PHPUnit_Framework_TestCase
         $level = LoggerLevel::getLevelDebug();
 
         $file = PHPUNIT_TEMP_DIR . '/lazy-file.%s.log';
-        $pattern = 'Y-m-d';
 
         // Get some timestamps for events - different date for each
         $ts1 = mktime(10, 0, 0, 7, 3, 1980);

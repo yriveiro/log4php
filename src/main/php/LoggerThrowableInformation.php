@@ -19,7 +19,7 @@
  */
 
 /**
- * The internal representation of throwables.
+ * The internal representation of throwable objects.
  *
  * @package log4php
  * @since 2.1
@@ -27,40 +27,41 @@
 
 namespace Log4Php;
 
-use Exception;
 use Log4Php\Renderers\LoggerRendererException;
+use Throwable;
 
 class LoggerThrowableInformation
 {
-
-    /** @var Exception Throwable to log */
+    /**
+     * @var Throwable Throwable to log
+     */
     private $throwable;
 
-    /** @var array Array of throwable messages */
+    /**
+     * @var array Array of throwable messages
+     */
     private $throwableArray;
 
     /**
      * Create a new instance
-     *
      * @param $throwable - a throwable as a exception
      */
-    public function __construct(Exception $throwable)
+    public function __construct(Throwable $throwable)
     {
         $this->throwable = $throwable;
     }
 
     /**
      * Return source exception
-     *
-     * @return Exception
+     * @return Throwable
      */
-    public function getThrowable()
+    public function getThrowable(): Throwable
     {
         return $this->throwable;
     }
 
     /**
-     * @desc Returns string representation of throwable
+     * Returns string representation of throwable
      * @return array
      */
     public function getStringRepresentation()

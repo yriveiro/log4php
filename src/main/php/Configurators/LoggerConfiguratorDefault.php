@@ -55,26 +55,28 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
     const FORMAT_INI = 'ini';
 
     /** Default configuration; used if no configuration file is provided. */
-    private static $defaultConfiguration = array(
+    private static $defaultConfiguration = [
         'threshold' => 'ALL',
-        'rootLogger' => array(
+        'rootLogger' => [
             'level' => 'DEBUG',
-            'appenders' => array('default'),
-        ),
-        'appenders' => array(
-            'default' => array(
+            'appenders' => ['default'],
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class
-            ),
-        ),
-    );
+            ],
+        ],
+    ];
+
     /** Defines which adapter should be used for parsing which format. */
     private $adapters = [
         self::FORMAT_XML => LoggerConfigurationAdapterXML::class,
         self::FORMAT_INI => LoggerConfigurationAdapterINI::class,
         self::FORMAT_PHP => LoggerConfigurationAdapterPHP::class
     ];
+
     /** Holds the appenders before they are linked to loggers. */
-    private $appenders = array();
+    private $appenders = [];
 
     /**
      * Returns the default log4php configuration.
@@ -153,11 +155,10 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * @param string $url Path to the config file.
      * @return array The configuration from the config file, as a PHP array.
      * @throws LoggerException If the configuration file cannot be loaded, or
-     *        if the parsing fails.
+     *         if the parsing fails.
      */
     private function parseFile($url)
     {
-
         if (!file_exists($url)) {
             throw new LoggerException("File not found at [$url].");
         }
@@ -333,7 +334,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             return;
         }
         if (!class_exists($class)) {
-            $this->warn("Nonexistant layout class [$class] specified for appender [$name]. Reverting to default layout.");
+            $this->warn("Unknown layout class [$class] specified for appender [$name]. Reverting to default layout.");
             return;
         }
 
@@ -382,7 +383,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
                 $object->$setter($value);
             } else {
                 $class = get_class($object);
-                $this->warn("Non-existent option [$name] specified on [$class]. Skipping.");
+                $this->warn("Unknown option [$name] specified on [$class]. Skipping.");
             }
         }
     }
@@ -398,7 +399,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
         $name = $appender->getName();
         $class = $config['class'];
         if (!class_exists($class)) {
-            $this->warn("Nonexistant filter class [$class] specified on appender [$name]. Skipping filter definition.");
+            $this->warn("Unknown filter class [$class] specified on appender [$name]. Skipping filter definition.");
             return;
         }
 
@@ -454,7 +455,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
                 if (isset($this->appenders[$appenderName])) {
                     $logger->addAppender($this->appenders[$appenderName]);
                 } else {
-                    $this->warn("Nonexistnant appender [$appenderName] linked to logger [$loggerName].");
+                    $this->warn("Unknown appender [$appenderName] linked to logger [$loggerName].");
                 }
             }
         }

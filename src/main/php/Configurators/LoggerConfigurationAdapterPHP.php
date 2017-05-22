@@ -62,28 +62,19 @@ class LoggerConfigurationAdapterPHP implements LoggerConfigurationAdapter
             throw new LoggerException("File [$url] does not exist.");
         }
 
-        // Load the config file
-        $data = @file_get_contents($url);
-        if ($data === false) {
-            $error = error_get_last();
-            throw new LoggerException("Error loading config file: {$error['message']}");
-        }
-
-        $config = @eval('?>' . $data);
+        /** @noinspection PhpIncludeInspection */
+        $config = include($url);
 
         if ($config === false) {
             $error = error_get_last();
             throw new LoggerException("Error parsing configuration: " . $error['message']);
         }
-
         if (empty($config)) {
             throw new LoggerException("Invalid configuration: empty configuration array.");
         }
-
         if (!is_array($config)) {
             throw new LoggerException("Invalid configuration: not an array.");
         }
-
         return $config;
     }
 }

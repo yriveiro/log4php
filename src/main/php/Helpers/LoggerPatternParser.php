@@ -97,9 +97,10 @@ class LoggerPatternParser
         $count = preg_match_all($this->regex, $this->pattern, $matches, PREG_OFFSET_CAPTURE);
         if ($count === false) {
             $error = error_get_last();
-            throw new LoggerException("Failed parsing layotut pattern: {$error['message']}");
+            throw new LoggerException("Failed parsing layout pattern: {$error['message']}");
         }
 
+        $end = 0;
         $prevEnd = 0;
 
         foreach ($matches[0] as $key => $item) {
@@ -162,7 +163,7 @@ class LoggerPatternParser
             $converter = $this->getConverter($word, $formattingInfo, $option);
             $this->addToChain($converter);
         } else {
-            trigger_error("log4php: Invalid keyword '%$word' in converison pattern. Ignoring keyword.", E_USER_WARNING);
+            trigger_error("log4php: Invalid keyword '%$word' in conversion pattern. Ignoring keyword.", E_USER_WARNING);
         }
     }
 

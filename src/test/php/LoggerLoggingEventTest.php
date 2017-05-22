@@ -37,7 +37,6 @@ class LoggerLoggingEventTestCaseAppender extends LoggerAppenderNull
     {
         $this->layout->format($event);
     }
-
 }
 
 class LoggerLoggingEventTestCaseLayout extends LoggerLayout
@@ -48,10 +47,11 @@ class LoggerLoggingEventTestCaseLayout extends LoggerLayout
         return;
     }
 
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         LoggerLoggingEventTest::$locationInfo = $event->getLocationInformation();
         LoggerLoggingEventTest::$throwableInfo = $event->getThrowableInformation();
+        return '';
     }
 }
 

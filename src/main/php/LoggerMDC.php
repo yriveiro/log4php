@@ -40,7 +40,7 @@ class LoggerMDC
 {
 
     /** Holds the context map. */
-    private static $map = array();
+    private static $map = [];
 
     /**
      * Stores a context value as identified with the key parameter into the
@@ -67,7 +67,7 @@ class LoggerMDC
     }
 
     /**
-     * Returns the contex map as an array.
+     * Returns the context map as an array.
      * @return array The MDC context map.
      */
     public static function getMap()
@@ -92,6 +92,6 @@ class LoggerMDC
      */
     public static function clear()
     {
-        self::$map = array();
+        self::$map = [];
     }
 }

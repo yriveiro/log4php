@@ -86,14 +86,14 @@ abstract class LoggerPatternConverterSuperglobal extends LoggerPatternConverter
 
         $source = ${$this->name};
 
-        // When the key is set, display the matching value
         if (isset($key)) {
+            // When the key is set, display the matching value
             if (isset($source[$key])) {
                 $this->value = $source[$key];
             }
-        } // When the key is not set, display all values
-        else {
-            $values = array();
+        } else {
+            // When the key is not set, display all values
+            $values = [];
             foreach ($source as $key => $value) {
                 $values[] = "$key=$value";
             }

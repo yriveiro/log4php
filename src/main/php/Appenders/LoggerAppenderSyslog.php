@@ -255,6 +255,7 @@ class LoggerAppenderSyslog extends LoggerAppender
                 trigger_error("log4php: Invalid syslog priority provided: {$this->priority}.", E_USER_WARNING);
             }
         }
+        return null;
     }
 
     /** Parses a syslog option string and returns the correspodning int value. */
@@ -287,6 +288,7 @@ class LoggerAppenderSyslog extends LoggerAppender
                 trigger_error("log4php: Invalid syslog facility provided: {$this->facility}.", E_USER_WARNING);
             }
         }
+        return null;
     }
 
     public function close()

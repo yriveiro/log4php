@@ -110,21 +110,6 @@ abstract class LoggerConfigurable
     }
 
     /**
-     * Setter function for numeric type.
-     * @param string $property
-     * @param $value
-     */
-    protected function setNumeric(string $property, $value)
-    {
-        try {
-            $this->$property = LoggerOptionConverter::toIntegerEx($value);
-        } catch (Exception $ex) {
-            $value = var_export($value, true);
-            $this->warn("Invalid value given for '$property' property: [$value]. Expected a number. Property not changed.");
-        }
-    }
-
-    /**
      * Setter function for string type.
      * @param string $property
      * @param $value

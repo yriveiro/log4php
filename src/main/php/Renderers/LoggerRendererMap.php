@@ -34,12 +34,11 @@ use Exception;
 
 class LoggerRendererMap
 {
-
     /**
      * Maps class names to appropriate renderers.
      * @var array
      */
-    private $map = array();
+    private $map = [];
 
     /**
      * The default renderer to use if no specific renderer is found.
@@ -156,7 +155,7 @@ class LoggerRendererMap
      * Returns the appropriate renderer for a given object.
      *
      * @param mixed $object
-     * @return LoggerRenderer Or null if none found.
+     * @return LoggerRenderer|null LoggerRenderer or null if none found.
      */
     public function getByObject($object)
     {
@@ -185,13 +184,17 @@ class LoggerRendererMap
         return null;
     }
 
-    /** Empties the renderer map. */
+    /**
+     * Empties the renderer map.
+     */
     public function clear()
     {
-        $this->map = array();
+        $this->map = [];
     }
 
-    /** Resets the renderer map to it's default configuration. */
+    /**
+     * Resets the renderer map to it's default configuration.
+     */
     public function reset()
     {
         $this->defaultRenderer = new LoggerRendererDefault();

@@ -115,7 +115,7 @@ class LoggerAppenderFile extends LoggerAppender
     }
 
     /**
-     * Sets the 'file' parmeter. Left for legacy reasons.
+     * Sets the 'file' parameter. Left for legacy reasons.
      * @param string $fileName
      * @deprecated Use setFile() instead.
      */
@@ -125,7 +125,7 @@ class LoggerAppenderFile extends LoggerAppender
     }
 
     /**
-     * Returns the 'file' parmeter. Left for legacy reasons.
+     * Returns the 'file' parameter. Left for legacy reasons.
      * @return string
      * @deprecated Use getFile() instead.
      */
@@ -192,10 +192,11 @@ class LoggerAppenderFile extends LoggerAppender
 
         // Write the header
         $this->write($this->layout->getHeader());
+        return true;
     }
 
     /**
-     * Helper function which can be easily overriden by daily file appender.
+     * Helper function which can be easily overridden by daily file appender.
      */
     protected function getTargetFile()
     {

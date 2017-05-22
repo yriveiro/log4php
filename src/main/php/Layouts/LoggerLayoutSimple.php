@@ -55,7 +55,7 @@ class LoggerLayoutSimple extends LoggerLayout
      * @param LoggerLoggingEvent $event
      * @return string
      */
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         $level = $event->getLevel();
         $message = $event->getRenderedMessage();

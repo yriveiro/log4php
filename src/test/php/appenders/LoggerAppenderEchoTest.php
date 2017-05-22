@@ -34,53 +34,53 @@ use Log4Php\LoggerLoggingEvent;
 class LoggerAppenderEchoTest extends PHPUnit_Framework_TestCase
 {
 
-    private $config1 = array(
-        'rootLogger' => array(
-            'appenders' => array('default'),
-        ),
-        'appenders' => array(
-            'default' => array(
+    private $config1 = [
+        'rootLogger' => [
+            'appenders' => ['default'],
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutSimple::class
-                ),
-            )
-        )
-    );
+                ],
+            ]
+        ]
+    ];
 
-    private $config2 = array(
-        'rootLogger' => array(
-            'appenders' => array('default'),
-        ),
-        'appenders' => array(
-            'default' => array(
+    private $config2 = [
+        'rootLogger' => [
+            'appenders' => ['default'],
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutSimple::class
-                ),
-                'params' => array(
+                ],
+                'params' => [
                     'htmlLineBreaks' => true
-                )
-            )
-        )
-    );
+                ]
+            ]
+        ]
+    ];
 
-    private $config3 = array(
-        'rootLogger' => array(
-            'appenders' => array('default'),
-        ),
-        'appenders' => array(
-            'default' => array(
+    private $config3 = [
+        'rootLogger' => [
+            'appenders' => ['default'],
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutSimple::class
-                ),
-                'params' => array(
+                ],
+                'params' => [
                     'htmlLineBreaks' => 'foo'
-                )
-            )
-        )
-    );
+                ]
+            ]
+        ]
+    ];
 
     public function testAppend()
     {

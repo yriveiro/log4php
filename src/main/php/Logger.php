@@ -72,7 +72,7 @@ class Logger
     private $parent;
 
     /** A collection of appenders linked to this logger. */
-    private $appenders = array();
+    private $appenders = [];
 
     /**
      * Constructor.
@@ -390,7 +390,7 @@ class Logger
      * @param $name
      * @return LoggerAppender
      */
-    public function getAppender($name)
+    public function getAppender($name): LoggerAppender
     {
         return $this->appenders[$name];
     }
@@ -416,7 +416,7 @@ class Logger
     /**
      * Starting from this Logger, search the Logger hierarchy for a non-null level and return it.
      * @see LoggerLevel
-     * @return LoggerLevel or null
+     * @return LoggerLevel|null
      */
     public function getEffectiveLevel()
     {
@@ -425,6 +425,7 @@ class Logger
                 return $logger->getLevel();
             }
         }
+        return null;
     }
 
     /**
@@ -473,10 +474,14 @@ class Logger
     // *** Static methods and properties      ***
     // ******************************************
 
-    /** The logger hierarchy used by log4php. */
+    /**
+     * The logger hierarchy used by log4php.
+     */
     private static $hierarchy;
 
-    /** Inidicates if log4php has been initialized */
+    /**
+     * Indicates if log4php has been initialized
+     */
     private static $initialized = false;
 
     /**
@@ -575,7 +580,7 @@ class Logger
      * Configures log4php.
      *
      * This method needs to be called before the first logging event has
-     * occured. If this method is not called before then the default
+     * occurred. If this method is not called before then the default
      * configuration will be used.
      *
      * @param string|array $configuration Either a path to the configuration

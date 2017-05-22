@@ -30,7 +30,6 @@ namespace Log4Php;
 
 class LoggerLocationInfo
 {
-
     /** The value to return when the location information is not available. */
     const LOCATION_INFO_NA = 'NA';
 
@@ -109,5 +108,4 @@ class LoggerLocationInfo
     {
         return ($this->fullInfo === null) ? self::LOCATION_INFO_NA : $this->fullInfo;
     }
-
 }

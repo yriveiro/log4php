@@ -34,7 +34,7 @@ class LoggerReflectionUtils
 
     /**
      * Create a new LoggerReflectionUtils for the specified Object.
-     * This is done in prepartion for invoking {@link setProperty()}
+     * This is done in preparation for invoking {@link setProperty()}
      * one or more times.
      * @param object &$obj the object for which to set properties
      */
@@ -121,14 +121,14 @@ class LoggerReflectionUtils
         if (!method_exists($this->obj, $method)) {
             throw new Exception("Error setting log4php property $name to $value: no method $method in class " . get_class($this->obj) . "!");
         } else {
-            return call_user_func(array($this->obj, $method), $value);
+            return call_user_func([$this->obj, $method], $value);
         }
     }
 
     public function activate()
     {
         if (method_exists($this->obj, 'activateoptions')) {
-            return call_user_func(array($this->obj, 'activateoptions'));
+            return call_user_func([$this->obj, 'activateoptions']);
         }
         return null;
     }
@@ -137,7 +137,7 @@ class LoggerReflectionUtils
      * Creates an instances from the given class name.
      *
      * @param string $class
-     * @return mixed an object from the class with the given classname
+     * @return mixed an object from the class with the given class name
      */
     public static function createObject($class)
     {
@@ -160,7 +160,7 @@ class LoggerReflectionUtils
         }
         $methodName = 'set' . ucfirst($name);
         if (method_exists($object, $methodName)) {
-            return call_user_func(array($object, $methodName), $value);
+            return call_user_func([$object, $methodName], $value);
         } else {
             return false;
         }

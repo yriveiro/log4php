@@ -25,7 +25,7 @@
  * - {@link $locationInfo} - If set to true then the file name and line number
  *   of the origin of the log statement will be included in output.
  * - {@link $log4jNamespace} - If set to true then log4j namespace will be used
- *   instead of log4php namespace. This can be usefull when using log viewers
+ *   instead of log4php namespace. This can be useful when using log viewers
  *   which can only parse the log4j namespace such as Apache Chainsaw.
  *
  * <p>It does not output a complete well-formed XML file.
@@ -121,7 +121,7 @@ class LoggerLayoutXml extends LoggerLayout
      * @param LoggerLoggingEvent $event
      * @return string
      */
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         $ns = $this->namespacePrefix;
 

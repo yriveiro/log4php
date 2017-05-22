@@ -23,7 +23,7 @@
  *
  * Configurable parameters:
  *
- * * converionPattern - A string which controls the formatting of logging
+ * * conversionPattern - A string which controls the formatting of logging
  *   events. See docs for full specification.
  *
  * @package log4php
@@ -73,77 +73,57 @@ class LoggerLayoutPattern extends LoggerLayout
     protected $pattern = self::DEFAULT_CONVERSION_PATTERN;
 
     /** Maps conversion keywords to the relevant converter (default implementation). */
-    protected static $defaultConverterMap = array(
-        'c' => LoggerPatternConverterLogger::class,
-        'lo' => LoggerPatternConverterLogger::class,
-        'logger' => LoggerPatternConverterLogger::class,
-
-        'C' => LoggerPatternConverterClass::class,
-        'class' => LoggerPatternConverterClass::class,
-
-        'cookie' => LoggerPatternConverterCookie::class,
-
-        'd' => LoggerPatternConverterDate::class,
-        'date' => LoggerPatternConverterDate::class,
-
-        'e' => LoggerPatternConverterEnvironment::class,
-        'env' => LoggerPatternConverterEnvironment::class,
-
-        'ex' => LoggerPatternConverterThrowable::class,
+    protected static $defaultConverterMap = [
+        'c'         => LoggerPatternConverterLogger::class,
+        'lo'        => LoggerPatternConverterLogger::class,
+        'logger'    => LoggerPatternConverterLogger::class,
+        'C'         => LoggerPatternConverterClass::class,
+        'class'     => LoggerPatternConverterClass::class,
+        'cookie'    => LoggerPatternConverterCookie::class,
+        'd'         => LoggerPatternConverterDate::class,
+        'date'      => LoggerPatternConverterDate::class,
+        'e'         => LoggerPatternConverterEnvironment::class,
+        'env'       => LoggerPatternConverterEnvironment::class,
+        'ex'        => LoggerPatternConverterThrowable::class,
         'exception' => LoggerPatternConverterThrowable::class,
         'throwable' => LoggerPatternConverterThrowable::class,
-
-        'F' => LoggerPatternConverterFile::class,
-        'file' => LoggerPatternConverterFile::class,
-
-        'l' => LoggerPatternConverterLocation::class,
-        'location' => LoggerPatternConverterLocation::class,
-
-        'L' => LoggerPatternConverterLine::class,
-        'line' => LoggerPatternConverterLine::class,
-
-        'm' => LoggerPatternConverterMessage::class,
-        'msg' => LoggerPatternConverterMessage::class,
-        'message' => LoggerPatternConverterMessage::class,
-
-        'M' => LoggerPatternConverterMethod::class,
-        'method' => LoggerPatternConverterMethod::class,
-
-        'n' => LoggerPatternConverterNewLine::class,
-        'newline' => LoggerPatternConverterNewLine::class,
-
-        'p' => LoggerPatternConverterLevel::class,
-        'le' => LoggerPatternConverterLevel::class,
-        'level' => LoggerPatternConverterLevel::class,
-
-        'r' => LoggerPatternConverterRelative::class,
-        'relative' => LoggerPatternConverterRelative::class,
-
-        'req' => LoggerPatternConverterRequest::class,
-        'request' => LoggerPatternConverterRequest::class,
-
-        's' => LoggerPatternConverterServer::class,
-        'server' => LoggerPatternConverterServer::class,
-
-        'ses' => LoggerPatternConverterSession::class,
-        'session' => LoggerPatternConverterSession::class,
-
-        'sid' => LoggerPatternConverterSessionID::class,
+        'F'         => LoggerPatternConverterFile::class,
+        'file'      => LoggerPatternConverterFile::class,
+        'l'         => LoggerPatternConverterLocation::class,
+        'location'  => LoggerPatternConverterLocation::class,
+        'L'         => LoggerPatternConverterLine::class,
+        'line'      => LoggerPatternConverterLine::class,
+        'm'         => LoggerPatternConverterMessage::class,
+        'msg'       => LoggerPatternConverterMessage::class,
+        'message'   => LoggerPatternConverterMessage::class,
+        'M'         => LoggerPatternConverterMethod::class,
+        'method'    => LoggerPatternConverterMethod::class,
+        'n'         => LoggerPatternConverterNewLine::class,
+        'newline'   => LoggerPatternConverterNewLine::class,
+        'p'         => LoggerPatternConverterLevel::class,
+        'le'        => LoggerPatternConverterLevel::class,
+        'level'     => LoggerPatternConverterLevel::class,
+        'r'         => LoggerPatternConverterRelative::class,
+        'relative'  => LoggerPatternConverterRelative::class,
+        'req'       => LoggerPatternConverterRequest::class,
+        'request'   => LoggerPatternConverterRequest::class,
+        's'         => LoggerPatternConverterServer::class,
+        'server'    => LoggerPatternConverterServer::class,
+        'ses'       => LoggerPatternConverterSession::class,
+        'session'   => LoggerPatternConverterSession::class,
+        'sid'       => LoggerPatternConverterSessionID::class,
         'sessionid' => LoggerPatternConverterSessionID::class,
-
-        't' => LoggerPatternConverterProcess::class,
-        'pid' => LoggerPatternConverterProcess::class,
-        'process' => LoggerPatternConverterProcess::class,
-
-        'x' => LoggerPatternConverterNDC::class,
-        'ndc' => LoggerPatternConverterNDC::class,
-
-        'X' => LoggerPatternConverterMDC::class,
-        'mdc' => LoggerPatternConverterMDC::class,
-    );
+        't'         => LoggerPatternConverterProcess::class,
+        'pid'       => LoggerPatternConverterProcess::class,
+        'process'   => LoggerPatternConverterProcess::class,
+        'x'         => LoggerPatternConverterNDC::class,
+        'ndc'       => LoggerPatternConverterNDC::class,
+        'X'         => LoggerPatternConverterMDC::class,
+        'mdc'       => LoggerPatternConverterMDC::class,
+    ];
 
     /** Maps conversion keywords to the relevant converter. */
-    protected $converterMap = array();
+    protected $converterMap = [];
 
     /**
      * Head of a chain of Converters.
@@ -194,7 +174,7 @@ class LoggerLayoutPattern extends LoggerLayout
      * @param LoggerLoggingEvent $event
      * @return string
      */
-    public function format(LoggerLoggingEvent $event)
+    public function format(LoggerLoggingEvent $event): string
     {
         $sbuf = '';
         $converter = $this->head;

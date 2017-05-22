@@ -19,7 +19,7 @@
  */
 
 /**
- * Pool implmentation for LoggerAppender instances.
+ * Pool implementation for LoggerAppender instances.
  *
  * The pool is used when configuring log4php. First all appender instances
  * are created in the pool. Afterward, they are linked to loggers, each
@@ -34,9 +34,8 @@ namespace Log4Php;
 
 class LoggerAppenderPool
 {
-
     /** Holds appenders indexed by their name */
-    public static $appenders = array();
+    public static $appenders = [];
 
     /**
      * Adds an appender to the pool.
@@ -81,7 +80,7 @@ class LoggerAppenderPool
 
     /**
      * Returns all appenders from the pool.
-     * @return array Array of LoggerAppender objects.
+     * @return LoggerAppender[] Array of LoggerAppender objects.
      */
     public static function getAppenders()
     {
@@ -103,6 +102,6 @@ class LoggerAppenderPool
      */
     public static function clear()
     {
-        self::$appenders = array();
+        self::$appenders = [];
     }
 }

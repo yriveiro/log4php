@@ -33,7 +33,7 @@ use Log4Php\Renderers\LoggerRendererMap;
 /** Renders everything as 'foo'. */
 class FooRenderer implements LoggerRenderer
 {
-    public function render($input)
+    public function render($input): string
     {
         return 'foo';
     }
@@ -56,7 +56,7 @@ class Fruit3Descendant extends Fruit3
 
 class FruitRenderer3 implements LoggerRenderer
 {
-    public function render($fruit)
+    public function render($fruit): string
     {
         return $fruit->test1 . ',' . $fruit->test2 . ',' . $fruit->test3;
     }

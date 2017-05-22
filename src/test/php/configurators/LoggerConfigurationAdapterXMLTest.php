@@ -40,74 +40,74 @@ class LoggerConfigurationAdapterXMLTest extends PHPUnit_Framework_TestCase
 {
 
     /** Expected output of parsing config1.xml.*/
-    private $expected1 = array(
-        'appenders' => array(
-            'default' => array(
+    private $expected1 = [
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class,
-                'layout' => array(
-                    'class' => LoggerLayoutTTCC::class,
-                ),
-                'filters' => array(
-                    array(
+                'layout' => [
+                    'class' => LoggerLayoutPattern::class,
+                ],
+                'filters' => [
+                    [
                         'class' => LoggerFilterLevelRange::class,
-                        'params' => array(
+                        'params' => [
                             'levelMin' => 'ERROR',
                             'levelMax' => 'FATAL',
                             'acceptOnMatch' => 'false',
-                        ),
-                    ),
-                    array(
+                        ],
+                    ],
+                    [
                         'class' => LoggerFilterDenyAll::class,
-                    ),
-                ),
-            ),
-            'file' => array(
+                    ],
+                ],
+            ],
+            'file' => [
                 'class' => LoggerAppenderDailyFile::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutPattern::class,
-                    'params' => array(
+                    'params' => [
                         'conversionPattern' => '%d{ISO8601} [%p] %c: %m (at %F line %L)%n',
-                    ),
-                ),
-                'params' => array(
+                    ],
+                ],
+                'params' => [
                     'datePattern' => 'Ymd',
                     'file' => 'target/examples/daily_%s.log',
-                ),
+                ],
                 'threshold' => 'warn'
-            ),
-        ),
-        'loggers' => array(
-            'foo.bar.baz' => array(
+            ],
+        ],
+        'loggers' => [
+            'foo.bar.baz' => [
                 'level' => 'trace',
                 'additivity' => 'false',
-                'appenders' => array('default'),
-            ),
-            'foo.bar' => array(
+                'appenders' => ['default'],
+            ],
+            'foo.bar' => [
                 'level' => 'debug',
                 'additivity' => 'true',
-                'appenders' => array('file'),
-            ),
-            'foo' => array(
+                'appenders' => ['file'],
+            ],
+            'foo' => [
                 'level' => 'warn',
-                'appenders' => array('default', 'file'),
-            ),
-        ),
-        'renderers' => array(
-            array(
+                'appenders' => ['default', 'file'],
+            ],
+        ],
+        'renderers' => [
+            [
                 'renderedClass' => 'Fruit',
                 'renderingClass' => 'FruitRenderer',
-            ),
-            array(
+            ],
+            [
                 'renderedClass' => 'Beer',
                 'renderingClass' => 'BeerRenderer',
-            ),
-        ),
+            ],
+        ],
         'threshold' => 'debug',
-        'rootLogger' => array(
+        'rootLogger' => [
             'level' => 'DEBUG',
-            'appenders' => array('default'),
-        ),
-    );
+            'appenders' => ['default'],
+        ],
+    ];
 
     public function setUp()
     {

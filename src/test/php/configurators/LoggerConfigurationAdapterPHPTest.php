@@ -33,21 +33,20 @@ use Log4Php\LoggerException;
  */
 class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase
 {
-
-    private $expected1 = array(
-        'rootLogger' => array(
+    private $expected1 = [
+        'rootLogger' => [
             'level' => 'info',
-            'appenders' => array('default')
-        ),
-        'appenders' => array(
-            'default' => array(
+            'appenders' => ['default']
+        ],
+        'appenders' => [
+            'default' => [
                 'class' => LoggerAppenderEcho::class,
-                'layout' => array(
+                'layout' => [
                     'class' => LoggerLayoutSimple::class
-                )
-            )
-        )
-    );
+                ]
+            ]
+        ]
+    ];
 
     public function testConfig()
     {
@@ -83,8 +82,7 @@ class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test exception is thrown when the configuration is empty.
-     * @expectedException Log4Php\LoggerException
-     * @expectedExceptionMessage Invalid configuration: empty configuration array.
+     * @expectedException Throwable
      */
     public function testEmptyConfigWarning()
     {
@@ -105,5 +103,3 @@ class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase
         $adapter->convert($url);
     }
 }
-
-?>

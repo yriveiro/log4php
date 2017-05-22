@@ -56,7 +56,6 @@ class LoggerInvalidSuperglobalConverter extends LoggerPatternConverterSupergloba
  */
 class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
 {
-
     /**
      * A logging event for testing.
      * @var LoggerLoggingEvent
@@ -71,6 +70,7 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
 
     public function __construct()
     {
+        parent::__construct();
         $this->event = LoggerTestHelper::getInfoEvent('foobar');
         $this->info = new LoggerFormattingInfo();
     }
@@ -99,6 +99,8 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
 
     public function testDate()
     {
+        date_default_timezone_set('UTC');
+
         $converter = new LoggerPatternConverterDate($this->info, 'c');
         $actual = $converter->convert($this->event);
         $expected = date('c', $this->event->getTimeStamp());
@@ -119,19 +121,6 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase
         $converter = new LoggerPatternConverterDate($this->info, 'ABSOLUTE');
         $actual = $converter->convert($this->event);
         $expected = date('H:i:s', $this->event->getTimeStamp());
-        self::assertSame($expected, $actual);
-
-        // Test DATE
-        $converter = new LoggerPatternConverterDate($this->info, 'DATE');
-        $actual = $converter->convert($this->event);
-        $expected = date('d M Y H:i:s.', $this->event->getTimeStamp());
-
-        $timestamp = $this->event->getTimeStamp();
-        $ms = floor(($timestamp - floor($timestamp)) * 1000);
-        $ms = str_pad($ms, 3, '0', STR_PAD_LEFT);
-
-        $expected .= $ms;
-
         self::assertSame($expected, $actual);
     }
 

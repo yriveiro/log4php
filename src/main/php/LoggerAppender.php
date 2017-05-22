@@ -31,7 +31,6 @@ use Log4Php\Layouts\LoggerLayoutSimple;
 
 abstract class LoggerAppender extends LoggerConfigurable
 {
-
     /**
      * Set to true when the appender is closed. A closed appender will not
      * accept any logging requests.
@@ -94,7 +93,7 @@ abstract class LoggerAppender extends LoggerConfigurable
     }
 
     /**
-     * Returns the default layout for this appender. Can be overriden by
+     * Returns the default layout for this appender. Can be overridden by
      * derived appenders.
      *
      * @return LoggerLayout
@@ -150,29 +149,30 @@ abstract class LoggerAppender extends LoggerConfigurable
      * to the subclass' specific <i>append()</i> method.
      * @see LoggerAppender::append()
      * @param LoggerLoggingEvent $event
+     * @return LoggerLoggingEvent|null
      */
     public function doAppend(LoggerLoggingEvent $event)
     {
         if ($this->closed) {
-            return;
+            return null;
         }
 
         if (!$this->isAsSevereAsThreshold($event->getLevel())) {
-            return;
+            return null;
         }
 
         $filter = $this->getFirstFilter();
         while ($filter !== null) {
             switch ($filter->decide($event)) {
                 case LoggerFilter::DENY:
-                    return;
+                    return null;
                 case LoggerFilter::ACCEPT:
                     return $this->append($event);
                 case LoggerFilter::NEUTRAL:
                     $filter = $filter->getNext();
             }
         }
-        $this->append($event);
+        return $this->append($event);
     }
 
     /**
@@ -218,7 +218,7 @@ abstract class LoggerAppender extends LoggerConfigurable
     }
 
     /**
-     * Retruns the appender name.
+     * Returns the appender name.
      * @return string
      */
     public function getName()
@@ -313,5 +313,4 @@ abstract class LoggerAppender extends LoggerConfigurable
         $id = get_class($this) . (empty($this->name) ? '' : ":{$this->name}");
         trigger_error("log4php: [$id]: $message", E_USER_WARNING);
     }
-
 }

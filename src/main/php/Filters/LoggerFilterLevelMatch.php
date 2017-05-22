@@ -100,7 +100,6 @@ class LoggerFilterLevelMatch extends LoggerFilter
         if ($this->levelToMatch === null) {
             return LoggerFilter::NEUTRAL;
         }
-
         if ($this->levelToMatch->equals($event->getLevel())) {
             return $this->acceptOnMatch ? LoggerFilter::ACCEPT : LoggerFilter::DENY;
         } else {
