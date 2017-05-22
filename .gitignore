@@ -1,2 +1,5 @@
 target
 temp
+.idea/
+composer.lock
+vendor/

@@ -16,24 +16,24 @@
  limitations under the License.
 -->
 <configuration xmlns="http://logging.apache.org/log4php" threshold="debug">
-    <appender name="default" class="LoggerAppenderEcho">
-        <layout class="LoggerLayoutSimple"/>
+    <appender name="default" class="Log4Php\Appenders\LoggerAppenderEcho">
+        <layout class="Log4Php\Layouts\LoggerLayoutSimple"/>
     </appender>
-    
+
     <!-- Duplicate logger -->
     <logger name="foo">
-        <level value="info" />
-        <appender_ref ref="default" />
+        <level value="info"/>
+        <appender_ref ref="default"/>
     </logger>
-    
+
     <logger name="foo">
-        <level value="warn" />
-        <appender_ref ref="default" />
+        <level value="warn"/>
+        <appender_ref ref="default"/>
     </logger>
-    
+
     <root>
-        <level value="DEBUG" />
-        <appender_ref ref="default" />
+        <level value="DEBUG"/>
+        <appender_ref ref="default"/>
     </root>
 
     <!-- Invalid XML file for testing -->

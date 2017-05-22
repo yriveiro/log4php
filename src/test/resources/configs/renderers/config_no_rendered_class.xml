@@ -16,14 +16,12 @@
  limitations under the License.
 -->
 <configuration xmlns="http://logging.apache.org/log4php">
-    <appender name="foo" class="LoggerAppenderConsole">
-        <layout class="LoggerLayoutSimple"/>
-    </appender>
-    
-    <renderer renderingClass="LoggerRendererDefault" />
-    
+    <appender name="foo" class="Log4Php\Appenders\LoggerAppenderConsole">
+        <layout class="Log4Php\Layouts\LoggerLayoutSimple"/>
+    </appender>s
+    <renderer renderingClass="Log4Php\Renderers\LoggerRendererDefault"/>
     <root>
-        <level value="DEBUG" />
-        <appender_ref ref="foo" />
+        <level value="DEBUG"/>
+        <appender_ref ref="foo"/>
     </root>
 </configuration>

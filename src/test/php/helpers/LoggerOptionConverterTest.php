@@ -23,22 +23,28 @@
  * @link       http://logging.apache.org/log4php
  */
 
+use Log4Php\Appenders\LoggerAppenderFile;
+use Log4Php\Helpers\LoggerOptionConverter;
+use Log4Php\LoggerException;
+
 define('MY_CONSTANT_CONSTANT', 'DEFINE');
 define('MY_CONSTANT_CONSTANT_OTHER', 'DEFINE_OTHER');
 
 /**
  * @group helpers
  */
-class LoggerOptionConverterTest extends PHPUnit_Framework_TestCase {
+class LoggerOptionConverterTest extends PHPUnit_Framework_TestCase
+{
 
-    public function testToBoolean() {
+    public function testToBoolean()
+    {
         self::assertTrue(LoggerOptionConverter::toBooleanEx(1));
         self::assertTrue(LoggerOptionConverter::toBooleanEx("1"));
         self::assertTrue(LoggerOptionConverter::toBooleanEx(true));
         self::assertTrue(LoggerOptionConverter::toBooleanEx("true"));
         self::assertTrue(LoggerOptionConverter::toBooleanEx("on"));
         self::assertTrue(LoggerOptionConverter::toBooleanEx("yes"));
-        
+
         self::assertFalse(LoggerOptionConverter::toBooleanEx(0));
         self::assertFalse(LoggerOptionConverter::toBooleanEx("0"));
         self::assertFalse(LoggerOptionConverter::toBooleanEx(false));
@@ -46,102 +52,112 @@ class LoggerOptionConverterTest extends PHPUnit_Framework_TestCase {
         self::assertFalse(LoggerOptionConverter::toBooleanEx("off"));
         self::assertFalse(LoggerOptionConverter::toBooleanEx("no"));
     }
-    
+
     /**
-     * Test fail on NULL. 
- 	 * @expectedException LoggerException
- 	 * @expectedExceptionMessage Given value [NULL] cannot be converted to boolean.
+     * Test fail on NULL.
+     * @expectedException Log4Php\LoggerException
+     * @expectedExceptionMessage Given value [NULL] cannot be converted to boolean.
      */
-    public function testToBooleanFailure1() {
-    	LoggerOptionConverter::toBooleanEx(null);
+    public function testToBooleanFailure1()
+    {
+        LoggerOptionConverter::toBooleanEx(null);
     }
-    
+
     /**
      * Test fail on invalid string.
-     * @expectedException LoggerException
+     * @expectedException Log4Php\LoggerException
      * @expectedExceptionMessage Given value ['foo'] cannot be converted to boolean.
      */
-    public function testToBooleanFailure2() {
-    	LoggerOptionConverter::toBooleanEx('foo');
+    public function testToBooleanFailure2()
+    {
+        LoggerOptionConverter::toBooleanEx('foo');
     }
-    
-    public function testToInteger() {
-    	self::assertSame(1, LoggerOptionConverter::toIntegerEx('1'));
-    	self::assertSame(1, LoggerOptionConverter::toIntegerEx(1));
-    	self::assertSame(0, LoggerOptionConverter::toIntegerEx('0'));
-    	self::assertSame(0, LoggerOptionConverter::toIntegerEx(0));
-    	self::assertSame(-1, LoggerOptionConverter::toIntegerEx('-1'));
-    	self::assertSame(-1, LoggerOptionConverter::toIntegerEx(-1));
+
+    public function testToInteger()
+    {
+        self::assertSame(1, LoggerOptionConverter::toIntegerEx('1'));
+        self::assertSame(1, LoggerOptionConverter::toIntegerEx(1));
+        self::assertSame(0, LoggerOptionConverter::toIntegerEx('0'));
+        self::assertSame(0, LoggerOptionConverter::toIntegerEx(0));
+        self::assertSame(-1, LoggerOptionConverter::toIntegerEx('-1'));
+        self::assertSame(-1, LoggerOptionConverter::toIntegerEx(-1));
     }
-    
+
     /**
-    * Test fail on NULL.
-    * @expectedException LoggerException
-    * @expectedExceptionMessage Given value [NULL] cannot be converted to integer.
-    */
-    public function testToIntegerFailure1() {
-    	LoggerOptionConverter::toIntegerEx(null);
+     * Test fail on NULL.
+     * @expectedException Log4Php\LoggerException
+     * @expectedExceptionMessage Given value [NULL] cannot be converted to integer.
+     */
+    public function testToIntegerFailure1()
+    {
+        LoggerOptionConverter::toIntegerEx(null);
     }
-    
+
     /**
      * Test fail on empty string.
-     * @expectedException LoggerException
+     * @expectedException Log4Php\LoggerException
      * @expectedExceptionMessage Given value [''] cannot be converted to integer.
      */
-    public function testToIntegerFailure2() {
-    	LoggerOptionConverter::toIntegerEx('');
+    public function testToIntegerFailure2()
+    {
+        LoggerOptionConverter::toIntegerEx('');
     }
-    
+
     /**
      * Test fail on invalid string.
-     * @expectedException LoggerException
+     * @expectedException Log4Php\LoggerException
      * @expectedExceptionMessage Given value ['foo'] cannot be converted to integer.
      */
-    public function testToIntegerFailure3() {
-    	LoggerOptionConverter::toIntegerEx('foo');
-    }
-    
-    /**
-     * Test fail on boolean.
-     * @expectedException LoggerException
-     * @expectedExceptionMessage Given value [true] cannot be converted to integer.
-     */
-    public function testToIntegerFailure4() {
-    	LoggerOptionConverter::toIntegerEx(true);
+    public function testToIntegerFailure3()
+    {
+        LoggerOptionConverter::toIntegerEx('foo');
     }
 
     /**
      * Test fail on boolean.
-     * @expectedException LoggerException
+     * @expectedException Log4Php\LoggerException
+     * @expectedExceptionMessage Given value [true] cannot be converted to integer.
+     */
+    public function testToIntegerFailure4()
+    {
+        LoggerOptionConverter::toIntegerEx(true);
+    }
+
+    /**
+     * Test fail on boolean.
+     * @expectedException Log4Php\LoggerException
      * @expectedExceptionMessage Given value [false] cannot be converted to integer.
      */
-    public function testToIntegerFailure5() {
-    	LoggerOptionConverter::toIntegerEx(false);
+    public function testToIntegerFailure5()
+    {
+        LoggerOptionConverter::toIntegerEx(false);
     }
-    
-    public function testSubstituteConstants() {
-    	define('OTHER_CONSTANT', 'OTHER');
-    	define('MY_CONSTANT', 'TEST');
-    	define('NEXT_CONSTANT', 'NEXT');
-     
+
+    public function testSubstituteConstants()
+    {
+        define('OTHER_CONSTANT', 'OTHER');
+        define('MY_CONSTANT', 'TEST');
+        define('NEXT_CONSTANT', 'NEXT');
+
         $result = LoggerOptionConverter::substConstants('Value of key is ${MY_CONSTANT}.');
         self::assertEquals('Value of key is TEST.', $result);
-        
+
         $result = LoggerOptionConverter::substConstants('Value of key is ${MY_CONSTANT} or ${OTHER_CONSTANT}.');
         self::assertEquals('Value of key is TEST or OTHER.', $result);
-        
+
         $result = LoggerOptionConverter::substConstants('Value of key is ${MY_CONSTANT_CONSTANT}.');
         self::assertEquals('Value of key is DEFINE.', $result);
-        
+
         $result = LoggerOptionConverter::substConstants('Value of key is ${MY_CONSTANT_CONSTANT} or ${MY_CONSTANT_CONSTANT_OTHER}.');
         self::assertEquals('Value of key is DEFINE or DEFINE_OTHER.', $result);
     }
-    
-    public function testActualSubstituteConstants() {
-    	$a = new LoggerAppenderFile();
-    	$a->setFile('${PHPUNIT_TEMP_DIR}/log.txt');
-    	$actual = $a->getFile();
-    	$expected = PHPUNIT_TEMP_DIR . '/log.txt';
-    	self::assertSame($expected, $actual);
+
+    public function testActualSubstituteConstants()
+    {
+        $a = new LoggerAppenderFile();
+        $a->setFile('${PHPUNIT_TEMP_DIR}/log.txt');
+        $actual = $a->getFile();
+        $expected = PHPUNIT_TEMP_DIR . '/log.txt';
+        self::assertSame($expected, $actual);
     }
 }

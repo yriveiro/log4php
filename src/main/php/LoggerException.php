@@ -24,5 +24,11 @@
  * @version $Revision$
  * @package log4php
  */
-class LoggerException extends Exception {
+
+namespace Log4Php;
+
+use Exception;
+
+class LoggerException extends Exception
+{
 }

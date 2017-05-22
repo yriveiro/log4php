@@ -16,12 +16,10 @@
  limitations under the License.
 -->
 <configuration xmlns="http://logging.apache.org/log4php">
-    <appender name="foo" class="LoggerAppenderConsole" />
-    
-    <defaultRenderer renderingClass="FruitRenderer3"  />
-    
+    <appender name="foo" class="Log4Php\Appenders\LoggerAppenderConsole"/>
+    <defaultRenderer renderingClass="FruitRenderer3"/>
     <root>
-        <level value="DEBUG" />
-        <appender_ref ref="foo" />
+        <level value="DEBUG"/>
+        <appender_ref ref="foo"/>
     </root>
 </configuration>

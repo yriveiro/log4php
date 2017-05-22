@@ -19,39 +19,39 @@
 <!-- Same as config_valid.xml but uses appender-ref instead of appender_ref -->
 
 <configuration xmlns="http://logging.apache.org/log4php" threshold="debug">
-	<renderer renderedClass="Fruit" renderingClass="FruitRenderer" />
-	<renderer renderedClass="Beer" renderingClass="BeerRenderer" />
-    <appender name="default" class="LoggerAppenderEcho">
-        <layout class="LoggerLayoutTTCC"/>
-        <filter class="LoggerFilterLevelRange">
-            <param name="levelMin" value="ERROR" />
-            <param name="levelMax" value="FATAL" />
-            <param name="acceptOnMatch" value="false" />
+    <renderer renderedClass="Fruit" renderingClass="FruitRenderer"/>
+    <renderer renderedClass="Beer" renderingClass="BeerRenderer"/>
+    <appender name="default" class="Log4Php\Appenders\LoggerAppenderEcho">
+        <layout class="Log4Php\Layouts\LoggerLayoutTTCC"/>
+        <filter class="Log4Php\Filters\LoggerFilterLevelRange">
+            <param name="levelMin" value="ERROR"/>
+            <param name="levelMax" value="FATAL"/>
+            <param name="acceptOnMatch" value="false"/>
         </filter>
-        <filter class="LoggerFilterDenyAll" />
+        <filter class="Log4Php\Filters\LoggerFilterDenyAll"/>
     </appender>
-	<appender name="file" class="LoggerAppenderDailyFile" threshold="warn">
-		<param name="datePattern" value="Ymd" />
-		<param name="file" value="target/examples/daily_%s.log" />
-        <layout class="LoggerLayoutPattern">
-        	<param name="conversionPattern" value= "%d{ISO8601} [%p] %c: %m (at %F line %L)%n" />
+    <appender name="file" class="Log4Php\Appenders\LoggerAppenderDailyFile" threshold="warn">
+        <param name="datePattern" value="Ymd"/>
+        <param name="file" value="target/examples/daily_%s.log"/>
+        <layout class="Log4Php\Layouts\LoggerLayoutPattern">
+            <param name="conversionPattern" value="%d{ISO8601} [%p] %c: %m (at %F line %L)%n"/>
         </layout>
     </appender>
     <logger name="foo.bar.baz" additivity="false">
-        <level value="trace" />
-        <appender-ref ref="default" />
+        <level value="trace"/>
+        <appender-ref ref="default"/>
     </logger>
     <logger name="foo.bar" additivity="true">
-        <level value="debug" />
-        <appender-ref ref="file" />
+        <level value="debug"/>
+        <appender-ref ref="file"/>
     </logger>
     <logger name="foo">
-        <level value="warn" />
-        <appender-ref ref="default" />
-        <appender-ref ref="file" />
+        <level value="warn"/>
+        <appender-ref ref="default"/>
+        <appender-ref ref="file"/>
     </logger>
     <root>
-        <level value="DEBUG" />
-        <appender-ref ref="default" />
+        <level value="DEBUG"/>
+        <appender-ref ref="default"/>
     </root>
 </configuration>
