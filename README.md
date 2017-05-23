@@ -13,12 +13,12 @@ To do
 * Extend test to cover all levels from PSR
 * ~~Use latest PHP Unit~~
 * ~~Fix last 4 test cases~~
-* Add PSR-7 Compatibility per default
+* ~~Add PSR-7 Compatibility per default~~
 * Profile
 * Remove exclusive locking as much as possible
 * Create YAML adapter
 * Think about storing important things in APCu
-* Add compat Logger & LoggerLevel for simple migration from KLogger & Log4Php 2
 * Builder pattern for log configuration
-* Add pakcagist integration
+* ~~Add packagist integration~~
 * Add test for message interpolation and exception tracing
+* ~~Add proper recognition for tracing~~

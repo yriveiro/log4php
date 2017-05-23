@@ -17,6 +17,7 @@
  */
 
 namespace Log4Php;
+use ReflectionClass;
 
 /**
  * The internal representation of logging event.
@@ -165,6 +166,7 @@ class LoggerLoggingEvent
     {
         if ($this->locationInfo === null) {
             $locationInfo = [];
+            // @todo we need to make sure we don't unwind too much
             $trace = debug_backtrace();
             $prevHop = null;
             // make a downsearch to identify the caller
@@ -173,12 +175,13 @@ class LoggerLoggingEvent
                 if (isset($hop['class'])) {
                     // we are sometimes in functions = no class available: avoid php warning here
                     $className = strtolower($hop['class']);
-                    if (!empty($className) and ($className == strtolower(Logger::class) or
-                            strtolower(get_parent_class($className)) == 'logger')
-                    ) {
-                        $locationInfo['line'] = $hop['line'];
-                        $locationInfo['file'] = $hop['file'];
-                        break;
+                    if (!empty($className)) {
+                        $hopClass = new ReflectionClass($className);
+                        if ($hopClass->implementsInterface(LoggerLayer::class)) {
+                            $locationInfo['line'] = $hop['line'];
+                            $locationInfo['file'] = $hop['file'];
+                            break;
+                        }
                     }
                 }
                 $prevHop = $hop;
