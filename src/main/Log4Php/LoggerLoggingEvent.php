@@ -18,9 +18,6 @@
 
 namespace Log4Php;
 
-use Exception;
-use Throwable;
-
 /**
  * The internal representation of logging event.
  */
@@ -106,6 +103,11 @@ class LoggerLoggingEvent
     private $throwableInfo;
 
     /**
+     * @var array Logging event context
+     */
+    private $context = [];
+
+    /**
      * Instantiate a LoggingEvent from the supplied parameters.
      *
      * Except {@link $timeStamp} all the other fields of
@@ -116,9 +118,9 @@ class LoggerLoggingEvent
      * @param LoggerLevel $level The level of this event.
      * @param mixed $message The message of this event.
      * @param integer $timeStamp the timestamp of this logging event.
-     * @param Exception $throwable The throwable associated with logging event
+     * @param array $context Context of the event
      */
-    public function __construct($fqcn, $logger, LoggerLevel $level, $message, $timeStamp = null, $throwable = null)
+    public function __construct($fqcn, $logger, LoggerLevel $level, $message, $timeStamp = null, array $context = [])
     {
         $this->fqcn = $fqcn;
         if ($logger instanceof Logger) {
@@ -135,8 +137,9 @@ class LoggerLoggingEvent
             $this->timeStamp = microtime(true);
         }
 
-        if ($throwable !== null && $throwable instanceof Throwable) {
-            $this->throwableInfo = new LoggerThrowableInformation($throwable);
+        $this->context = $context;
+        if (isset($context['exception'])) {
+            $this->throwableInfo = new LoggerThrowableInformation($context['exception']);
         }
     }
 
@@ -230,6 +233,7 @@ class LoggerLoggingEvent
     /**
      * Return the message for this logging event.
      * @return mixed
+     * @todo maybe cacheing, but i doubt it
      */
     public function getMessage()
     {
@@ -280,7 +284,11 @@ class LoggerLoggingEvent
     {
         if ($this->renderedMessage === null and $this->message !== null) {
             if (is_string($this->message)) {
-                $this->renderedMessage = $this->message;
+                $pairs = [];
+                foreach ($this->context as $key => $val) {
+                    $pairs['{' . $key . '}'] = $val;
+                }
+                $this->renderedMessage = strtr($this->message, $pairs);
             } else {
                 $rendererMap = Logger::getHierarchy()->getRendererMap();
                 $this->renderedMessage = $rendererMap->findAndRender($this->message);

@@ -63,7 +63,7 @@ class LoggerConfigurationAdapterINITest extends TestCase
         ],
         'loggers' => [
             'foo' => [
-                'level' => 'warn',
+                'level' => 'warning',
                 'appenders' => ['default'],
             ],
             'foo.bar' => [

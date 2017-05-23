@@ -29,7 +29,7 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerAppenderRollingFileTest extends TestCase
 {
-    const WARNING_MASSAGE = 'WARN - my messageXYZ';
+    const WARNING_MASSAGE = 'WARNING - my messageXYZ';
 
     protected function setUp()
     {
@@ -110,7 +110,7 @@ class LoggerAppenderRollingFileTest extends TestCase
         $file = PHPUNIT_TEMP_DIR . '/TEST-rolling.txt';
         $data = file($file);
         $line = $data[count($data) - 1];
-        $e = "WARN - my messageXYZ" . PHP_EOL;
+        $e = "WARNING - my messageXYZ" . PHP_EOL;
         self::assertEquals($e, $line);
 
         $file = PHPUNIT_TEMP_DIR . '/TEST-rolling.txt.1';
@@ -133,16 +133,16 @@ class LoggerAppenderRollingFileTest extends TestCase
         $logger->addAppender($appender);
 
         for ($i = 0; $i < 1000; $i++) {
-            $logger->warn("my message123");
+            $logger->warning("my message123");
         }
 
-        $logger->warn("my messageXYZ");
+        $logger->warning("my messageXYZ");
 
         $file = PHPUNIT_TEMP_DIR . '/TEST-rolling.txt';
         $data = file($file);
 
         $line = $data[count($data) - 1];
-        $e = "WARN - my messageXYZ" . PHP_EOL;
+        $e = "WARNING - my messageXYZ" . PHP_EOL;
         self::assertEquals($e, $line);
 
         $file = PHPUNIT_TEMP_DIR . '/TEST-rolling.txt.1';
@@ -165,10 +165,10 @@ class LoggerAppenderRollingFileTest extends TestCase
         $logger->addAppender($appender);
 
         for ($i = 0; $i < 1000; $i++) {
-            $logger->warn(self::WARNING_MASSAGE . $i);
+            $logger->warning(self::WARNING_MASSAGE . $i);
         }
 
-        $logger->warn("my messageXYZ");
+        $logger->warning("my messageXYZ");
 
         $file = PHPUNIT_TEMP_DIR . '/TEST-rolling.txt';
         $data = file($file);
@@ -200,7 +200,7 @@ class LoggerAppenderRollingFileTest extends TestCase
     private function checkText($text)
     {
         $line = $text[count($text) - 1];
-        $e = "WARN - my message123" . PHP_EOL;
+        $e = "WARNING - my message123" . PHP_EOL;
         foreach ($text as $r) {
             self::assertEquals($e, $r);
         }

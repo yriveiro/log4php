@@ -140,7 +140,7 @@ class LoggerLoggingEventTest extends TestCase
 
         $ex = new Exception('Message1');
         $logger = $hierarchy->getLogger('test');
-        $logger->debug('test', $ex);
+        $logger->debug('test', ['exception' => $ex]);
         $hierarchy->shutdown();
 
         /** @var LoggerThrowableInformation $ti */

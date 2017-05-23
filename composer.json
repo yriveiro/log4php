@@ -5,9 +5,13 @@
   "homepage": "http://logging.apache.org/log4php/",
   "type": "library",
   "license": "Apache-2.0",
+  "version": "4.0",
   "autoload": {
+    "classmap": [
+      "src/main/Bridges"
+    ],
     "psr-4": {
-      "Log4Php\\": "src/main/php"
+      "Log4Php\\": "src/main/Log4Php"
     }
   },
   "require": {

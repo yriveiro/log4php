@@ -45,7 +45,7 @@ class LoggerFilterTest extends TestCase
         $filter->activateOptions();
         $eventError = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
         $eventDebug = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelDebug(), "testmessage");
-        $eventWarn  = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+        $eventWarn  = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelWarning(), "testmessage");
 
         $result = $filter->decide($eventError);
         self::assertEquals($result, LoggerFilter::NEUTRAL);

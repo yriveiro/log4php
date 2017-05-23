@@ -68,7 +68,7 @@ class LoggerTestHelper
      */
     public static function getWarnEvent($message = 'test', $logger = "test")
     {
-        return new LoggerLoggingEvent(__CLASS__, new Logger($logger), LoggerLevel::getLevelWarn(), $message);
+        return new LoggerLoggingEvent(__CLASS__, new Logger($logger), LoggerLevel::getLevelWarning(), $message);
     }
 
     /**
@@ -88,7 +88,7 @@ class LoggerTestHelper
      */
     public static function getFatalEvent($message = 'test', $logger = "test")
     {
-        return new LoggerLoggingEvent(__CLASS__, new Logger($logger), LoggerLevel::getLevelFatal(), $message);
+        return new LoggerLoggingEvent(__CLASS__, new Logger($logger), LoggerLevel::getLevelCritical(), $message);
     }
 
     /**
@@ -114,9 +114,9 @@ class LoggerTestHelper
             LoggerLevel::getLevelTrace(),
             LoggerLevel::getLevelDebug(),
             LoggerLevel::getLevelInfo(),
-            LoggerLevel::getLevelWarn(),
+            LoggerLevel::getLevelWarning(),
             LoggerLevel::getLevelError(),
-            LoggerLevel::getLevelFatal(),
+            LoggerLevel::getLevelCritical(),
         );
     }
 

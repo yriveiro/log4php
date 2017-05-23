@@ -20,6 +20,7 @@ namespace Log4Php;
 
 use Exception;
 use Log4Php\Configurators\LoggerConfiguratorDefault;
+use Psr\Log\LoggerInterface;
 
 /**
  * This is the central class in the log4php package. All logging operations
@@ -35,7 +36,7 @@ use Log4Php\Configurators\LoggerConfiguratorDefault;
  *        <li>{@link fatal()}</li>
  *    </ul>
  */
-class Logger
+class Logger implements LoggerInterface
 {
     /**
      * Logger additivity. If set to true then child loggers will inherit
@@ -43,12 +44,6 @@ class Logger
      * @var boolean
      */
     private $additive = true;
-
-    /**
-     * The Logger's fully qualified class name.
-     * TODO: Determine if this is useful.
-     */
-    private $fqcn = Logger::class;
 
     /** The assigned Logger level. */
     private $level;
@@ -97,80 +92,157 @@ class Logger
     // ******************************************
 
     /**
-     * Log a message object with the TRACE level.
+     * System is unusable.
      *
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
-     */
-    public function trace($message, $throwable = null)
-    {
-        $this->log(LoggerLevel::getLevelTrace(), $message, $throwable);
-    }
-
-    /**
-     * Log a message object with the DEBUG level.
+     * @param string $message
+     * @param array  $context
      *
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include in the logging event.
+     * @return void
      */
-    public function debug($message, $throwable = null)
+    public function emergency($message, array $context = [])
     {
-        $this->log(LoggerLevel::getLevelDebug(), $message, $throwable);
+        $this->_log(LoggerLevel::getLevelEmergency(), $message, $context);
     }
 
     /**
-     * Log a message object with the INFO Level.
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include in the logging event.
-     */
-    public function info($message, $throwable = null)
-    {
-        $this->log(LoggerLevel::getLevelInfo(), $message, $throwable);
-    }
-
-    /**
-     * Log a message with the WARN level.
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include in the logging event.
-     */
-    public function warn($message, $throwable = null)
-    {
-        $this->log(LoggerLevel::getLevelWarn(), $message, $throwable);
-    }
-
-    /**
-     * Log a message object with the ERROR level.
+     * Action must be taken immediately.
      *
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * Example: Entire website down, database unavailable, etc. This should
+     * trigger the SMS alerts and wake you up.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
      */
-    public function error($message, $throwable = null)
+    public function alert($message, array $context = [])
     {
-        $this->log(LoggerLevel::getLevelError(), $message, $throwable);
+        $this->_log(LoggerLevel::getLevelAlert(), $message, $context);
     }
 
     /**
-     * Log a message object with the FATAL level.
-     * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include in the logging event.
+     * Critical conditions.
+     *
+     * Example: Application component unavailable, unexpected exception.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
      */
-    public function fatal($message, $throwable = null)
+    public function critical($message, array $context = [])
     {
-        $this->log(LoggerLevel::getLevelFatal(), $message, $throwable);
+        $this->_log(LoggerLevel::getLevelCritical(), $message, $context);
     }
 
     /**
-     * Log a message using the provided logging level.
-     * @param LoggerLevel $level The logging level.
-     * @param mixed $message Message to log.
-     * @param Exception $throwable Optional throwable information to include in the logging event.
+     * Runtime errors that do not require immediate action but should typically
+     * be logged and monitored.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
      */
-    public function log(LoggerLevel $level, $message, $throwable = null)
+    public function error($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelError(), $message, $context);
+    }
+
+    /**
+     * Exceptional occurrences that are not errors.
+     *
+     * Example: Use of deprecated APIs, poor use of an API, undesirable things
+     * that are not necessarily wrong.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function warning($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelWarning(), $message, $context);
+    }
+
+    /**
+     * Normal but significant events.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function notice($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelNotice(), $message, $context);
+    }
+
+    /**
+     * Interesting events.
+     *
+     * Example: User logs in, SQL logs.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function info($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelInfo(), $message, $context);
+    }
+
+    /**
+     * Detailed debug information.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function debug($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelDebug(), $message, $context);
+    }
+
+    /**
+     * Detailed trace information.
+     *
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function trace($message, array $context = [])
+    {
+        $this->_log(LoggerLevel::getLevelTrace(), $message, $context);
+    }
+
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed  $level
+     * @param string $message
+     * @param array  $context
+     *
+     * @return void
+     */
+    public function log($level, $message, array $context = [])
+    {
+        $this->_log(LoggerLevel::toLevel($level), $message, $context);
+    }
+
+
+    /**
+     * @param LoggerLevel $level
+     * @param string $message
+     * @param array $context
+     */
+    private function _log(LoggerLevel $level, $message, array $context = [])
     {
         if ($this->isEnabledFor($level)) {
-            $event = new LoggerLoggingEvent($this->fqcn, $this, $level, $message, null, $throwable);
+            $event = new LoggerLoggingEvent(self::class, $this, $level, $message, null, $context);
             $this->callAppenders($event);
         }
 
@@ -180,7 +252,7 @@ class Logger
             if (isset($event)) {
                 $this->parent->logEvent($event);
             } else {
-                $this->parent->log($level, $message, $throwable);
+                $this->parent->_log($level, $message, $context);
             }
         }
     }
@@ -291,12 +363,21 @@ class Logger
     }
 
     /**
-     * Check whether this Logger is enabled for the WARN Level.
+     * Check whether this Logger is enabled for the NOTICE Level.
      * @return boolean
      */
-    public function isWarnEnabled()
+    public function isNoticeEnabled()
     {
-        return $this->isEnabledFor(LoggerLevel::getLevelWarn());
+        return $this->isEnabledFor(LoggerLevel::getLevelNotice());
+    }
+
+    /**
+     * Check whether this Logger is enabled for the WARNING Level.
+     * @return boolean
+     */
+    public function isWarningEnabled()
+    {
+        return $this->isEnabledFor(LoggerLevel::getLevelWarning());
     }
 
     /**
@@ -309,12 +390,30 @@ class Logger
     }
 
     /**
-     * Check whether this Logger is enabled for the FATAL Level.
+     * Check whether this Logger is enabled for the CRITICAL Level.
      * @return boolean
      */
-    public function isFatalEnabled()
+    public function isCriticalEnabled()
     {
-        return $this->isEnabledFor(LoggerLevel::getLevelFatal());
+        return $this->isEnabledFor(LoggerLevel::getLevelCritical());
+    }
+
+    /**
+     * Check whether this Logger is enabled for the ALERT Level.
+     * @return boolean
+     */
+    public function isAlertEnabled()
+    {
+        return $this->isEnabledFor(LoggerLevel::getLevelAlert());
+    }
+
+    /**
+     * Check whether this Logger is enabled for the EMERGENCY Level.
+     * @return boolean
+     */
+    public function isEmergencyEnabled()
+    {
+        return $this->isEnabledFor(LoggerLevel::getLevelEmergency());
     }
 
     // ******************************************

@@ -41,7 +41,7 @@ class LoggerAppenderPhp extends LoggerAppender
         $level = $event->getLevel();
         if ($level->isGreaterOrEqual(LoggerLevel::getLevelError())) {
             trigger_error($this->layout->format($event), E_USER_ERROR);
-        } elseif ($level->isGreaterOrEqual(LoggerLevel::getLevelWarn())) {
+        } elseif ($level->isGreaterOrEqual(LoggerLevel::getLevelWarning())) {
             trigger_error($this->layout->format($event), E_USER_WARNING);
         } else {
             trigger_error($this->layout->format($event), E_USER_NOTICE);

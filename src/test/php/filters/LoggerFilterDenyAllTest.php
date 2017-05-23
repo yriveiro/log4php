@@ -54,11 +54,11 @@ class LoggerFilterDenyAllTest extends TestCase
     public function testConfiguration()
     {
         $config = LoggerConfiguratorDefault::getDefaultConfiguration();
-        $config['appenders']['default']['filters'] = array(
-            array(
+        $config['appenders']['default']['filters'] = [
+            [
                 'class' => LoggerFilterDenyAll::class
-            )
-        );
+            ]
+        ];
 
         Logger::configure($config);
         $logger = Logger::getRootLogger();
@@ -67,9 +67,9 @@ class LoggerFilterDenyAllTest extends TestCase
         $logger->trace('Test');
         $logger->debug('Test');
         $logger->info('Test');
-        $logger->warn('Test');
+        $logger->warning('Test');
         $logger->error('Test');
-        $logger->fatal('Test');
+        $logger->critical('Test');
         $actual = ob_get_clean();
 
         $this->assertEmpty($actual);

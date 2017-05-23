@@ -75,16 +75,16 @@ class LoggerAppenderPhpTest extends TestCase
 
 
         self::$expectedError = E_USER_ERROR;
-        self::$expectedMessage = "FATAL - This is a test" . PHP_EOL;
-        $logger->fatal("This is a test");
+        self::$expectedMessage = "CRITICAL - This is a test" . PHP_EOL;
+        $logger->critical("This is a test");
 
         self::$expectedError = E_USER_ERROR;
         self::$expectedMessage = "ERROR - This is a test" . PHP_EOL;
         $logger->error("This is a test");
 
         self::$expectedError = E_USER_WARNING;
-        self::$expectedMessage = "WARN - This is a test" . PHP_EOL;
-        $logger->warn("This is a test");
+        self::$expectedMessage = "WARNING - This is a test" . PHP_EOL;
+        $logger->warning("This is a test");
 
         self::$expectedError = E_USER_NOTICE;
         self::$expectedMessage = "INFO - This is a test" . PHP_EOL;

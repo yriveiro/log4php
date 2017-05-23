@@ -64,7 +64,7 @@ class LoggerLayoutXmlTest extends TestCase
         $thread = $event->getThreadName();
         $timestamp = number_format(($event->getTimestamp() * 1000), 0, '', '');
 
-        $expected = "<log4php:event logger=\"test\" level=\"WARN\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
+        $expected = "<log4php:event logger=\"test\" level=\"WARNING\" thread=\"$thread\" timestamp=\"$timestamp\">" . PHP_EOL .
             "<log4php:message><![CDATA[testmessage]]></log4php:message>" . PHP_EOL .
             "<log4php:locationInfo class=\"Log4Php\\LoggerLoggingEvent\" file=\"NA\" line=\"NA\" " .
             "method=\"getLocationInformation\" />" . PHP_EOL .

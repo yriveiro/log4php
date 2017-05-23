@@ -42,16 +42,16 @@ class LoggerAppenderTest extends TestCase
         $layout = new LoggerLayoutSimple();
         $appender->setLayout($layout);
 
-        $warn = LoggerLevel::getLevelWarn();
+        $warn = LoggerLevel::getLevelWarning();
         $appender->setThreshold($warn);
         $appender->activateOptions();
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelFatal(), "testmessage");
+        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelCritical(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
         ob_end_clean();
-        $e = "FATAL - testmessage" . PHP_EOL;
+        $e = "CRITICAL - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
         $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
@@ -62,12 +62,12 @@ class LoggerAppenderTest extends TestCase
         $e = "ERROR - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelWarning(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
         ob_end_clean();
-        $e = "WARN - testmessage" . PHP_EOL;
+        $e = "WARNING - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
         $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelInfo(), "testmessage");
@@ -94,7 +94,7 @@ class LoggerAppenderTest extends TestCase
         $layout = new LoggerLayoutSimple();
         $appender->setLayout($layout);
 
-        $warn = LoggerLevel::getLevelWarn();
+        $warn = LoggerLevel::getLevelWarning();
         $appender->setThreshold($warn);
 
         $a = $appender->getThreshold();
@@ -108,13 +108,13 @@ class LoggerAppenderTest extends TestCase
         $layout = new LoggerLayoutSimple();
         $appender->setLayout($layout);
 
-        $warn = LoggerLevel::getLevelWarn();
+        $warn = LoggerLevel::getLevelWarning();
         $appender->setThreshold('WARN');
         $a = $appender->getThreshold();
         self::assertEquals($warn, $a);
 
-        $e = LoggerLevel::getLevelFatal();
-        $appender->setThreshold('FATAL');
+        $e = LoggerLevel::getLevelCritical();
+        $appender->setThreshold('CRITICAL');
         $a = $appender->getThreshold();
         self::assertEquals($e, $a);
 

@@ -30,12 +30,8 @@ use Log4Php\LoggerFilter;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group filters
- */
 class LoggerFilterLevelMatchTest extends TestCase
 {
-
     /**
      * Tests all possible combinations of event level and filter levelToMatch
      * option, with acceptOnMatch set to TRUE.
@@ -141,9 +137,9 @@ class LoggerFilterLevelMatchTest extends TestCase
         $logger->trace('Test');
         $logger->debug('Test');
         $logger->info('Test');
-        $logger->warn('Test');
+        $logger->warning('Test');
         $logger->error('Test');
-        $logger->fatal('Test');
+        $logger->critical('Test');
 
         $actual = ob_get_clean();
 
@@ -174,9 +170,9 @@ class LoggerFilterLevelMatchTest extends TestCase
         $logger->trace('Test');
         $logger->debug('Test');
         $logger->info('Test');
-        $logger->warn('Test');
+        $logger->warning('Test');
         $logger->error('Test');
-        $logger->fatal('Test');
+        $logger->critical('Test');
 
         $actual = ob_get_clean();
 
@@ -184,9 +180,9 @@ class LoggerFilterLevelMatchTest extends TestCase
         $expected =
             "TRACE - Test" . PHP_EOL .
             "DEBUG - Test" . PHP_EOL .
-            "WARN - Test" . PHP_EOL .
+            "WARNING - Test" . PHP_EOL .
             "ERROR - Test" . PHP_EOL .
-            "FATAL - Test" . PHP_EOL;
+            "CRITICAL - Test" . PHP_EOL;
 
         $this->assertSame($expected, $actual);
     }

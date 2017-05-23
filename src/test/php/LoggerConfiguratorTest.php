@@ -349,7 +349,7 @@ class LoggerConfiguratorTest extends TestCase
         ]);
 
         $actual = Logger::getHierarchy()->getThreshold();
-        $expected = LoggerLevel::getLevelWarn();
+        $expected = LoggerLevel::getLevelWarning();
 
         self::assertSame($expected, $actual);
     }
@@ -439,7 +439,7 @@ class LoggerConfiguratorTest extends TestCase
 
         // Check default logger
         $actual = Logger::getLogger('default')->getLevel();
-        $expected = LoggerLevel::getLevelWarn();
+        $expected = LoggerLevel::getLevelWarning();
         self::assertSame($expected, $actual);
     }
 

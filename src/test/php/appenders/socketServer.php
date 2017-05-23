@@ -22,7 +22,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @version    $Revision$
  * @link       http://logging.apache.org/log4php
- * 
+ *
  * A simple socket server used in LoggerAppenderSocketTest.
  */
 
@@ -58,33 +58,33 @@ $playback = "";
 
 while(true) {
 	myLog("Waiting for incoming connections...");
-	
+
 	$msgsock = socket_accept($sock);
 	if ($msgsock === false) {
 		myLog("Failed accepting a connection: " . socket_strerror(socket_last_error()));
 		break;
 	}
-	
+
 	$buf = socket_read($msgsock, 2048, PHP_NORMAL_READ);
 
 	myLog('Received: "' . trim($buf) . '"');
-	
+
 	// Shutdown command
 	if (trim($buf) == 'shutdown') {
 		myLog("Shutting down.");
 		socket_close($msgsock);
 		break;
-	} 
+	}
 	// Playback command
 	else if (trim($buf) == 'playback') {
 		myLog("Returning playback: \"$playback\"");
 		socket_write($msgsock, $playback);
-	} 
+	}
 	// Default: add to playback buffer
 	else {
-		$playback .= trim($buf); 
+		$playback .= trim($buf);
 	}
-	
+
 	socket_close($msgsock);
 }
 

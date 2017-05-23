@@ -27,18 +27,20 @@ namespace Log4Php;
  * <p>The <i>LoggerLevel</i> class may be inherited from to define a larger
  * level set.</p>
  */
-// @todo need to align this with PSR
 class LoggerLevel
 {
 
-    const OFF   = 2147483647;
-    const FATAL = 50000;
-    const ERROR = 40000;
-    const WARN  = 30000;
-    const INFO  = 20000;
-    const DEBUG = 10000;
-    const TRACE = 5000;
-    const ALL   = -2147483647;
+    const OFF       = 2147483647;
+    const EMERGENCY = 70000;
+    const ALERT     = 60000;
+    const CRITICAL  = 50000;
+    const ERROR     = 40000;
+    const WARNING   = 30000;
+    const NOTICE    = 25000;
+    const INFO      = 20000;
+    const DEBUG     = 10000;
+    const TRACE     = 5000;
+    const ALL       = -2147483647;
 
     /** Integer level value. */
     private $level;
@@ -92,21 +94,45 @@ class LoggerLevel
     public static function getLevelOff()
     {
         if (!isset(self::$levelMap[LoggerLevel::OFF])) {
-            self::$levelMap[LoggerLevel::OFF] = new LoggerLevel(LoggerLevel::OFF, 'OFF', LOG_ALERT);
+            self::$levelMap[LoggerLevel::OFF] = new LoggerLevel(LoggerLevel::OFF, 'OFF', LOG_EMERG);
         }
         return self::$levelMap[LoggerLevel::OFF];
     }
 
     /**
-     * Returns a Fatal Level
+     * Returns a Emergency Level
      * @return LoggerLevel
      */
-    public static function getLevelFatal()
+    public static function getLevelEmergency()
     {
-        if (!isset(self::$levelMap[LoggerLevel::FATAL])) {
-            self::$levelMap[LoggerLevel::FATAL] = new LoggerLevel(LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
+        if (!isset(self::$levelMap[LoggerLevel::EMERGENCY])) {
+            self::$levelMap[LoggerLevel::EMERGENCY] = new LoggerLevel(LoggerLevel::EMERGENCY, 'EMERGENCY', LOG_EMERG);
         }
-        return self::$levelMap[LoggerLevel::FATAL];
+        return self::$levelMap[LoggerLevel::EMERGENCY];
+    }
+
+    /**
+     * Returns a Alert Level
+     * @return LoggerLevel
+     */
+    public static function getLevelAlert()
+    {
+        if (!isset(self::$levelMap[LoggerLevel::ALERT])) {
+            self::$levelMap[LoggerLevel::ALERT] = new LoggerLevel(LoggerLevel::CRITICAL, 'ALERT', LOG_ALERT);
+        }
+        return self::$levelMap[LoggerLevel::ALERT];
+    }
+
+    /**
+     * Returns a Critical Level
+     * @return LoggerLevel
+     */
+    public static function getLevelCritical()
+    {
+        if (!isset(self::$levelMap[LoggerLevel::CRITICAL])) {
+            self::$levelMap[LoggerLevel::CRITICAL] = new LoggerLevel(LoggerLevel::CRITICAL, 'CRITICAL', LOG_CRIT);
+        }
+        return self::$levelMap[LoggerLevel::CRITICAL];
     }
 
     /**
@@ -125,12 +151,24 @@ class LoggerLevel
      * Returns a Warn Level
      * @return LoggerLevel
      */
-    public static function getLevelWarn()
+    public static function getLevelWarning()
     {
-        if (!isset(self::$levelMap[LoggerLevel::WARN])) {
-            self::$levelMap[LoggerLevel::WARN] = new LoggerLevel(LoggerLevel::WARN, 'WARN', LOG_WARNING);
+        if (!isset(self::$levelMap[LoggerLevel::WARNING])) {
+            self::$levelMap[LoggerLevel::WARNING] = new LoggerLevel(LoggerLevel::WARNING, 'WARNING', LOG_WARNING);
         }
-        return self::$levelMap[LoggerLevel::WARN];
+        return self::$levelMap[LoggerLevel::WARNING];
+    }
+
+    /**
+     * Returns a Notice Level
+     * @return LoggerLevel
+     */
+    public static function getLevelNotice()
+    {
+        if (!isset(self::$levelMap[LoggerLevel::NOTICE])) {
+            self::$levelMap[LoggerLevel::NOTICE] = new LoggerLevel(LoggerLevel::NOTICE, 'NOTICE', LOG_NOTICE);
+        }
+        return self::$levelMap[LoggerLevel::NOTICE];
     }
 
     /**
@@ -250,12 +288,18 @@ class LoggerLevel
                     return self::getLevelDebug();
                 case self::INFO:
                     return self::getLevelInfo();
-                case self::WARN:
-                    return self::getLevelWarn();
+                case self::NOTICE:
+                    return self::getLevelNotice();
+                case self::WARNING:
+                    return self::getLevelWarning();
                 case self::ERROR:
                     return self::getLevelError();
-                case self::FATAL:
-                    return self::getLevelFatal();
+                case self::CRITICAL:
+                    return self::getLevelCritical();
+                case self::ALERT:
+                    return self::getLevelAlert();
+                case self::EMERGENCY:
+                    return self::getLevelEmergency();
                 case self::OFF:
                     return self::getLevelOff();
                 default:
@@ -271,12 +315,19 @@ class LoggerLevel
                     return self::getLevelDebug();
                 case 'INFO':
                     return self::getLevelInfo();
+                case 'NOTICE':
+                    return self::getLevelNotice();
                 case 'WARN':
-                    return self::getLevelWarn();
+                case 'WARNING':
+                    return self::getLevelWarning();
                 case 'ERROR':
                     return self::getLevelError();
-                case 'FATAL':
-                    return self::getLevelFatal();
+                case 'CRITICAL':
+                    return self::getLevelCritical();
+                case 'ALERT':
+                    return self::getLevelAlert();
+                case 'EMERGENCY':
+                    return self::getLevelEmergency();
                 case 'OFF':
                     return self::getLevelOff();
                 default:

@@ -149,18 +149,18 @@ class LoggerTest extends TestCase
         $logger = Logger::getLogger('mylogger');
         ob_start();
         $logger->info('this is an info');
-        $logger->warn('this is a warning');
+        $logger->warning('this is a warning');
         $logger->error('this is an error');
         $logger->debug('this is a debug message');
-        $logger->fatal('this is a fatal message');
+        $logger->critical('this is a fatal message');
         $v = ob_get_contents();
         ob_end_clean();
 
         $e = 'INFO - this is an info' . PHP_EOL;
-        $e .= 'WARN - this is a warning' . PHP_EOL;
+        $e .= 'WARNING - this is a warning' . PHP_EOL;
         $e .= 'ERROR - this is an error' . PHP_EOL;
         $e .= 'DEBUG - this is a debug message' . PHP_EOL;
-        $e .= 'FATAL - this is a fatal message' . PHP_EOL;
+        $e .= 'CRITICAL - this is a fatal message' . PHP_EOL;
 
         self::assertEquals($v, $e);
     }
@@ -174,18 +174,18 @@ class LoggerTest extends TestCase
         self::assertFalse($logger->isTraceEnabled());
         self::assertTrue($logger->isDebugEnabled());
         self::assertTrue($logger->isInfoEnabled());
-        self::assertTrue($logger->isWarnEnabled());
+        self::assertTrue($logger->isWarningEnabled());
         self::assertTrue($logger->isErrorEnabled());
-        self::assertTrue($logger->isFatalEnabled());
+        self::assertTrue($logger->isCriticalEnabled());
 
         $logger = Logger::getRootLogger();
 
         self::assertFalse($logger->isTraceEnabled());
         self::assertFalse($logger->isDebugEnabled());
         self::assertFalse($logger->isInfoEnabled());
-        self::assertFalse($logger->isWarnEnabled());
+        self::assertFalse($logger->isWarningEnabled());
         self::assertTrue($logger->isErrorEnabled());
-        self::assertTrue($logger->isFatalEnabled());
+        self::assertTrue($logger->isCriticalEnabled());
     }
 
     public function testGetCurrentLoggers()

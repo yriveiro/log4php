@@ -37,16 +37,16 @@ class LoggerLevelTest extends TestCase
 
     public function testLevelOff()
     {
-        $this->doTestLevel(LoggerLevel::getLevelOff(), LoggerLevel::OFF, 'OFF', LOG_ALERT);
-        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::OFF), LoggerLevel::OFF, 'OFF', LOG_ALERT);
-        $this->doTestLevel(LoggerLevel::toLevel('OFF'), LoggerLevel::OFF, 'OFF', LOG_ALERT);
+        $this->doTestLevel(LoggerLevel::getLevelOff(), LoggerLevel::OFF, 'OFF', LOG_EMERG);
+        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::OFF), LoggerLevel::OFF, 'OFF', LOG_EMERG);
+        $this->doTestLevel(LoggerLevel::toLevel('OFF'), LoggerLevel::OFF, 'OFF', LOG_EMERG);
     }
 
     public function testLevelFatal()
     {
-        $this->doTestLevel(LoggerLevel::getLevelFatal(), LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
-        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::FATAL), LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
-        $this->doTestLevel(LoggerLevel::toLevel('FATAL'), LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
+        $this->doTestLevel(LoggerLevel::getLevelCritical(), LoggerLevel::CRITICAL, 'CRITICAL', LOG_CRIT);
+        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::CRITICAL), LoggerLevel::CRITICAL, 'CRITICAL', LOG_CRIT);
+        $this->doTestLevel(LoggerLevel::toLevel('CRITICAL'), LoggerLevel::CRITICAL, 'CRITICAL', LOG_CRIT);
     }
 
     public function testLevelError()
@@ -58,9 +58,9 @@ class LoggerLevelTest extends TestCase
 
     public function testLevelWarn()
     {
-        $this->doTestLevel(LoggerLevel::getLevelWarn(), LoggerLevel::WARN, 'WARN', LOG_WARNING);
-        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::WARN), LoggerLevel::WARN, 'WARN', LOG_WARNING);
-        $this->doTestLevel(LoggerLevel::toLevel('WARN'), LoggerLevel::WARN, 'WARN', LOG_WARNING);
+        $this->doTestLevel(LoggerLevel::getLevelWarning(), LoggerLevel::WARNING, 'WARNING', LOG_WARNING);
+        $this->doTestLevel(LoggerLevel::toLevel(LoggerLevel::WARNING), LoggerLevel::WARNING, 'WARNING', LOG_WARNING);
+        $this->doTestLevel(LoggerLevel::toLevel('WARNING'), LoggerLevel::WARNING, 'WARNING', LOG_WARNING);
     }
 
     public function testLevelInfo()

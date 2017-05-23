@@ -265,9 +265,9 @@ class LoggerAppenderSyslogTest extends TestCase
             LoggerLevel::getLevelTrace(),
             LoggerLevel::getLevelDebug(),
             LoggerLevel::getLevelInfo(),
-            LoggerLevel::getLevelWarn(),
+            LoggerLevel::getLevelWarning(),
             LoggerLevel::getLevelError(),
-            LoggerLevel::getLevelFatal(),
+            LoggerLevel::getLevelCritical(),
         );
 
         $expected = LOG_EMERG;
