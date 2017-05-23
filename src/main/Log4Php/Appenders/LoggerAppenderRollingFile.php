@@ -190,15 +190,8 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
             }
         }
 
-        // Lock the file while writing and possible rolling over
-        // @todo this seems crazy, why lock exclusively, if we can append, and only then try to roll over
-        if (flock($this->fp, LOCK_EX)) {
-            // Write to locked file
-            if (fwrite($this->fp, $string) === false) {
-                $this->warn("Failed writing to file. Closing appender.");
-                $this->closed = true;
-            }
-
+        $rollOverRequired = false;
+        if (rand(1, 100) == 1) {
             // Stats cache must be cleared, otherwise filesize() returns cached results
             // If supported (PHP 5.3+), clear only the state cache for the target file
             if ($this->clearConditional) {
@@ -206,9 +199,18 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
             } else {
                 clearstatcache();
             }
+            $rollOverRequired = file_exists($this->file) && filesize($this->file) > $this->maxFileSize;
+        }
 
-            // Rollover if needed
-            if (file_exists($this->file) && filesize($this->file) > $this->maxFileSize) {
+        // Lock the file while writing and possible rolling over
+        if (flock($this->fp, LOCK_EX)) {
+            // Write to locked file
+            if (fwrite($this->fp, $string) === false) {
+                $this->warn("Failed writing to file. Closing appender.");
+                $this->closed = true;
+            }
+
+            if ($rollOverRequired) {
                 try {
                     $this->rollOver();
                 } catch (LoggerException $ex) {
