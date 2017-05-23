@@ -86,9 +86,9 @@ class LoggerFilterLevelMatch extends LoggerFilter
      * <b><var>AcceptOnMatch</var></b> property is set to <i>false</i>.
      *
      * @param LoggerLoggingEvent $event
-     * @return integer
+     * @return int
      */
-    public function decide(LoggerLoggingEvent $event)
+    public function decide(LoggerLoggingEvent $event): int
     {
         if ($this->levelToMatch === null) {
             return LoggerFilter::NEUTRAL;

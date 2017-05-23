@@ -107,9 +107,9 @@ class LoggerFilterLevelRange extends LoggerFilter
      * Return the decision of this filter.
      *
      * @param LoggerLoggingEvent $event
-     * @return integer
+     * @return int
      */
-    public function decide(LoggerLoggingEvent $event)
+    public function decide(LoggerLoggingEvent $event): int
     {
         $level = $event->getLevel();
 

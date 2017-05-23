@@ -76,7 +76,7 @@ class LoggerFilterStringMatch extends LoggerFilter
      * @return int a <a href='psi_element://LOGGER_FILTER_NEUTRAL'>LOGGER_FILTER_NEUTRAL</a> is there is no string match
      * is there is no string match.
      */
-    public function decide(LoggerLoggingEvent $event)
+    public function decide(LoggerLoggingEvent $event): int
     {
         $msg = $event->getRenderedMessage();
 

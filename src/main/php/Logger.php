@@ -112,8 +112,7 @@ class Logger
      * Log a message object with the DEBUG level.
      *
      * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      */
     public function debug($message, $throwable = null)
     {
@@ -122,10 +121,8 @@ class Logger
 
     /**
      * Log a message object with the INFO Level.
-     *
      * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      */
     public function info($message, $throwable = null)
     {
@@ -134,10 +131,8 @@ class Logger
 
     /**
      * Log a message with the WARN level.
-     *
      * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      */
     public function warn($message, $throwable = null)
     {
@@ -158,10 +153,8 @@ class Logger
 
     /**
      * Log a message object with the FATAL level.
-     *
      * @param mixed $message message
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      */
     public function fatal($message, $throwable = null)
     {
@@ -170,11 +163,9 @@ class Logger
 
     /**
      * Log a message using the provided logging level.
-     *
      * @param LoggerLevel $level The logging level.
      * @param mixed $message Message to log.
-     * @param Exception $throwable Optional throwable information to include
-     *        in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      */
     public function log(LoggerLevel $level, $message, $throwable = null)
     {
@@ -227,14 +218,11 @@ class Logger
     /**
      * This method creates a new logging event and logs the event without
      * further checks.
-     *
      * It should not be called directly. Use {@link trace()}, {@link debug()},
      * {@link info()}, {@link warn()}, {@link error()} and {@link fatal()}
      * wrappers.
-     *
      * @param string $fqcn Fully qualified class name of the Logger
-     * @param Exception $throwable Optional throwable information to include
-     *   in the logging event.
+     * @param Exception $throwable Optional throwable information to include in the logging event.
      * @param LoggerLevel $level log level
      * @param mixed $message message to log
      */
@@ -429,10 +417,8 @@ class Logger
 
     /**
      * Set the Logger level.
-     *
      * Use LoggerLevel::getLevelXXX() methods to get a LoggerLevel object, e.g.
      * <code>$logger->setLevel(LoggerLevel::getLevelInfo());</code>
-     *
      * @param LoggerLevel $level The level to set, or NULL to clear the logger level.
      */
     public function setLevel(LoggerLevel $level = null)
@@ -442,7 +428,6 @@ class Logger
 
     /**
      * Checks whether an appender is attached to this logger instance.
-     *
      * @param LoggerAppender $appender
      * @return boolean
      */
@@ -476,11 +461,9 @@ class Logger
 
     /**
      * Returns the hierarchy used by this Logger.
-     *
      * Caution: do not use this hierarchy unless you have called initialize().
      * To get Loggers, use the Logger::getLogger and Logger::getRootLogger
      * methods instead of operating on on the hierarchy directly.
-     *
      * @return LoggerHierarchy
      */
     public static function getHierarchy()
@@ -493,7 +476,6 @@ class Logger
 
     /**
      * Returns a Logger by name. If it does not exist, it will be created.
-     *
      * @param string $name The logger name
      * @return Logger
      */
@@ -536,16 +518,6 @@ class Logger
     }
 
     /**
-     * Safely close all appenders.
-     * @deprecated This is no longer necessary due the appenders shutdown via
-     * destructors.
-     */
-    public static function shutdown()
-    {
-        self::getHierarchy()->shutdown();
-    }
-
-    /**
      * check if a given logger exists.
      *
      * @param string $name logger name
@@ -568,18 +540,13 @@ class Logger
 
     /**
      * Configures log4php.
-     *
      * This method needs to be called before the first logging event has
      * occurred. If this method is not called before then the default
      * configuration will be used.
-     *
-     * @param string|array $configuration Either a path to the configuration
-     *   file, or a configuration array.
-     *
-     * @param string|LoggerConfigurator $configurator A custom
-     * configurator class: either a class name (string), or an object which
-     * implements the LoggerConfigurator interface. If left empty, the default
-     * configurator implementation will be used.
+     * @param string|array $configuration Either a path to the configuration file, or a configuration array.
+     * @param string|LoggerConfigurator $configurator A custom configurator class: either a class name (string),
+     *        or an object which implements the LoggerConfigurator interface. If left empty, the default configurator
+     *        implementation will be used.
      */
     public static function configure($configuration = null, $configurator = null)
     {
@@ -593,9 +560,7 @@ class Logger
      * Creates a logger configurator instance based on the provided
      * configurator class. If no class is given, returns an instance of
      * the default configurator.
-     *
-     * @param string|LoggerConfigurator $configurator The configurator class
-     * or LoggerConfigurator instance.
+     * @param string|LoggerConfigurator $configurator The configurator class or LoggerConfigurator instance.
      * @return LoggerConfigurator
      */
     private static function getConfigurator($configurator = null)

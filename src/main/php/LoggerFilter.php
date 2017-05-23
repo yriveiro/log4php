@@ -72,7 +72,7 @@ abstract class LoggerFilter extends LoggerConfigurable
     const DENY = -1;
 
     /**
-     * @var LoggerFilter Points to the next {@link LoggerFilter} in the filter chain.
+     * @var LoggerFilter|null Points to the next filter in the filter chain.
      */
     protected $next;
 
@@ -93,9 +93,9 @@ abstract class LoggerFilter extends LoggerConfigurable
      * the chain.
      *
      * @param LoggerLoggingEvent $event The {@link LoggerLoggingEvent} to decide upon.
-     * @return integer {@link LoggerFilter::NEUTRAL} or {@link LoggerFilter::DENY}|{@link LoggerFilter::ACCEPT}
+     * @return int {@link LoggerFilter::NEUTRAL} or {@link LoggerFilter::DENY}|{@link LoggerFilter::ACCEPT}
      */
-    public function decide(LoggerLoggingEvent $event)
+    public function decide(LoggerLoggingEvent $event): int
     {
         return self::NEUTRAL;
     }
@@ -105,9 +105,9 @@ abstract class LoggerFilter extends LoggerConfigurable
      * If this filter has already and follow up filter, the param filter
      * is passed on until it is the last filter in chain.
      *
-     * @param $filter - the filter to add to this chain
+     * @param LoggerFilter $filter the filter to add to this chain
      */
-    public function addNext($filter)
+    public function addNext(LoggerFilter $filter)
     {
         if ($this->next !== null) {
             $this->next->addNext($filter);
