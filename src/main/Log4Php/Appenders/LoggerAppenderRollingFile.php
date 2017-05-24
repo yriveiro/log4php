@@ -190,17 +190,8 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
             }
         }
 
-        $rollOverRequired = false;
-        if (rand(1, 100) == 1) {
-            // Stats cache must be cleared, otherwise filesize() returns cached results
-            // If supported (PHP 5.3+), clear only the state cache for the target file
-            if ($this->clearConditional) {
-                clearstatcache(true, $this->file);
-            } else {
-                clearstatcache();
-            }
-            $rollOverRequired = file_exists($this->file) && filesize($this->file) > $this->maxFileSize;
-        }
+        // one per 100 requests check if roll over required
+        $rollOverRequired = rand(1, 100) == 1 && $this->rollOverRequired();
 
         // Lock the file while writing and possible rolling over
         if (flock($this->fp, LOCK_EX)) {
@@ -209,8 +200,8 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
                 $this->warn("Failed writing to file. Closing appender.");
                 $this->closed = true;
             }
-
-            if ($rollOverRequired) {
+            // check twice as now we have an exclusive lock for the file
+            if ($rollOverRequired && $this->rollOverRequired()) {
                 try {
                     $this->rollOver();
                 } catch (LoggerException $ex) {
@@ -218,13 +209,25 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
                     $this->closed = true;
                 }
             }
-
             flock($this->fp, LOCK_UN);
         } else {
             $this->warn("Failed locking file for writing. Closing appender.");
             $this->closed = true;
         }
     }
+
+    private function rollOverRequired(): bool
+    {
+        // Stats cache must be cleared, otherwise filesize() returns cached results
+        // If supported (PHP 5.3+), clear only the state cache for the target file
+        if ($this->clearConditional) {
+            clearstatcache(true, $this->file);
+        } else {
+            clearstatcache();
+        }
+        return file_exists($this->file) && filesize($this->file) > $this->maxFileSize;
+    }
+
 
     /**
      * Implements the usual roll over behaviour.
