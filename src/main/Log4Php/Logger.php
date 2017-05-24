@@ -36,7 +36,7 @@ use Psr\Log\LoggerInterface;
  *        <li>{@link fatal()}</li>
  *    </ul>
  */
-class Logger implements LoggerInterface, LoggerLayer
+class Logger implements LoggerInterface, GenericLogger
 {
     /**
      * Logger additivity. If set to true then child loggers will inherit
