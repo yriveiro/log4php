@@ -90,7 +90,7 @@ class LoggerRendererMap
      * @param string $renderingClass The name of the class which will
      *        perform the rendering.
      */
-    public function setDefaultRenderer($renderingClass)
+    public function setDefaultRenderer(string $renderingClass)
     {
         // Check the class exists
         if (!class_exists($renderingClass)) {
@@ -165,10 +165,10 @@ class LoggerRendererMap
      *
      * If no renderer could be found, returns NULL.
      *
-     * @param string $class Class nane
+     * @param string $class Class name
      * @return LoggerRenderer|null logger renderer or null if not found.
      */
-    public function getByClassName($class)
+    public function getByClassName(string $class)
     {
         for (; !empty($class); $class = get_parent_class($class)) {
             $class = strtolower($class);

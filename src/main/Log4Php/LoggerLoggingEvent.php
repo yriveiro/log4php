@@ -164,6 +164,7 @@ class LoggerLoggingEvent
      */
     public function getLocationInformation()
     {
+        // @todo this is not nice at all, need to be cleaned up
         if ($this->locationInfo === null) {
             $locationInfo = [];
             if (isset($this->context['exception'])) {

@@ -372,7 +372,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * @param mixed $object The object to configure.
      * @param array $options
      */
-    private function setOptions($object, $options)
+    private function setOptions($object, array $options)
     {
         foreach ($options as $name => $value) {
             $setter = "set$name";
@@ -391,7 +391,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * @param LoggerAppender $appender
      * @param array $config Filter configuration.
      */
-    private function createAppenderFilter(LoggerAppender $appender, $config)
+    private function createAppenderFilter(LoggerAppender $appender, array $config)
     {
         $name = $appender->getName();
         $class = $config['class'];
@@ -418,9 +418,9 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * Configures the root logger
      * @see configureLogger()
      * @param LoggerHierarchy $hierarchy
-     * @param $config
+     * @param array $config
      */
-    private function configureRootLogger(LoggerHierarchy $hierarchy, $config)
+    private function configureRootLogger(LoggerHierarchy $hierarchy, array $config)
     {
         $logger = $hierarchy->getRootLogger();
         $this->configureLogger($logger, $config);
@@ -432,7 +432,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * @param Logger $logger The logger to configure
      * @param array $config Logger configuration options.
      */
-    private function configureLogger(Logger $logger, $config)
+    private function configureLogger(Logger $logger, array $config)
     {
         $loggerName = $logger->getName();
 
@@ -474,17 +474,17 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * Configures a logger which is not root.
      * @see configureLogger()
      * @param LoggerHierarchy $hierarchy
-     * @param $name
-     * @param $config
+     * @param string $name
+     * @param array $config
      */
-    private function configureOtherLogger(LoggerHierarchy $hierarchy, $name, $config)
+    private function configureOtherLogger(LoggerHierarchy $hierarchy, string $name, array $config)
     {
         // Get logger from hierarchy (this creates it if it doesn't already exist)
         $logger = $hierarchy->getLogger($name);
         $this->configureLogger($logger, $config);
     }
 
-    private function configureRenderer(LoggerHierarchy $hierarchy, $config)
+    private function configureRenderer(LoggerHierarchy $hierarchy, array $config)
     {
         if (empty($config['renderingClass'])) {
             $this->warn("Rendering class not specified. Skipping renderer definition.");

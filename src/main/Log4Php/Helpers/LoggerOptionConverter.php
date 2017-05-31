@@ -52,7 +52,7 @@ class LoggerOptionConverter
      * @return string    the string value of the system property, or the default
      *                    value if there is no property with that key.
      */
-    public static function getSystemProperty($key, $def)
+    public static function getSystemProperty(string $key, string $def)
     {
         if (defined($key)) {
             return (string)constant($key);

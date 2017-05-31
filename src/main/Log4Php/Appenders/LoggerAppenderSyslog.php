@@ -254,7 +254,7 @@ class LoggerAppenderSyslog extends LoggerAppender
     }
 
     /**
-     * Parses a syslog option string and returns the correspodning int value.
+     * Parses a syslog option string and returns the corresponding int value.
      */
     private function parseOption()
     {

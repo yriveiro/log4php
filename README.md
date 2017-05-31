@@ -1,7 +1,7 @@
 Commands
 ===
 * Update dependencies: `composer update`
-* Run tests: `./vendor/run/phpunit`
+* Run tests: `./vendor/bin/phpunit`
 * PHP Lint: `./vendor/bin/parallel-lint src/main`
 * PHP Stan: `./vendor/bin/phpstan analyze --level 5 src`
 * Check code style: `./vendor/bin/phpcs --standard=PSR2 src/main`

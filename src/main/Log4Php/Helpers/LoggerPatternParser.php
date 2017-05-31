@@ -28,6 +28,8 @@ use Log4Php\Pattern\LoggerPatternConverterLiteral;
  *
  * <p>It is this class that parses conversion patterns and creates
  * a chained list of {@link LoggerPatternConverter} converters.</p>
+ *
+ * @todo pretty sure this parser is not the fastest there is
  */
 class LoggerPatternParser
 {
@@ -172,7 +174,7 @@ class LoggerPatternParser
     private function getConverter($word, $info, $option)
     {
         if (!isset($this->converterMap[$word])) {
-            throw new LoggerException("Invalid keyword '%$word' in converison pattern. Ignoring keyword.");
+            throw new LoggerException("Invalid keyword '%$word' in conversion pattern. Ignoring keyword.");
         }
 
         $converterClass = $this->converterMap[$word];

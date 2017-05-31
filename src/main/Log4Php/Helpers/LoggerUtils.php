@@ -33,7 +33,7 @@ class LoggerUtils
      * @param string $name
      * @return array Class name split into fragments.
      */
-    public static function tokenizeClassName($name)
+    public static function tokenizeClassName(string $name): array
     {
         $name = str_replace('.', '\\', $name);
         $name = trim($name, ' \\');
@@ -59,11 +59,11 @@ class LoggerUtils
      * result may still be longer than given length.
      *
      * @param string $name The (qualified) class name.
-     * @param integer $length The length to shorten to. If null or 0 is given,
+     * @param int|null $length The length to shorten to. If null or 0 is given,
      * the name will be returned without shortening.
      * @return string
      */
-    public static function shortenClassName($name, $length)
+    public static function shortenClassName(string $name, $length): string
     {
         if ($length === null || $length < 0) {
             return $name;

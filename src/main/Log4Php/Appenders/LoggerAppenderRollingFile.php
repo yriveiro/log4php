@@ -87,6 +87,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
     public function __construct($name = '')
     {
         parent::__construct($name);
+        // @todo we expect php7, so this is not needed anymore
         if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
             $this->clearConditional = true;
         }
