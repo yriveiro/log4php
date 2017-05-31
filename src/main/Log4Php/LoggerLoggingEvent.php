@@ -17,6 +17,7 @@
  */
 
 namespace Log4Php;
+
 use ReflectionClass;
 
 /**

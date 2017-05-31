@@ -300,7 +300,7 @@ class Logger implements LoggerInterface, GenericLogger
      */
     public function forcedLog($fqcn, $throwable, LoggerLevel $level, $message)
     {
-        $event = new LoggerLoggingEvent($fqcn, $this, $level, $message, null, $throwable);
+        $event = new LoggerLoggingEvent($fqcn, $this, $level, $message, null, ['exception' => $throwable]);
         $this->callAppenders($event);
 
         // Forward the event upstream if additivity is turned on
