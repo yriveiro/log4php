@@ -18,7 +18,7 @@ class LoggerLayoutJson extends LoggerLayout
             'name' => $event->getLoggerName(),
             'file' => $event->getLocationInformation()->getFileName(),
             'line' => $event->getLocationInformation()->getLineNumber(),
-            'message' => $event->getMessage(),
+            'message' => $event->getRenderedMessage(),
             'trace' => $throwable ? $throwable->getStringRepresentation() : null
         ];
 
