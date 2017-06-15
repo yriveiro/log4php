@@ -12,14 +12,18 @@ class LoggerLayoutJsonTest extends TestCase
         Logger::configure($config);
 
         $e = new Exception('exception');
+        $log = Logger::getLogger('LoggerTest');
+        $log->addContextResolver(function() {
+            return ['userId' => 22];
+        });
 
         ob_start();
-        $log = Logger::getLogger('LoggerTest');
         $log->error("my message", ['exception' => $e]); $line = __LINE__;
         $actual = ob_get_contents();
         ob_end_clean();
 
         $entry = json_decode($actual, true);
         Assert::assertArrayHasKey('level', $entry);
+        Assert::assertEquals(22, $entry['userId']);
     }
 }

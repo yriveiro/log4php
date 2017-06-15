@@ -9,8 +9,10 @@ class LoggerLayoutJson extends LoggerLayout
 {
     public function format(LoggerLoggingEvent $event): string
     {
+        $context = $event->getLogger()->resolveExtendedContext();
         $throwable = $event->getThrowableInformation();
-        return json_encode(array_filter([
+
+        $event = [
             'date' => date(DATE_ISO8601, $event->getTimestamp()),
             'level' => $event->getLevel()->toString(),
             'name' => $event->getLoggerName(),
@@ -18,6 +20,8 @@ class LoggerLayoutJson extends LoggerLayout
             'line' => $event->getLocationInformation()->getLineNumber(),
             'message' => $event->getMessage(),
             'trace' => $throwable ? $throwable->getStringRepresentation() : null
-        ]));
+        ];
+
+        return json_encode(array_filter($event + $context));
     }
 }

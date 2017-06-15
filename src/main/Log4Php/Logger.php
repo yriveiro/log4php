@@ -57,8 +57,17 @@ class Logger implements LoggerInterface, GenericLogger
      */
     private $parent;
 
-    /** A collection of appenders linked to this logger. */
+    /**
+     * A collection of appenders linked to this logger.
+     * @var LoggerAppender[]
+     */
     private $appenders = [];
+
+    /** @var callable[] */
+    private $extendedContextResolvers = [];
+
+    /** @var array|null */
+    private $extendedContext;
 
     /**
      * Constructor.
@@ -542,6 +551,23 @@ class Logger implements LoggerInterface, GenericLogger
     public function setParent(Logger $logger)
     {
         $this->parent = $logger;
+    }
+
+
+    public function addContextResolver(callable $resolver)
+    {
+        $this->extendedContextResolvers[] = $resolver;
+    }
+
+    public function resolveExtendedContext(): array
+    {
+        if (is_null($this->extendedContext)) {
+            $this->extendedContext = [];
+            foreach ($this->extendedContextResolvers as $resolver) {
+                $this->extendedContext += $resolver();
+            }
+        }
+        return $this->extendedContext;
     }
 
     // ******************************************
