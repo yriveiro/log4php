@@ -22,3 +22,4 @@ To do
 * ~~Add packagist integration~~
 * Add test for message interpolation and exception tracing
 * ~~Add proper recognition for tracing~~
+* Add extended context resolver to event generation and pattern layout

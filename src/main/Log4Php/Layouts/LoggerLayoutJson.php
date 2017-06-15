@@ -11,6 +11,7 @@ class LoggerLayoutJson extends LoggerLayout
     {
         $context = $event->getLogger()->resolveExtendedContext();
         $throwable = $event->getThrowableInformation();
+        $timestamp = date("Y-m-d\TH:i:sO", $event->getTimestamp());
 
         $event = [
             'date' => date(DATE_ISO8601, $event->getTimestamp()),
@@ -22,6 +23,6 @@ class LoggerLayoutJson extends LoggerLayout
             'trace' => $throwable ? $throwable->getStringRepresentation() : null
         ];
 
-        return json_encode(array_filter($event + $context));
+        return $timestamp . ' ' . json_encode(array_filter($event + $context));
     }
 }
