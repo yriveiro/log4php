@@ -76,21 +76,9 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
      */
     protected $compress = false;
 
-    /**
-     * Set to true in the constructor if PHP >= 5.3.0. In that case clearstatcache
-     * supports conditional clearing of statistics.
-     * @var boolean
-     * @see http://php.net/manual/en/function.clearstatcache.php
-     */
-    private $clearConditional = false;
-
     public function __construct($name = '')
     {
         parent::__construct($name);
-        // @todo we expect php7, so this is not needed anymore
-        if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-            $this->clearConditional = true;
-        }
     }
 
     /**
@@ -191,7 +179,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
             }
         }
 
-        // one per 100 requests check if roll over required
+        // once per around 100 requests check if roll over required
         $rollOverRequired = rand(1, 100) == 1 && $this->rollOverRequired();
 
         // Lock the file while writing and possible rolling over
@@ -219,14 +207,11 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
 
     private function rollOverRequired(): bool
     {
-        // Stats cache must be cleared, otherwise filesize() returns cached results
-        // If supported (PHP 5.3+), clear only the state cache for the target file
-        if ($this->clearConditional) {
-            clearstatcache(true, $this->file);
-        } else {
-            clearstatcache();
+        if (!file_exists($this->file)) {
+            return false;
         }
-        return file_exists($this->file) && filesize($this->file) > $this->maxFileSize;
+        clearstatcache(true, $this->file);
+        return filesize($this->file) > $this->maxFileSize;
     }
 
 

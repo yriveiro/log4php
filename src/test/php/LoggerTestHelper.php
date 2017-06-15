@@ -24,6 +24,7 @@
  * @link       http://logging.apache.org/log4php
  */
 use Log4Php\Appenders\LoggerAppenderEcho;
+use Log4Php\Layouts\LoggerLayoutJson;
 use Log4Php\Layouts\LoggerLayoutPattern;
 use Log4Php\Layouts\LoggerLayoutSimple;
 use Log4Php\Logger;
@@ -175,6 +176,23 @@ class LoggerTestHelper
             ],
         ];
     }
-}
 
-?>
+    public static function getEchoJsonConfig()
+    {
+        return [
+            'threshold' => 'ALL',
+            'rootLogger' => [
+                'level' => 'trace',
+                'appenders' => ['default'],
+            ],
+            'appenders' => [
+                'default' => [
+                    'class' => LoggerAppenderEcho::class,
+                    'layout' => [
+                        'class' => LoggerLayoutJson::class,
+                    ],
+                ],
+            ],
+        ];
+    }
+}

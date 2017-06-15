@@ -27,7 +27,6 @@ use Log4Php\LoggerLoggingEvent;
  */
 class LoggerAppenderNull extends LoggerAppender
 {
-
     /**
      * This appender does not require a layout.
      */

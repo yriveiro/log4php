@@ -244,7 +244,7 @@ class LoggerLoggingEvent
     /**
      * Return the name of the logger. Use this form instead of directly
      * accessing the {@link $categoryName} field.
-     * @return string
+     * @return string|null
      */
     public function getLoggerName()
     {
@@ -378,7 +378,7 @@ class LoggerLoggingEvent
     }
 
     /**
-     * @return mixed LoggerThrowableInformation
+     * @return LoggerThrowableInformation
      */
     public function getThrowableInformation()
     {

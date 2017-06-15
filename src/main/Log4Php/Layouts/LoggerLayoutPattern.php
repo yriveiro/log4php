@@ -140,7 +140,7 @@ class LoggerLayoutPattern extends LoggerLayout
      * Sets the conversionPattern option. This is the string which
      * controls formatting and consists of a mix of literal content and
      * conversion specifiers.
-     * @param array $conversionPattern
+     * @param string $conversionPattern
      */
     public function setConversionPattern($conversionPattern)
     {

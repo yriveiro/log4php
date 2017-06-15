@@ -40,7 +40,6 @@ use Log4Php\LoggerLoggingEvent;
  */
 class LoggerAppenderDailyFile extends LoggerAppenderFile
 {
-
     /**
      * The 'datePattern' parameter.
      * Determines how date will be formatted in file name.

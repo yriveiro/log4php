@@ -28,8 +28,6 @@ use Log4Php\Pattern\LoggerPatternConverterLiteral;
  *
  * <p>It is this class that parses conversion patterns and creates
  * a chained list of {@link LoggerPatternConverter} converters.</p>
- *
- * @todo pretty sure this parser is not the fastest there is
  */
 class LoggerPatternParser
 {
@@ -78,7 +76,6 @@ class LoggerPatternParser
      */
     public function parse()
     {
-
         // Skip parsing if the pattern is empty
         if (empty($this->pattern)) {
             $this->addLiteral('');

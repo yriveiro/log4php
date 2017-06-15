@@ -71,7 +71,6 @@ use Log4Php\LoggerLoggingEvent;
  */
 class LoggerAppenderSyslog extends LoggerAppender
 {
-
     /**
      * The ident string is added to each message. Typically the name of your application.
      *
