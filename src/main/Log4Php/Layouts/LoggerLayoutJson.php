@@ -22,6 +22,6 @@ class LoggerLayoutJson extends LoggerLayout
             'trace' => $throwable ? $throwable->getStringRepresentation() : null
         ];
 
-        return json_encode(array_filter($event + $context));
+        return json_encode(array_filter($event + $context)) . PHP_EOL;
     }
 }
