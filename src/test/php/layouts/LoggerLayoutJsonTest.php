@@ -18,13 +18,13 @@ class LoggerLayoutJsonTest extends TestCase
         });
 
         ob_start();
-        $log->error("my message for {name}", ['exception' => $e, 'name' => 'you']); $line = __LINE__;
+        $log->error("my message for {name} {userId}", ['exception' => $e, 'name' => 'you']); $line = __LINE__;
         $actual = ob_get_contents();
         ob_end_clean();
 
         $entry = json_decode($actual, true);
         Assert::assertArrayHasKey('level', $entry);
         Assert::assertEquals(22, $entry['userId']);
-        Assert::assertEquals('my message for you', $entry['message']);
+        Assert::assertEquals('my message for you 22', $entry['message']);
     }
 }

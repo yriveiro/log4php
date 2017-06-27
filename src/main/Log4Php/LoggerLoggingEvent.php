@@ -298,6 +298,15 @@ class LoggerLoggingEvent
     }
 
     /**
+     * Return event's context
+     * @return array
+     */
+    public function getContext(): array
+    {
+        return $this->context;
+    }
+
+    /**
      * Render message.
      * @return string
      */

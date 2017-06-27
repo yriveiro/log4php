@@ -247,10 +247,15 @@ class Logger implements LoggerInterface, GenericLogger
      * @param LoggerLevel $level
      * @param string $message
      * @param array $context
+     * @param bool $extendedContextResolved
      */
-    private function _log(LoggerLevel $level, $message, array $context = [])
+    private function _log(LoggerLevel $level, $message, array $context = [], bool $extendedContextResolved = false)
     {
         if ($this->isEnabledFor($level)) {
+            if (!$extendedContextResolved) {
+                $context += $this->resolveExtendedContext();
+                $extendedContextResolved = true;
+            }
             $event = new LoggerLoggingEvent(self::class, $this, $level, $message, null, $context);
             $this->callAppenders($event);
         }
@@ -261,7 +266,7 @@ class Logger implements LoggerInterface, GenericLogger
             if (isset($event)) {
                 $this->parent->logEvent($event);
             } else {
-                $this->parent->_log($level, $message, $context);
+                $this->parent->_log($level, $message, $context, $extendedContextResolved);
             }
         }
     }
