@@ -22,3 +22,4 @@ To do
 * ~~Add proper recognition for tracing~~
 * Add extended context resolver to event generation and pattern layout
 * Add new relic appender
+* Make sure that during substitutions there's no default casting issues (like array to string conversion)

@@ -24,7 +24,7 @@ class LoggerLayoutJsonTest extends TestCase
 
         $entry = json_decode($actual, true);
         Assert::assertArrayHasKey('level', $entry);
-        Assert::assertEquals(22, $entry['userId']);
+        Assert::assertEquals(22, $entry['context']['userId']);
         Assert::assertEquals('my message for you 22', $entry['message']);
     }
 }

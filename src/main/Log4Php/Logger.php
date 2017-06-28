@@ -66,9 +66,6 @@ class Logger implements LoggerInterface, GenericLogger
     /** @var callable[] */
     private $extendedContextResolvers = [];
 
-    /** @var array|null */
-    private $extendedContext;
-
     /**
      * Constructor.
      * @param string $name Name of the logger.
@@ -566,13 +563,11 @@ class Logger implements LoggerInterface, GenericLogger
 
     public function resolveExtendedContext(): array
     {
-        if (is_null($this->extendedContext)) {
-            $this->extendedContext = [];
-            foreach ($this->extendedContextResolvers as $resolver) {
-                $this->extendedContext += $resolver();
-            }
+        $extendedContext = [];
+        foreach ($this->extendedContextResolvers as $resolver) {
+            $extendedContext += $resolver();
         }
-        return $this->extendedContext;
+        return $extendedContext;
     }
 
     // ******************************************
