@@ -16,10 +16,9 @@ To do
 * ~~Add PSR-7 Compatibility per default~~
 * Profile
 * Remove exclusive locking as much as possible
-* Create YAML adapter
-* Think about storing important things in APCu
 * Builder pattern for log configuration
 * ~~Add packagist integration~~
-* Add test for message interpolation and exception tracing
+* ~~Add test for message interpolation and exception tracing~~
 * ~~Add proper recognition for tracing~~
 * Add extended context resolver to event generation and pattern layout
+* Add new relic appender
