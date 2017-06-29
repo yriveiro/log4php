@@ -10,6 +10,9 @@ class LoggerLayoutJson extends LoggerLayout
     public function format(LoggerLoggingEvent $event): string
     {
         $throwable = $event->getThrowableInformation();
+        $context = $event->getContext() + $event->getLogger()->resolveExtendedContext();
+        unset($context['exception']);
+
         $entry = array_filter([
             'date' => date(DATE_ISO8601, $event->getTimestamp()),
             'level' => $event->getLevel()->toString(),
@@ -18,7 +21,7 @@ class LoggerLayoutJson extends LoggerLayout
             'line' => $event->getLocationInformation()->getLineNumber(),
             'message' => $event->getRenderedMessage(),
             'trace' => $throwable ? $throwable->getStringRepresentation() : null,
-            'context' => $event->getLogger()->resolveExtendedContext()
+            'context' => $context
         ]);
         return json_encode($entry) . PHP_EOL;
     }

@@ -14,7 +14,13 @@ class LoggerLayoutJsonTest extends TestCase
         $e = new Exception('exception');
         $log = Logger::getLogger('LoggerTest');
         $log->addContextResolver(function() {
-            return ['userId' => 22];
+            return [
+                'userId' => 22,
+                'request' => [
+                    'page' => 'home',
+                    'ip' => '127.0.0.1'
+                ]
+            ];
         });
 
         ob_start();

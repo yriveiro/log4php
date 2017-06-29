@@ -316,6 +316,9 @@ class LoggerLoggingEvent
             if (is_string($this->message)) {
                 $pairs = [];
                 foreach ($this->context as $key => $val) {
+                    if (is_array($val)) {
+                        $val = json_encode($val);
+                    }
                     $pairs['{' . $key . '}'] = $val;
                 }
                 $this->renderedMessage = strtr($this->message, $pairs);
