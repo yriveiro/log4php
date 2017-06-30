@@ -172,7 +172,7 @@ class LoggerLoggingEvent
                 /** @var \Throwable $throwable */
                 $throwable = $this->context['exception'];
                 $trace = $throwable->getTrace();
-                $hop = $trace[0];
+                $hop = $trace[0] ?? null;
                 $this->locationInfo = new LoggerLocationInfo([
                     'line'     => $throwable->getLine(),
                     'file'     => $throwable->getFile(),
@@ -191,8 +191,8 @@ class LoggerLoggingEvent
                         if (!empty($className)) {
                             $hopClass = new ReflectionClass($className);
                             if ($hopClass->implementsInterface(GenericHandler::class)) {
-                                $locationInfo['line'] = $prevHop['line'];
-                                $locationInfo['file'] = $prevHop['file'];
+                                $locationInfo['line'] = $prevHop['line'] ?? null;
+                                $locationInfo['file'] = $prevHop['file'] ?? null;
                                 break;
                             }
                             if ($hopClass->implementsInterface(GenericLogger::class)) {
