@@ -23,3 +23,4 @@ To do
 * Add extended context resolver to event generation and pattern layout
 * Add new relic appender
 * Make sure that during substitutions there's no default casting issues (like array to string conversion)
+* Add proper test cases for LocationInfo for different situations, including global handlers defined as function or callable
