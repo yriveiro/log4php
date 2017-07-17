@@ -90,7 +90,7 @@ class LoggerFilterLevelRange extends LoggerFilter
     /**
      * @param string $level the level min to match
      */
-    public function setLevelMin(string $level)
+    public function setLevelMin($level)
     {
         $this->setLevel('levelMin', $level);
     }
@@ -98,7 +98,7 @@ class LoggerFilterLevelRange extends LoggerFilter
     /**
      * @param string $level the level max to match
      */
-    public function setLevelMax(string $level)
+    public function setLevelMax($level)
     {
         $this->setLevel('levelMax', $level);
     }
@@ -109,7 +109,7 @@ class LoggerFilterLevelRange extends LoggerFilter
      * @param LoggerLoggingEvent $event
      * @return int
      */
-    public function decide(LoggerLoggingEvent $event): int
+    public function decide(LoggerLoggingEvent $event)
     {
         $level = $event->getLevel();
 

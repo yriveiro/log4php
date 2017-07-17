@@ -60,11 +60,11 @@ class LoggerMDCTest extends TestCase
         LoggerMDC::put('key2', 'valueofkey2');
         LoggerMDC::put(3, 'valueofkey3');
 
-        $expected = [
+        $expected = array(
             'key1' => 'valueofkey1',
             'key2' => 'valueofkey2',
             3 => 'valueofkey3',
-        ];
+        );
         $actual = LoggerMDC::getMap();
 
         self::assertSame($expected, $actual);

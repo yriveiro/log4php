@@ -7,13 +7,13 @@ use Log4Php\LoggerLoggingEvent;
 
 class LoggerLayoutJson extends LoggerLayout
 {
-    public function format(LoggerLoggingEvent $event): string
+    public function format(LoggerLoggingEvent $event)
     {
         $throwable = $event->getThrowableInformation();
         $context = $event->getContext() + $event->getLogger()->resolveExtendedContext();
         unset($context['exception']);
 
-        $entry = array_filter([
+        $entry = array_filter(array(
             'date' => date(DATE_ISO8601, $event->getTimestamp()),
             'level' => $event->getLevel()->toString(),
             'name' => $event->getLoggerName(),
@@ -22,7 +22,7 @@ class LoggerLayoutJson extends LoggerLayout
             'message' => $event->getRenderedMessage(),
             'trace' => $throwable ? $throwable->getStringRepresentation() : null,
             'context' => $context
-        ]);
+        ));
         return json_encode($entry) . PHP_EOL;
     }
 }

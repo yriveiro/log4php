@@ -46,7 +46,7 @@ class LoggerAppenderTest extends TestCase
         $appender->setThreshold($warn);
         $appender->activateOptions();
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelCritical(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\Appenders\LoggerAppenderEchoTest', new Logger("TEST"), LoggerLevel::getLevelCritical(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
@@ -54,7 +54,7 @@ class LoggerAppenderTest extends TestCase
         $e = "CRITICAL - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\Appenders\LoggerAppenderEchoTest', new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
@@ -62,7 +62,7 @@ class LoggerAppenderTest extends TestCase
         $e = "ERROR - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelWarning(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\Appenders\LoggerAppenderEchoTest', new Logger("TEST"), LoggerLevel::getLevelWarning(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
@@ -70,7 +70,7 @@ class LoggerAppenderTest extends TestCase
         $e = "WARNING - testmessage" . PHP_EOL;
         self::assertEquals($e, $v);
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelInfo(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\Appenders\LoggerAppenderEchoTest', new Logger("TEST"), LoggerLevel::getLevelInfo(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
@@ -78,7 +78,7 @@ class LoggerAppenderTest extends TestCase
         $e = "";
         self::assertEquals($e, $v);
 
-        $event = new LoggerLoggingEvent(LoggerAppenderEchoTest::class, new Logger("TEST"), LoggerLevel::getLevelDebug(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\Appenders\LoggerAppenderEchoTest', new Logger("TEST"), LoggerLevel::getLevelDebug(), "testmessage");
         ob_start();
         $appender->doAppend($event);
         $v = ob_get_contents();
@@ -162,7 +162,7 @@ class LoggerAppenderTest extends TestCase
     {
         $appender = new LoggerAppenderEcho("LoggerAppenderTest");
         $actual = $appender->getLayout();
-        $this->assertInstanceof(LoggerLayoutSimple::class, $actual);
+        $this->assertInstanceof('Log4Php\Layouts\LoggerLayoutSimple', $actual);
     }
 
     public function testOverwriteLayout()

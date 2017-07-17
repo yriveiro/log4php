@@ -92,8 +92,8 @@ class LoggerReflectionUtilsTest extends TestCase
 
     public function testCreateObject()
     {
-        $object = LoggerReflectionUtils::createObject(LoggerLayoutSimple::class);
+        $object = LoggerReflectionUtils::createObject('Log4Php\Layouts\LoggerLayoutSimple');
         $name = get_class($object);
-        self::assertEquals($name, LoggerLayoutSimple::class);
+        self::assertEquals($name, 'Log4Php\Layouts\LoggerLayoutSimple');
     }
 }

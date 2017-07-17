@@ -29,87 +29,87 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerTest extends TestCase
 {
-    private $testConfig1 = [
-        'rootLogger' => [
+    private $testConfig1 = array(
+        'rootLogger' => array(
             'level' => 'ERROR',
-            'appenders' => [
+            'appenders' => array(
                 'default',
-            ],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-            ],
-        ],
-        'loggers' => [
-            'mylogger' => [
+            ),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+            ),
+        ),
+        'loggers' => array(
+            'mylogger' => array(
                 'additivity' => 'false',
                 'level' => 'DEBUG',
-                'appenders' => [
+                'appenders' => array(
                     'default',
-                ],
-            ],
-        ],
-    ];
+                ),
+            ),
+        ),
+    );
 
     // For testing additivity
-    private $testConfig2 = [
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-            ],
-        ],
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'loggers' => [
-            'foo' => [
-                'appenders' => [
+    private $testConfig2 = array(
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+            ),
+        ),
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'loggers' => array(
+            'foo' => array(
+                'appenders' => array(
                     'default',
-                ],
-            ],
-            'foo.bar' => [
-                'appenders' => [
+                ),
+            ),
+            'foo.bar' => array(
+                'appenders' => array(
                     'default',
-                ],
-            ],
-            'foo.bar.baz' => [
-                'appenders' => [
+                ),
+            ),
+            'foo.bar.baz' => array(
+                'appenders' => array(
                     'default',
-                ],
-            ],
-        ],
-    ];
+                ),
+            ),
+        ),
+    );
 
     // For testing additivity
-    private $testConfig3 = [
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-            ],
-        ],
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'loggers' => [
-            'foo' => [
-                'appenders' => [
+    private $testConfig3 = array(
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+            ),
+        ),
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'loggers' => array(
+            'foo' => array(
+                'appenders' => array(
                     'default',
-                ],
-            ],
-            'foo.bar' => [
-                'appenders' => [
+                ),
+            ),
+            'foo.bar' => array(
+                'appenders' => array(
                     'default',
-                ],
-            ],
-            'foo.bar.baz' => [
+                ),
+            ),
+            'foo.bar.baz' => array(
                 'level' => 'ERROR',
-                'appenders' => [
+                'appenders' => array(
                     'default',
-                ],
-            ],
-        ],
-    ];
+                ),
+            ),
+        ),
+    );
 
     protected function setUp()
     {

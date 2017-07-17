@@ -30,20 +30,20 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerAppenderFileTest extends TestCase
 {
-    private $config1 = [
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderFile::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ],
-                'params' => []
-            ]
-        ]
-    ];
+    private $config1 = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderFile',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                ),
+                'params' => array()
+            )
+        )
+    );
 
     private $testPath;
 

@@ -66,7 +66,7 @@ class LoggerFilterStringMatch extends LoggerFilter
     /**
      * @param string $string the string to match
      */
-    public function setStringToMatch(string $string)
+    public function setStringToMatch($string)
     {
         $this->setString('stringToMatch', $string);
     }
@@ -76,7 +76,7 @@ class LoggerFilterStringMatch extends LoggerFilter
      * @return int a <a href='psi_element://LOGGER_FILTER_NEUTRAL'>LOGGER_FILTER_NEUTRAL</a> is there is no string match
      * is there is no string match.
      */
-    public function decide(LoggerLoggingEvent $event): int
+    public function decide(LoggerLoggingEvent $event)
     {
         $msg = $event->getRenderedMessage();
 

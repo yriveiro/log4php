@@ -42,20 +42,20 @@ class LoggerAppenderPhpTest extends TestCase
 
     public static $expectedError;
 
-    private $config = [
-        'rootLogger' => [
-            'appenders' => ['default'],
+    private $config = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
             'level' => 'trace'
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderPHP::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ],
-            ]
-        ]
-    ];
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderPhp',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                ),
+            )
+        )
+    );
 
     protected function setUp()
     {

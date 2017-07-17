@@ -30,23 +30,23 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerAppenderConsoleTest extends TestCase
 {
-    private $config = [
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderConsole::class,
-                'layout' => [
-                    'class' => LoggerLayoutPattern::class,
-                    'params' => [
+    private $config = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderConsole',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                    'params' => array(
                         // Intentionally blank so output doesn't clutter phpunit output
                         'conversionPattern' => ''
-                    ]
-                ],
-            ]
-        ]
-    ];
+                    )
+                ),
+            )
+        )
+    );
 
     public function testRequiresLayout()
     {

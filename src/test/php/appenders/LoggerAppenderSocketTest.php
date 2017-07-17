@@ -58,23 +58,23 @@ class LoggerAppenderSocketTest extends TestCase
 
     public function testLogging()
     {
-        Logger::configure([
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderSocket::class,
-                    'params' => [
+        Logger::configure(array(
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderSocket',
+                    'params' => array(
                         'remoteHost' => 'localhost',
                         'port' => self::SOCKET_PORT
-                    ],
-                    'layout' => [
-                        'class' => LoggerLayoutSimple::class
-                    ]
-                ],
-            ],
-            'rootLogger' => [
-                'appenders' => ['default'],
-            ],
-        ]);
+                    ),
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                    )
+                ),
+            ),
+            'rootLogger' => array(
+                'appenders' => array('default'),
+            ),
+        ));
 
         $this->startServer();
 

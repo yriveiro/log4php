@@ -38,15 +38,18 @@ class LoggerLayoutPatternTest extends TestCase
 
         ob_start();
         $log = Logger::getLogger('LoggerTest');
-        $log->error("my message"); $line = __LINE__;
+        $log->error("my message"); 
         $actual = ob_get_contents();
         ob_end_clean();
 
         $file = __FILE__;
         $class = __CLASS__;
+	$line = 41;
         $method = __FUNCTION__;
 
         $expected = "ERROR  LoggerTest: my message from $class::$method() in $file at $line" . PHP_EOL;
+
+
         self::assertSame($expected, $actual);
 
         Logger::resetConfiguration();

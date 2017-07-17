@@ -120,14 +120,14 @@ class LoggerReflectionUtils
             throw new Exception("Error setting log4php property $name to $value: "
                 . "no method $method in class " . get_class($this->obj) . "!");
         } else {
-            return call_user_func([$this->obj, $method], $value);
+            return call_user_func(array($this->obj, $method), $value);
         }
     }
 
     public function activate()
     {
         if (method_exists($this->obj, 'activateoptions')) {
-            return call_user_func([$this->obj, 'activateoptions']);
+            return call_user_func(array($this->obj, 'activateoptions'));
         }
         return null;
     }
@@ -159,7 +159,7 @@ class LoggerReflectionUtils
         }
         $methodName = 'set' . ucfirst($name);
         if (method_exists($object, $methodName)) {
-            return call_user_func([$object, $methodName], $value);
+            return call_user_func(array($object, $methodName), $value);
         } else {
             return false;
         }

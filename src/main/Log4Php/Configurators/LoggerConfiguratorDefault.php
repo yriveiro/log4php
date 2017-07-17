@@ -47,28 +47,28 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
     const FORMAT_INI = 'ini';
 
     /** Default configuration; used if no configuration file is provided. */
-    private static $defaultConfiguration = [
+    private static $defaultConfiguration = array(
         'threshold' => 'ALL',
-        'rootLogger' => [
+        'rootLogger' => array(
             'level' => 'DEBUG',
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class
-            ],
-        ],
-    ];
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho'
+            ),
+        ),
+    );
 
     /** Defines which adapter should be used for parsing which format. */
-    private $adapters = [
-        self::FORMAT_XML => LoggerConfigurationAdapterXML::class,
-        self::FORMAT_INI => LoggerConfigurationAdapterINI::class,
-        self::FORMAT_PHP => LoggerConfigurationAdapterPHP::class
-    ];
+    private $adapters = array(
+        self::FORMAT_XML => 'Log4Php\Configurators\LoggerConfigurationAdapterXML',
+        self::FORMAT_INI => 'Log4Php\Configurators\LoggerConfigurationAdapterINI',
+        self::FORMAT_PHP => 'Log4Php\Configurators\LoggerConfigurationAdapterPHP'
+    );
 
     /** Holds the appenders before they are linked to loggers. */
-    private $appenders = [];
+    private $appenders = array();
 
     /**
      * Returns the default log4php configuration.
@@ -193,7 +193,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * Helper method to simplify error reporting.
      * @param string $message
      */
-    private function warn(string $message)
+    private function warn($message)
     {
         trigger_error("log4php: $message", E_USER_WARNING);
     }
@@ -211,7 +211,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
             if (isset($threshold)) {
                 $hierarchy->setThreshold($threshold);
             } else {
-                $threshold = var_export($config['threshold'] ?? null, true);
+                $threshold = var_export((isset($config['threshold'])) ? $config['threshold'] : null, true);
                 $this->warn("Invalid threshold value [$threshold] specified. Ignoring threshold definition.");
             }
         }
@@ -477,7 +477,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
      * @param string $name
      * @param array $config
      */
-    private function configureOtherLogger(LoggerHierarchy $hierarchy, string $name, array $config)
+    private function configureOtherLogger(LoggerHierarchy $hierarchy, $name, array $config)
     {
         // Get logger from hierarchy (this creates it if it doesn't already exist)
         $logger = $hierarchy->getLogger($name);

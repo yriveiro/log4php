@@ -38,11 +38,11 @@ class LoggerPatternConverterDate extends LoggerPatternConverter
 
     private $format = self::DATE_FORMAT_ISO8601;
 
-    private $specials = [
+    private $specials = array(
         'ISO8601'  => self::DATE_FORMAT_ISO8601,
         'ABSOLUTE' => self::DATE_FORMAT_ABSOLUTE,
         'DATE'     => self::DATE_FORMAT_DATE,
-    ];
+    );
 
     public function activateOptions()
     {

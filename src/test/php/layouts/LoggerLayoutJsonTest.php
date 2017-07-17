@@ -14,17 +14,17 @@ class LoggerLayoutJsonTest extends TestCase
         $e = new Exception('exception');
         $log = Logger::getLogger('LoggerTest');
         $log->addContextResolver(function() {
-            return [
+            return array(
                 'userId' => 22,
-                'request' => [
+                'request' => array(
                     'page' => 'home',
                     'ip' => '127.0.0.1'
-                ]
-            ];
+                )
+            );
         });
 
         ob_start();
-        $log->error("my message for {name} {userId}", ['exception' => $e, 'name' => 'you']); $line = __LINE__;
+        $log->error("my message for {name} {userId}", array('exception' => $e, 'name' => 'you')); $line = __LINE__;
         $actual = ob_get_contents();
         ob_end_clean();
 

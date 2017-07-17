@@ -44,7 +44,7 @@ class LoggerLayoutSerializedTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Invalid value given for 'locationInfo' property: ['foo']. Expected a boolean value. Property not changed.
      */
     public function testLocationInfoFail()
@@ -55,19 +55,19 @@ class LoggerLayoutSerializedTest extends TestCase
 
     public function testLayout()
     {
-        Logger::configure([
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutSerialized::class
-                    ]
-                ]
-            ],
-            'rootLogger' => [
-                'appenders' => ['default']
-            ]
-        ]);
+        Logger::configure(array(
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSerialized'
+                    )
+                )
+            ),
+            'rootLogger' => array(
+                'appenders' => array('default')
+            )
+        ));
 
         ob_start();
         $foo = Logger::getLogger('foo');
@@ -77,29 +77,29 @@ class LoggerLayoutSerializedTest extends TestCase
 
         $event = unserialize($actual);
 
-        self::assertInstanceOf(LoggerLoggingEvent::class, $event);
+        self::assertInstanceOf('Log4Php\LoggerLoggingEvent', $event);
         self::assertEquals('Interesting message.', $event->getMessage());
         self::assertEquals(LoggerLevel::getLevelInfo(), $event->getLevel());
     }
 
     public function testLayoutWithLocationInfo()
     {
-        Logger::configure([
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutSerialized::class,
-                        'params' => [
+        Logger::configure(array(
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSerialized',
+                        'params' => array(
                             'locationInfo' => true
-                        ]
-                    ]
-                ]
-            ],
-            'rootLogger' => [
-                'appenders' => ['default']
-            ]
-        ]);
+                        )
+                    )
+                )
+            ),
+            'rootLogger' => array(
+                'appenders' => array('default')
+            )
+        ));
 
         ob_start();
         $foo = Logger::getLogger('foo');
@@ -109,7 +109,7 @@ class LoggerLayoutSerializedTest extends TestCase
 
         $event = unserialize($actual);
 
-        self::assertInstanceOf(LoggerLoggingEvent::class, $event);
+        self::assertInstanceOf('Log4Php\LoggerLoggingEvent', $event);
         self::assertEquals('Interesting message.', $event->getMessage());
         self::assertEquals(LoggerLevel::getLevelInfo(), $event->getLevel());
     }

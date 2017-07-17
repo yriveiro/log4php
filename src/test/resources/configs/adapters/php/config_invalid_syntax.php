@@ -33,9 +33,10 @@ return array(
     ),
     'appenders' => array(
         'default' => array(
-            'class' => LoggerAppenderEcho::class,
+            'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
             'layout' => array(
-                'class' => LoggerLayoutSimple::class
+                'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
             )
         )
     )
+);

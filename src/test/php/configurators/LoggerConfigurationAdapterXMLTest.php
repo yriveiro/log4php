@@ -37,74 +37,74 @@ class LoggerConfigurationAdapterXMLTest extends TestCase
 {
 
     /** Expected output of parsing config1.xml.*/
-    private $expected1 = [
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutPattern::class,
-                ],
-                'filters' => [
-                    [
-                        'class' => LoggerFilterLevelRange::class,
-                        'params' => [
+    private $expected1 = array(
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                ),
+                'filters' => array(
+                    array(
+                        'class' => 'Log4Php\Filters\LoggerFilterLevelRange',
+                        'params' => array(
                             'levelMin' => 'ERROR',
                             'levelMax' => 'FATAL',
                             'acceptOnMatch' => 'false',
-                        ],
-                    ],
-                    [
-                        'class' => LoggerFilterDenyAll::class,
-                    ],
-                ],
-            ],
-            'file' => [
-                'class' => LoggerAppenderDailyFile::class,
-                'layout' => [
-                    'class' => LoggerLayoutPattern::class,
-                    'params' => [
+                        ),
+                    ),
+                    array(
+                        'class' => 'Log4Php\Filters\LoggerFilterDenyAll',
+                    ),
+                ),
+            ),
+            'file' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderDailyFile',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                    'params' => array(
                         'conversionPattern' => '%d{ISO8601} [%p] %c: %m (at %F line %L)%n',
-                    ],
-                ],
-                'params' => [
+                    ),
+                ),
+                'params' => array(
                     'datePattern' => 'Ymd',
                     'file' => 'target/examples/daily_%s.log',
-                ],
+                ),
                 'threshold' => 'warn'
-            ],
-        ],
-        'loggers' => [
-            'foo.bar.baz' => [
+            ),
+        ),
+        'loggers' => array(
+            'foo.bar.baz' => array(
                 'level' => 'trace',
                 'additivity' => 'false',
-                'appenders' => ['default'],
-            ],
-            'foo.bar' => [
+                'appenders' => array('default'),
+            ),
+            'foo.bar' => array(
                 'level' => 'debug',
                 'additivity' => 'true',
-                'appenders' => ['file'],
-            ],
-            'foo' => [
+                'appenders' => array('file'),
+            ),
+            'foo' => array(
                 'level' => 'warn',
-                'appenders' => ['default', 'file'],
-            ],
-        ],
-        'renderers' => [
-            [
+                'appenders' => array('default', 'file'),
+            ),
+        ),
+        'renderers' => array(
+            array(
                 'renderedClass' => 'Fruit',
                 'renderingClass' => 'FruitRenderer',
-            ],
-            [
+            ),
+            array(
                 'renderedClass' => 'Beer',
                 'renderingClass' => 'BeerRenderer',
-            ],
-        ],
+            ),
+        ),
         'threshold' => 'debug',
-        'rootLogger' => [
+        'rootLogger' => array(
             'level' => 'DEBUG',
-            'appenders' => ['default'],
-        ],
-    ];
+            'appenders' => array('default'),
+        ),
+    );
 
     public function setUp()
     {
@@ -159,7 +159,7 @@ class LoggerConfigurationAdapterXMLTest extends TestCase
     /**
      * Test that a warning is triggered when two loggers with the same name
      * are defined.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage log4php: Duplicate logger definition [foo]. Overwriting
      */
     public function testDuplicateLoggerWarning()

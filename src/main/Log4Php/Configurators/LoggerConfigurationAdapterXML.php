@@ -27,13 +27,13 @@ use SimpleXMLElement;
 class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
 {
     /** Path to the XML schema used for validation. */
-    const SCHEMA_PATH = __DIR__ . '/../xml/log4php.xsd';
+    //const SCHEMA_PATH =  __DIR__ . '/../xml/log4php.xsd';
 
-    private $config = [
-        'appenders' => [],
-        'loggers'   => [],
-        'renderers' => [],
-    ];
+    private $config = array(
+        'appenders' => array(),
+        'loggers'   => array(),
+        'renderers' => array(),
+    );
 
     public function convert($url)
     {
@@ -127,7 +127,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseRootLogger(SimpleXMLElement $node)
     {
-        $logger = [];
+        $logger = array();
 
         if (isset($node->level)) {
             $logger['level'] = $this->getAttributeValue($node->level[0], 'value');
@@ -153,7 +153,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseAppenderReferences(SimpleXMLElement $node)
     {
-        $refs = [];
+        $refs = array();
         if (isset($node->appender_ref)) {
             foreach ($node->appender_ref as $ref) {
                 $refs[] = $this->getAttributeValue($ref, 'ref');
@@ -173,7 +173,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseLogger(SimpleXMLElement $node)
     {
-        $logger = [];
+        $logger = array();
 
         $name = $this->getAttributeValue($node, 'name');
         if (empty($name)) {
@@ -218,7 +218,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
             return;
         }
 
-        $appender = [];
+        $appender = array();
         $appender['class'] = $this->getAttributeValue($node, 'class');
 
         if (isset($node['threshold'])) {
@@ -251,7 +251,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseLayout(SimpleXMLElement $node)
     {
-        $layout = [];
+        $layout = array();
         $layout['class'] = $this->getAttributeValue($node, 'class');
         if (isset($node->param) && count($node->param) > 0) {
             $layout['params'] = $this->parseParameters($node);
@@ -266,7 +266,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseParameters($paramsNode)
     {
-        $params = [];
+        $params = array();
 
         foreach ($paramsNode->param as $paramNode) {
             if (empty($paramNode['name'])) {
@@ -291,7 +291,7 @@ class LoggerConfigurationAdapterXML implements LoggerConfigurationAdapter
      */
     private function parseFilter($filterNode)
     {
-        $filter = [];
+        $filter = array();
         $filter['class'] = $this->getAttributeValue($filterNode, 'class');
 
         if (count($filterNode->param) > 0) {

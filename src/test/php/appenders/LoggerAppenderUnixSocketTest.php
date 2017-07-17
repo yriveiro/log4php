@@ -11,22 +11,22 @@ class LoggerAppenderUnixSocketTest extends TestCase
 {
     public function testLogging()
     {
-        Logger::configure([
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderUnixSocket::class,
-                    'params' => [
+        Logger::configure(array(
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderUnixSocket',
+                    'params' => array(
                         'path' => '/var/tmp/socket'
-                    ],
-                    'layout' => [
-                        'class' => LoggerLayoutSimple::class
-                    ]
-                ],
-            ],
-            'rootLogger' => [
-                'appenders' => ['default'],
-            ],
-        ]);
+                    ),
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                    )
+                ),
+            ),
+            'rootLogger' => array(
+                'appenders' => array('default'),
+            ),
+        ));
 
         $logger = Logger::getLogger("myLogger");
         $logger->trace("This message is a test");

@@ -31,7 +31,7 @@ abstract class LoggerConfigurable
      * @param string $property
      * @param $value
      */
-    protected function setBoolean(string $property, $value)
+    protected function setBoolean($property, $value)
     {
         try {
             $this->$property = LoggerOptionConverter::toBooleanEx($value);
@@ -47,7 +47,7 @@ abstract class LoggerConfigurable
      * @param string $property
      * @param $value
      */
-    protected function setInteger(string $property, $value)
+    protected function setInteger($property, $value)
     {
         try {
             $this->$property = LoggerOptionConverter::toIntegerEx($value);
@@ -63,7 +63,7 @@ abstract class LoggerConfigurable
      * @param string $property
      * @param $value
      */
-    protected function setLevel(string $property, $value)
+    protected function setLevel($property, $value)
     {
         try {
             $this->$property = LoggerOptionConverter::toLevelEx($value);
@@ -79,7 +79,7 @@ abstract class LoggerConfigurable
      * @param string $property
      * @param $value
      */
-    protected function setPositiveInteger(string $property, $value)
+    protected function setPositiveInteger($property, $value)
     {
         try {
             $this->$property = LoggerOptionConverter::toPositiveIntegerEx($value);
@@ -95,7 +95,7 @@ abstract class LoggerConfigurable
      * @param string $property
      * @param $value
      */
-    protected function setFileSize(string $property, $value)
+    protected function setFileSize($property, $value)
     {
         try {
             $this->$property = LoggerOptionConverter::toFileSizeEx($value);
@@ -112,7 +112,7 @@ abstract class LoggerConfigurable
      * @param $value
      * @param bool $nullable
      */
-    protected function setString(string $property, $value, $nullable = false)
+    protected function setString($property, $value, $nullable = false)
     {
         if ($value === null) {
             if ($nullable) {
@@ -136,7 +136,7 @@ abstract class LoggerConfigurable
      * Triggers a warning.
      * @param string $message
      */
-    protected function warn(string $message)
+    protected function warn($message)
     {
         $class = get_class($this);
         trigger_error("log4php: $class: $message", E_USER_WARNING);

@@ -31,20 +31,20 @@ use PHPUnit\Framework\TestCase;
 
 class LoggerConfigurationAdapterPHPTest extends TestCase
 {
-    private $expected1 = [
-        'rootLogger' => [
+    private $expected1 = array(
+        'rootLogger' => array(
             'level' => 'info',
-            'appenders' => ['default']
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ]
-            ]
-        ]
-    ];
+            'appenders' => array('default')
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                )
+            )
+        )
+    );
 
     public function testConfig()
     {
@@ -68,7 +68,6 @@ class LoggerConfigurationAdapterPHPTest extends TestCase
 
     /**
      * Test exception is thrown when file is not valid.
-     * @expectedException ParseError
      * @expectedExceptionMessage syntax error, unexpected end of file, expecting ')'
      */
     public function testInvalidFileWarning()
@@ -80,7 +79,7 @@ class LoggerConfigurationAdapterPHPTest extends TestCase
 
     /**
      * Test exception is thrown when the configuration is empty.
-     * @expectedException Throwable
+     * @expectedException Exception
      */
     public function testEmptyConfigWarning()
     {

@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
 /** Renders everything as 'foo'. */
 class FooRenderer implements LoggerRenderer
 {
-    public function render($input): string
+    public function render($input)
     {
         return 'foo';
     }
@@ -58,7 +58,7 @@ class Fruit3Descendant extends Fruit3
 
 class FruitRenderer3 implements LoggerRenderer
 {
-    public function render($fruit): string
+    public function render($fruit)
     {
         return $fruit->test1 . ',' . $fruit->test2 . ',' . $fruit->test3;
     }
@@ -73,8 +73,8 @@ class LoggerRendererMapTest extends TestCase
     public function testDefaults()
     {
         $map = new LoggerRendererMap();
-        $actual = $map->getByClassName(Exception::class);
-        self::assertInstanceOf(LoggerRendererException::class, $actual);
+        $actual = $map->getByClassName('Exception');
+        self::assertInstanceOf('Log4Php\Renderers\LoggerRendererException', $actual);
 
         // Check non-configured objects return null
         self::assertNull($map->getByObject(new stdClass()));
@@ -85,13 +85,13 @@ class LoggerRendererMapTest extends TestCase
     {
         $map = new LoggerRendererMap();
         $map->clear(); // This should clear the map and remove default renderers
-        self::assertNull($map->getByClassName(Exception::class));
+        self::assertNull($map->getByClassName('Exception'));
     }
 
     public function testFindAndRender()
     {
         $map = new LoggerRendererMap();
-        $map->addRenderer(Fruit3::class, FruitRenderer3::class);
+        $map->addRenderer('Fruit3', 'FruitRenderer3');
 
         $fruit = new Fruit3();
         $descendant = new Fruit3Descendant();
@@ -102,7 +102,7 @@ class LoggerRendererMapTest extends TestCase
         self::assertSame($expected, $actual);
 
         $actual = $map->getByObject($fruit);
-        self::assertInstanceOf(FruitRenderer3::class, $actual);
+        self::assertInstanceOf('FruitRenderer3', $actual);
 
         // Check rendering of fruit's descendant
         $actual = $map->findAndRender($descendant);
@@ -110,7 +110,7 @@ class LoggerRendererMapTest extends TestCase
         self::assertSame($expected, $actual);
 
         $actual = $map->getByObject($descendant);
-        self::assertInstanceOf(FruitRenderer3::class, $actual);
+        self::assertInstanceOf('FruitRenderer3', $actual);
 
         // Test rendering null returns null
         self::assertNull($map->findAndRender(null));
@@ -118,39 +118,39 @@ class LoggerRendererMapTest extends TestCase
 
     /**
      * Try adding a non-existant class as renderer.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [DoesNotExist] not found.
      */
     public function testAddRendererError1()
     {
         $map = new LoggerRendererMap();
-        $map->addRenderer(Fruit3::class, 'DoesNotExist');
+        $map->addRenderer('Fruit3', 'DoesNotExist');
     }
 
     /**
      * Try adding a class which does not implement LoggerRenderer as renderer.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Failed adding renderer. Rendering class [stdClass] does not implement the LoggerRenderer interface.
      */
     public function testAddRendererError2()
     {
         $map = new LoggerRendererMap();
-        $map->addRenderer(Fruit3::class, 'stdClass');
+        $map->addRenderer('Fruit3', 'stdClass');
     }
 
     public function testAddRendererError3()
     {
         $map = new LoggerRendererMap();
-        @$map->addRenderer(Fruit3::class, 'stdClass');
-        self::assertNull($map->getByClassName(Fruit3::class));
+        @$map->addRenderer('Fruit3', 'stdClass');
+        self::assertNull($map->getByClassName('Fruit3'));
 
-        @$map->addRenderer(Fruit3::class, 'DoesNotExist');
-        self::assertNull($map->getByClassName(Fruit3::class));
+        @$map->addRenderer('Fruit3', 'DoesNotExist');
+        self::assertNull($map->getByClassName('Fruit3'));
     }
 
     /**
      * Try setting a non-existant class as default renderer.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Failed setting default renderer. Rendering class [DoesNotExist] not found.
      */
     public function testSetDefaultRendererError1()
@@ -161,7 +161,7 @@ class LoggerRendererMapTest extends TestCase
 
     /**
      * Try setting a class which does not implement LoggerRenderer as default renderer.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Failed setting default renderer. Rendering class [stdClass] does not implement the LoggerRenderer interface.
      */
     public function testSetDefaultRendererError2()
@@ -187,7 +187,7 @@ class LoggerRendererMapTest extends TestCase
     public function testFetchingRenderer()
     {
         $map = new LoggerRendererMap();
-        $map->addRenderer(Fruit3::class, FruitRenderer3::class);
+        $map->addRenderer('Fruit3', 'FruitRenderer3');
         Assert::assertTrue(true);
     }
 
@@ -235,13 +235,13 @@ class LoggerRendererMapTest extends TestCase
     {
         $map = Logger::getHierarchy()->getRendererMap();
         Logger::resetConfiguration();
-        self::assertInstanceOf(LoggerRendererDefault::class, $map->getDefaultRenderer());
+        self::assertInstanceOf('Log4Php\Renderers\LoggerRendererDefault', $map->getDefaultRenderer());
 
         Logger::configure(PHPUNIT_CONFIG_DIR . '/renderers/config_default_renderer.xml');
-        self::assertInstanceOf(FruitRenderer3::class, $map->getDefaultRenderer());
+        self::assertInstanceOf('FruitRenderer3', $map->getDefaultRenderer());
 
         Logger::resetConfiguration();
-        self::assertInstanceOf(LoggerRendererDefault::class, $map->getDefaultRenderer());
+        self::assertInstanceOf('Log4Php\Renderers\LoggerRendererDefault', $map->getDefaultRenderer());
     }
 
     public function testExceptionRenderer()

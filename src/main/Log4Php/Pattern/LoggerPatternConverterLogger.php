@@ -33,7 +33,7 @@ class LoggerPatternConverterLogger extends LoggerPatternConverter
     private $length;
 
     /** Holds processed logger names. */
-    private $cache = [];
+    private $cache = array();
 
     public function activateOptions()
     {

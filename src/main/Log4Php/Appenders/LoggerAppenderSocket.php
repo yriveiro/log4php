@@ -105,7 +105,7 @@ class LoggerAppenderSocket extends LoggerAppender
      * Sets the target host.
      * @param string $hostname
      */
-    public function setRemoteHost(string $hostname)
+    public function setRemoteHost($hostname)
     {
         $this->setString('remoteHost', $hostname);
     }
@@ -120,7 +120,7 @@ class LoggerAppenderSocket extends LoggerAppender
      * Sets the target port
      * @param int $port
      */
-    public function setPort(int $port)
+    public function setPort($port)
     {
         $this->setPositiveInteger('port', $port);
     }
@@ -137,7 +137,7 @@ class LoggerAppenderSocket extends LoggerAppender
      * Sets the timeout.
      * @param int $timeout
      */
-    public function setTimeout(int $timeout)
+    public function setTimeout($timeout)
     {
         $this->setPositiveInteger('timeout', $timeout);
     }

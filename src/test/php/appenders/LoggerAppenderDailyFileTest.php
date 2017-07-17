@@ -49,11 +49,11 @@ class LoggerAppenderDailyFileTest extends TestCase
     {
         $appender = new LoggerAppenderDailyFile();
         $actual = $appender->getLayout();
-        self::assertInstanceOf(LoggerLayoutSimple::class, $actual);
+        self::assertInstanceOf('Log4Php\Layouts\LoggerLayoutSimple', $actual);
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Required parameter 'file' not set.
      */
     public function testRequiredParamWarning1()
@@ -63,7 +63,7 @@ class LoggerAppenderDailyFileTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage Required parameter 'datePattern' not set.
      */
     public function testRequiredParamWarning2()

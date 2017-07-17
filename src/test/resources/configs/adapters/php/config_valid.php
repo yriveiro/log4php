@@ -26,17 +26,17 @@
 use Log4Php\Appenders\LoggerAppenderEcho;
 use Log4Php\Layouts\LoggerLayoutSimple;
 
-return [
-    'rootLogger' => [
+return array(
+    'rootLogger' => array(
         'level' => 'info',
-        'appenders' => ['default']
-    ],
-    'appenders' => [
-        'default' => [
-            'class' => LoggerAppenderEcho::class,
-            'layout' => [
-                'class' => LoggerLayoutSimple::class
-            ]
-        ]
-    ]
-];
+        'appenders' => array('default')
+    ),
+    'appenders' => array(
+        'default' => array(
+            'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+            'layout' => array(
+                'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+            )
+        )
+    )
+);

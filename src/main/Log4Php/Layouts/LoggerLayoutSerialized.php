@@ -46,12 +46,12 @@ class LoggerLayoutSerialized extends LoggerLayout
     }
 
     /** Returns the location information flag. */
-    public function getLocationInfo(): bool
+    public function getLocationInfo()
     {
         return $this->locationInfo;
     }
 
-    public function format(LoggerLoggingEvent $event): string
+    public function format(LoggerLoggingEvent $event)
     {
         // If required, initialize the location data
         if ($this->locationInfo) {

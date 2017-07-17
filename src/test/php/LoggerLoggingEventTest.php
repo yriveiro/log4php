@@ -48,7 +48,7 @@ class LoggerLoggingEventTestCaseLayout extends LoggerLayout
         return;
     }
 
-    public function format(LoggerLoggingEvent $event): string
+    public function format(LoggerLoggingEvent $event)
     {
         LoggerLoggingEventTest::$locationInfo = $event->getLocationInformation();
         LoggerLoggingEventTest::$throwableInfo = $event->getThrowableInformation();
@@ -140,7 +140,7 @@ class LoggerLoggingEventTest extends TestCase
 
         $ex = new Exception('Message1');
         $logger = $hierarchy->getLogger('test');
-        $logger->debug('test', ['exception' => $ex]);
+        $logger->debug('test', array('exception' => $ex));
         $hierarchy->shutdown();
 
         /** @var LoggerThrowableInformation $ti */

@@ -50,7 +50,7 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
     const RENDERER_PREFIX = "log4php.renderer.";
 
     /** Holds the configuration. */
-    private $config = [];
+    private $config = array();
 
     /**
      * Converts the provided INI configuration file to a PHP array config.
@@ -142,7 +142,7 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
         $level = array_shift($parts);
 
         // The remaining values are appender references
-        $appenders = [];
+        $appenders = array();
         while ($appender = array_shift($parts)) {
             $appender = trim($appender);
             if (!empty($appender)) {
@@ -165,7 +165,7 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
      * @param $sub
      * @return bool
      */
-    private function beginsWith(string $str, string $sub)
+    private function beginsWith($str, $sub)
     {
         return (strncmp($str, $sub, strlen($sub)) == 0);
     }

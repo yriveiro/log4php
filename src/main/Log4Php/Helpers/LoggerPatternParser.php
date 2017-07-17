@@ -209,7 +209,7 @@ class LoggerPatternParser
      * @param string $modifiers
      * @return LoggerFormattingInfo
      */
-    private function parseModifiers(string $modifiers)
+    private function parseModifiers($modifiers)
     {
         $info = new LoggerFormattingInfo();
 

@@ -114,7 +114,7 @@ class LoggerLayoutXml extends LoggerLayout
      * @param LoggerLoggingEvent $event
      * @return string
      */
-    public function format(LoggerLoggingEvent $event): string
+    public function format(LoggerLoggingEvent $event)
     {
         $ns = $this->namespacePrefix;
 
@@ -185,7 +185,7 @@ class LoggerLayoutXml extends LoggerLayout
      * origin of the log statement will be output.
      * @param bool $flag
      */
-    public function setLocationInfo(bool $flag)
+    public function setLocationInfo($flag)
     {
         $this->setBoolean('locationInfo', $flag);
     }

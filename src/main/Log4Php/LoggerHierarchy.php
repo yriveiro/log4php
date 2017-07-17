@@ -51,7 +51,7 @@ class LoggerHierarchy
     /**
      * @var Logger[] Array holding all Logger instances.
      */
-    protected $loggers = [];
+    protected $loggers = array();
 
     /**
      * @var LoggerRoot The root logger.
@@ -86,7 +86,7 @@ class LoggerHierarchy
      */
     public function clear()
     {
-        $this->loggers = [];
+        $this->loggers = array();
     }
 
     /**
@@ -181,7 +181,7 @@ class LoggerHierarchy
      * @param LoggerLevel $level
      * @return bool
      */
-    public function isDisabled(LoggerLevel $level): bool
+    public function isDisabled(LoggerLevel $level)
     {
         return ($this->threshold->toInt() > $level->toInt());
     }

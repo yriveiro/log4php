@@ -95,7 +95,7 @@ abstract class LoggerFilter extends LoggerConfigurable
      * @param LoggerLoggingEvent $event The {@link LoggerLoggingEvent} to decide upon.
      * @return int {@link LoggerFilter::NEUTRAL} or {@link LoggerFilter::DENY}|{@link LoggerFilter::ACCEPT}
      */
-    public function decide(LoggerLoggingEvent $event): int
+    public function decide(LoggerLoggingEvent $event)
     {
         return self::NEUTRAL;
     }

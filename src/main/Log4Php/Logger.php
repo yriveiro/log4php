@@ -61,10 +61,10 @@ class Logger implements LoggerInterface, GenericLogger
      * A collection of appenders linked to this logger.
      * @var LoggerAppender[]
      */
-    private $appenders = [];
+    private $appenders = array();
 
     /** @var callable[] */
-    private $extendedContextResolvers = [];
+    private $extendedContextResolvers = array();
 
     /**
      * Constructor.
@@ -105,7 +105,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function emergency($message, array $context = [])
+    public function emergency($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelEmergency(), $message, $context);
     }
@@ -121,7 +121,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function alert($message, array $context = [])
+    public function alert($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelAlert(), $message, $context);
     }
@@ -136,7 +136,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function critical($message, array $context = [])
+    public function critical($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelCritical(), $message, $context);
     }
@@ -150,7 +150,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function error($message, array $context = [])
+    public function error($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelError(), $message, $context);
     }
@@ -166,7 +166,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function warning($message, array $context = [])
+    public function warning($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelWarning(), $message, $context);
     }
@@ -179,7 +179,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function notice($message, array $context = [])
+    public function notice($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelNotice(), $message, $context);
     }
@@ -194,7 +194,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function info($message, array $context = [])
+    public function info($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelInfo(), $message, $context);
     }
@@ -207,7 +207,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function debug($message, array $context = [])
+    public function debug($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelDebug(), $message, $context);
     }
@@ -220,7 +220,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function trace($message, array $context = [])
+    public function trace($message, array $context = array())
     {
         $this->_log(LoggerLevel::getLevelTrace(), $message, $context);
     }
@@ -234,7 +234,7 @@ class Logger implements LoggerInterface, GenericLogger
      *
      * @return void
      */
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = array())
     {
         $this->_log(LoggerLevel::toLevel($level), $message, $context);
     }
@@ -246,14 +246,14 @@ class Logger implements LoggerInterface, GenericLogger
      * @param array $context
      * @param bool $extendedContextResolved
      */
-    private function _log(LoggerLevel $level, $message, array $context = [], bool $extendedContextResolved = false)
+    private function _log(LoggerLevel $level, $message, array $context = array(), $extendedContextResolved = false)
     {
         if ($this->isEnabledFor($level)) {
             if (!$extendedContextResolved) {
                 $context += $this->resolveExtendedContext();
                 $extendedContextResolved = true;
             }
-            $event = new LoggerLoggingEvent(self::class, $this, $level, $message, null, $context);
+            $event = new LoggerLoggingEvent('Log4Php\Logger', $this, $level, $message, null, $context);
             $this->callAppenders($event);
         }
 
@@ -311,7 +311,7 @@ class Logger implements LoggerInterface, GenericLogger
      */
     public function forcedLog($fqcn, $throwable, LoggerLevel $level, $message)
     {
-        $event = new LoggerLoggingEvent($fqcn, $this, $level, $message, null, ['exception' => $throwable]);
+        $event = new LoggerLoggingEvent($fqcn, $this, $level, $message, null, array('exception' => $throwable));
         $this->callAppenders($event);
 
         // Forward the event upstream if additivity is turned on
@@ -478,7 +478,7 @@ class Logger implements LoggerInterface, GenericLogger
      * @param $name
      * @return LoggerAppender
      */
-    public function getAppender($name): LoggerAppender
+    public function getAppender($name)
     {
         return $this->appenders[$name];
     }
@@ -487,7 +487,7 @@ class Logger implements LoggerInterface, GenericLogger
      * Sets the additivity flag.
      * @param $additive
      */
-    public function setAdditivity(bool $additive)
+    public function setAdditivity($additive)
     {
         $this->additive = $additive;
     }
@@ -556,14 +556,14 @@ class Logger implements LoggerInterface, GenericLogger
     }
 
 
-    public function addContextResolver(callable $resolver)
+    public function addContextResolver($resolver)
     {
         $this->extendedContextResolvers[] = $resolver;
     }
 
-    public function resolveExtendedContext(): array
+    public function resolveExtendedContext()
     {
-        $extendedContext = [];
+        $extendedContext = array();
         foreach ($this->extendedContextResolvers as $resolver) {
             $extendedContext += $resolver();
         }

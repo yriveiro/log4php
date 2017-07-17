@@ -302,7 +302,7 @@ abstract class LoggerAppender extends LoggerConfigurable
      * Triggers a warning for this logger with the given message.
      * @param $message
      */
-    protected function warn(string $message)
+    protected function warn($message)
     {
         $id = get_class($this) . (empty($this->name) ? '' : ":{$this->name}");
         trigger_error("log4php: [$id]: $message", E_USER_WARNING);

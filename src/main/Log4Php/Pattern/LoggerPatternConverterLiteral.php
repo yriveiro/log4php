@@ -29,7 +29,7 @@ class LoggerPatternConverterLiteral extends LoggerPatternConverter
 {
     private $literalValue;
 
-    public function __construct(string $literalValue)
+    public function __construct($literalValue)
     {
         parent::__construct();
         $this->literalValue = $literalValue;

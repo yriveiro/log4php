@@ -205,7 +205,7 @@ class LoggerAppenderRollingFile extends LoggerAppenderFile
         }
     }
 
-    private function rollOverRequired(): bool
+    private function rollOverRequired()
     {
         if (!file_exists($this->file)) {
             return false;

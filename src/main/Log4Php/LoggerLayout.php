@@ -38,7 +38,7 @@ abstract class LoggerLayout extends LoggerConfigurable
      * @param LoggerLoggingEvent
      * @return string
      */
-    public function format(LoggerLoggingEvent $event): string
+    public function format(LoggerLoggingEvent $event)
     {
         return $event->getRenderedMessage();
     }
@@ -74,7 +74,7 @@ abstract class LoggerLayout extends LoggerConfigurable
      * Triggers a warning for this layout with the given message.
      * @param $message
      */
-    protected function warn(string $message)
+    protected function warn($message)
     {
         trigger_error("log4php: [" . get_class($this) . "]: $message", E_USER_WARNING);
     }

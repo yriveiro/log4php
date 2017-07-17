@@ -19,7 +19,6 @@
 namespace Log4Php;
 
 use Log4Php\Renderers\LoggerRendererException;
-use Throwable;
 
 /**
  * The internal representation of throwable objects.
@@ -40,7 +39,7 @@ class LoggerThrowableInformation
      * Create a new instance
      * @param $throwable - a throwable as a exception
      */
-    public function __construct(Throwable $throwable)
+    public function __construct($throwable)
     {
         $this->throwable = $throwable;
     }
@@ -49,7 +48,7 @@ class LoggerThrowableInformation
      * Return source exception
      * @return Throwable
      */
-    public function getThrowable(): Throwable
+    public function getThrowable()
     {
         return $this->throwable;
     }

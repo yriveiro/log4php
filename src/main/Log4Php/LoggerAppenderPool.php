@@ -29,7 +29,7 @@ namespace Log4Php;
 class LoggerAppenderPool
 {
     /** Holds appenders indexed by their name */
-    private static $appenders = [];
+    private static $appenders = array();
 
     /**
      * Adds an appender to the pool.
@@ -97,6 +97,6 @@ class LoggerAppenderPool
      */
     public static function clear()
     {
-        self::$appenders = [];
+        self::$appenders = array();
     }
 }

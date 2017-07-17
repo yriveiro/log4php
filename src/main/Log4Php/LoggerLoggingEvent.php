@@ -107,7 +107,7 @@ class LoggerLoggingEvent
     /**
      * @var array Logging event context
      */
-    private $context = [];
+    private $context = array();
 
     /**
      * Instantiate a LoggingEvent from the supplied parameters.
@@ -122,7 +122,7 @@ class LoggerLoggingEvent
      * @param integer $timeStamp the timestamp of this logging event.
      * @param array $context Context of the event
      */
-    public function __construct($fqcn, $logger, LoggerLevel $level, $message, $timeStamp = null, array $context = [])
+    public function __construct($fqcn, $logger, LoggerLevel $level, $message, $timeStamp = null, array $context = array())
     {
         $this->fqcn = $fqcn;
         if ($logger instanceof Logger) {
@@ -167,20 +167,21 @@ class LoggerLoggingEvent
     {
         // @todo this is not nice at all, need to be cleaned up
         if ($this->locationInfo === null) {
-            $locationInfo = [];
+            $locationInfo = array();
             if (isset($this->context['exception'])) {
                 /** @var \Throwable $throwable */
                 $throwable = $this->context['exception'];
                 $trace = $throwable->getTrace();
-                $hop = $trace[0] ?? null;
-                $this->locationInfo = new LoggerLocationInfo([
+                $hop = (isset($trace[0])) ? $trace[0] : null;
+                $this->locationInfo = new LoggerLocationInfo(array(
                     'line'     => $throwable->getLine(),
                     'file'     => $throwable->getFile(),
-                    'function' => $hop['function'] ?? 'main',
-                    'class'    => $hop['class'] ?? 'main',
-                ]);
+                    'function' => (isset($hop['function'])) ? $hop['function'] : 'main',
+                    'class'    => (isset($hop['class'])) ? $hop['class'] : 'main',
+                ));
             } else {
-                $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+                $trace = defined('DEBUG_BACKTRACE_IGNORE_ARGS') ? debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) : debug_backtrace();
+
                 $prevHop = null;
                 // find the caller
                 $hop = array_pop($trace);
@@ -188,10 +189,11 @@ class LoggerLoggingEvent
                     if (isset($hop['class'])) {
                         // we are sometimes in functions = no class available: avoid php warning here
                         $className = strtolower($hop['class']);
+
                         if (!empty($className)) {
                             $hopClass = new ReflectionClass($className);
-                            if ($hopClass->implementsInterface(GenericHandler::class) ||
-                                $hopClass->implementsInterface(GenericLogger::class)) {
+                            if ($hopClass->implementsInterface('Log4Php\GenericHandler') ||
+                                $hopClass->implementsInterface('Log4Php\GenericLogger')) {
                                 $locationInfo['line'] = $hop['line'];
                                 $locationInfo['file'] = $hop['file'];
                                 break;
@@ -212,6 +214,7 @@ class LoggerLoggingEvent
                 } else {
                     $locationInfo['function'] = 'main';
                 }
+
                 $this->locationInfo = new LoggerLocationInfo($locationInfo);
             }
         }
@@ -297,7 +300,7 @@ class LoggerLoggingEvent
      * Return event's context
      * @return array
      */
-    public function getContext(): array
+    public function getContext()
     {
         return $this->context;
     }
@@ -310,7 +313,7 @@ class LoggerLoggingEvent
     {
         if ($this->renderedMessage === null and $this->message !== null) {
             if (is_string($this->message)) {
-                $pairs = [];
+                $pairs = array();
                 foreach ($this->context as $key => $val) {
                     if (is_array($val)) {
                         $val = json_encode($val);
@@ -407,7 +410,7 @@ class LoggerLoggingEvent
      */
     public function __sleep()
     {
-        return [
+        return array(
             'fqcn',
             'categoryName',
             'level',
@@ -418,7 +421,7 @@ class LoggerLoggingEvent
             'threadName',
             'timeStamp',
             'locationInfo',
-        ];
+        );
     }
 }
 

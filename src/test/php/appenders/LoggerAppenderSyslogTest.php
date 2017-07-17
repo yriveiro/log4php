@@ -111,7 +111,7 @@ class LoggerAppenderSyslogTest extends TestCase
         $default = LOG_PID | LOG_CONS;
 
         // This makes reading of a private property possible
-        $property = new ReflectionProperty(LoggerAppenderSyslog::class, 'intOption');
+        $property = new ReflectionProperty('Log4Php\Appenders\LoggerAppenderSyslog', 'intOption');
         $property->setAccessible(true);
 
         // Check default value first
@@ -152,7 +152,7 @@ class LoggerAppenderSyslogTest extends TestCase
         );
 
         // This makes reading of a private property possible
-        $property = new ReflectionProperty(LoggerAppenderSyslog::class, 'intPriority');
+        $property = new ReflectionProperty('Log4Php\Appenders\LoggerAppenderSyslog', 'intPriority');
         $property->setAccessible(true);
 
         // Check default value first
@@ -200,7 +200,7 @@ class LoggerAppenderSyslogTest extends TestCase
         }
 
         // This makes reading of a private property possible
-        $property = new ReflectionProperty(LoggerAppenderSyslog::class, 'intFacility');
+        $property = new ReflectionProperty('Log4Php\Appenders\LoggerAppenderSyslog', 'intFacility');
         $property->setAccessible(true);
 
         // Check default value first
@@ -220,7 +220,7 @@ class LoggerAppenderSyslogTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      */
     public function testInvalidOption()
     {
@@ -230,7 +230,7 @@ class LoggerAppenderSyslogTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      */
     public function testInvalidPriority()
     {
@@ -240,7 +240,7 @@ class LoggerAppenderSyslogTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      */
     public function testInvalidFacility()
     {
@@ -272,7 +272,7 @@ class LoggerAppenderSyslogTest extends TestCase
 
         $expected = LOG_EMERG;
 
-        $method = new ReflectionMethod(LoggerAppenderSyslog::class, 'getSyslogPriority');
+        $method = new ReflectionMethod('Log4Php\Appenders\LoggerAppenderSyslog', 'getSyslogPriority');
         $method->setAccessible(true);
 
         foreach ($levels as $level) {

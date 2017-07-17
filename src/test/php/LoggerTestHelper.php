@@ -137,62 +137,62 @@ class LoggerTestHelper
     /** Returns a simple configuration with one echo appender tied to root logger. */
     public static function getEchoConfig()
     {
-        return [
+        return array(
             'threshold' => 'ALL',
-            'rootLogger' => [
+            'rootLogger' => array(
                 'level' => 'trace',
-                'appenders' => ['default'],
-            ],
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutSimple::class,
-                    ],
-                ],
-            ],
-        ];
+                'appenders' => array('default'),
+            ),
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSimple',
+                    ),
+                ),
+            ),
+        );
     }
 
     /** Returns a simple configuration with one echo appender using the pattern layout. */
     public static function getEchoPatternConfig($pattern)
     {
-        return [
+        return array(
             'threshold' => 'ALL',
-            'rootLogger' => [
+            'rootLogger' => array(
                 'level' => 'trace',
-                'appenders' => ['default'],
-            ],
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutPattern::class,
-                        'params' => [
+                'appenders' => array('default'),
+            ),
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                        'params' => array(
                             'conversionPattern' => $pattern
-                        ]
-                    ],
-                ],
-            ],
-        ];
+                        )
+                    ),
+                ),
+            ),
+        );
     }
 
     public static function getEchoJsonConfig()
     {
-        return [
+        return array(
             'threshold' => 'ALL',
-            'rootLogger' => [
+            'rootLogger' => array(
                 'level' => 'trace',
-                'appenders' => ['default'],
-            ],
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutJson::class,
-                    ],
-                ],
-            ],
-        ];
+                'appenders' => array('default'),
+            ),
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutJson',
+                    ),
+                ),
+            ),
+        );
     }
 }

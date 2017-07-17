@@ -50,7 +50,7 @@ class LoggerAppenderUnixSocket extends LoggerAppender
      * Sets the path.
      * @param string $path
      */
-    public function setPath(string $path)
+    public function setPath($path)
     {
         $this->setString('path', $path);
     }

@@ -115,20 +115,20 @@ class LoggerFilterLevelMatchTest extends TestCase
         $config = LoggerTestHelper::getEchoConfig();
 
         // Add filters to default appender
-        $config['appenders']['default']['filters'] = [
+        $config['appenders']['default']['filters'] = array(
             // Accepts only INFO events
-            [
-                'class' => LoggerFilterLevelMatch::class,
-                'params' => [
+            array(
+                'class' => 'Log4Php\Filters\LoggerFilterLevelMatch',
+                'params' => array(
                     'levelToMatch' => 'info',
                     'acceptOnMatch' => true
-                ]
-            ],
+                )
+            ),
             // Denies all events not accepted by first filter
-            [
-                'class' => LoggerFilterDenyAll::class,
-            ]
-        ];
+            array(
+                'class' => 'Log4Php\Filters\LoggerFilterDenyAll',
+            )
+        );
 
         Logger::configure($config);
         $logger = Logger::getRootLogger();
@@ -154,13 +154,13 @@ class LoggerFilterLevelMatchTest extends TestCase
 
         // Add filter which denies INFO events
         $config['appenders']['default']['filters'] = array(
-            [
-                'class' => LoggerFilterLevelMatch::class,
-                'params' => [
+            array(
+                'class' => 'Log4Php\Filters\LoggerFilterLevelMatch',
+                'params' => array(
                     'levelToMatch' => 'info',
                     'acceptOnMatch' => false
-                ]
-            ]
+                )
+            )
         );
 
         Logger::configure($config);

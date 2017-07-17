@@ -41,7 +41,7 @@ class LoggerRootTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage log4php: LoggerRoot cannot have a parent.
      */
     public function testSetParentWarning()
@@ -60,7 +60,7 @@ class LoggerRootTest extends TestCase
     }
 
     /**
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage log4php: Cannot set LoggerRoot level to null.
      */
     public function testNullLevelWarning()

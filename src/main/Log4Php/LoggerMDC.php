@@ -33,7 +33,7 @@ class LoggerMDC
 {
 
     /** Holds the context map. */
-    private static $map = [];
+    private static $map = array();
 
     /**
      * Stores a context value as identified with the key parameter into the
@@ -85,6 +85,6 @@ class LoggerMDC
      */
     public static function clear()
     {
-        self::$map = [];
+        self::$map = array();
     }
 }

@@ -30,7 +30,7 @@ class LoggerRendererMap
      *
      * @var array
      */
-    private $map = [];
+    private $map = array();
 
     /**
      * The default renderer to use if no specific renderer is found.
@@ -90,7 +90,7 @@ class LoggerRendererMap
      * @param string $renderingClass The name of the class which will
      *        perform the rendering.
      */
-    public function setDefaultRenderer(string $renderingClass)
+    public function setDefaultRenderer($renderingClass)
     {
         // Check the class exists
         if (!class_exists($renderingClass)) {
@@ -168,7 +168,7 @@ class LoggerRendererMap
      * @param string $class Class name
      * @return LoggerRenderer|null logger renderer or null if not found.
      */
-    public function getByClassName(string $class)
+    public function getByClassName($class)
     {
         for (; !empty($class); $class = get_parent_class($class)) {
             $class = strtolower($class);
@@ -184,7 +184,7 @@ class LoggerRendererMap
      */
     public function clear()
     {
-        $this->map = [];
+        $this->map = array();
     }
 
     /**
@@ -194,6 +194,6 @@ class LoggerRendererMap
     {
         $this->defaultRenderer = new LoggerRendererDefault();
         $this->clear();
-        $this->addRenderer(Exception::class, LoggerRendererException::class);
+        $this->addRenderer('Exception', 'Log4Php\Renderers\LoggerRendererException');
     }
 }

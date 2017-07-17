@@ -33,61 +33,61 @@ use PHPUnit\Framework\TestCase;
 class LoggerConfigurationAdapterINITest extends TestCase
 {
     /** Expected output of parsing config1.ini. */
-    private $expected1 = [
+    private $expected1 = array(
         'threshold' => 'debug',
-        'rootLogger' => [
+        'rootLogger' => array(
             'level' => 'DEBUG',
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutPattern::class,
-                ],
-            ],
-            'file' => [
-                'class' => LoggerAppenderDailyFile::class,
-                'layout' => [
-                    'class' => LoggerLayoutPattern::class,
-                    'params' => [
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                ),
+            ),
+            'file' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderDailyFile',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutPattern',
+                    'params' => array(
                         'conversionPattern' => '%d{ISO8601} [%p] %c: %m (at %F line %L)%n',
-                    ],
-                ],
-                'params' => [
+                    ),
+                ),
+                'params' => array(
                     'datePattern' => 'Ymd',
                     'file' => 'target/examples/daily_%s.log',
-                ],
+                ),
                 'threshold' => 'warn'
-            ],
-        ],
-        'loggers' => [
-            'foo' => [
+            ),
+        ),
+        'loggers' => array(
+            'foo' => array(
                 'level' => 'warning',
-                'appenders' => ['default'],
-            ],
-            'foo.bar' => [
+                'appenders' => array('default'),
+            ),
+            'foo.bar' => array(
                 'level' => 'debug',
-                'appenders' => ['file'],
+                'appenders' => array('file'),
                 'additivity' => 'true',
-            ],
-            'foo.bar.baz' => [
+            ),
+            'foo.bar.baz' => array(
                 'level' => 'trace',
-                'appenders' => ['default', 'file'],
+                'appenders' => array('default', 'file'),
                 'additivity' => 'false',
-            ],
-        ],
-        'renderers' => [
-            [
+            ),
+        ),
+        'renderers' => array(
+            array(
                 'renderedClass' => 'Fruit',
                 'renderingClass' => 'FruitRenderer',
-            ],
-            [
+            ),
+            array(
                 'renderedClass' => 'Beer',
                 'renderingClass' => 'BeerRenderer',
-            ],
-        ],
-    ];
+            ),
+        ),
+    );
 
     public function testConfig()
     {
@@ -123,7 +123,7 @@ class LoggerConfigurationAdapterINITest extends TestCase
 
     /**
      * Test a warning is triggered when configurator doesn't understand a line.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage log4php: Don't know how to parse the following line: "log4php.appender.default.layout.param.bla = Log4Php\Layouts\LoggerLayoutTTCC". Skipping.
      */
     public function testInvalidLineWarning1()
@@ -135,7 +135,7 @@ class LoggerConfigurationAdapterINITest extends TestCase
 
     /**
      * Test a warning is triggered when configurator doesn't understand a line.
-     * @expectedException \PHPUnit\Framework\Error\Error
+     * @expectedException PHPUnit_Framework_Error
      * @expectedExceptionMessage log4php: Don't know how to parse the following line: "log4php.appender.default.not-layout.param = Log4Php\Layouts\LoggerLayoutTTCC". Skipping.
      */
     public function testInvalidLineWarning2()

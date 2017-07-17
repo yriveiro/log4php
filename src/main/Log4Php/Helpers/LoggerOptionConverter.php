@@ -28,7 +28,7 @@ class LoggerOptionConverter
 {
 
     /** String values which are converted to boolean TRUE. */
-    private static $trueValues = ['1', 'true', 'yes', 'on'];
+    private static $trueValues = array('1', 'true', 'yes', 'on');
 
     /**
      * String values which are converted to boolean FALSE.
@@ -37,7 +37,7 @@ class LoggerOptionConverter
      * parse_ini_file() which is used for parsing configuration
      * converts the value _false_ to an empty string.
      */
-    private static $falseValues = ['0', 'false', 'no', 'off', ''];
+    private static $falseValues = array('0', 'false', 'no', 'off', '');
 
     /**
      * Read a predefined var.
@@ -52,7 +52,7 @@ class LoggerOptionConverter
      * @return string    the string value of the system property, or the default
      *                    value if there is no property with that key.
      */
-    public static function getSystemProperty(string $key, string $def)
+    public static function getSystemProperty($key, $def)
     {
         if (defined($key)) {
             return (string)constant($key);

@@ -34,53 +34,53 @@ use PHPUnit\Framework\TestCase;
 class LoggerAppenderEchoTest extends TestCase
 {
 
-    private $config1 = [
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ],
-            ]
-        ]
-    ];
+    private $config1 = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                ),
+            )
+        )
+    );
 
-    private $config2 = [
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ],
-                'params' => [
+    private $config2 = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                ),
+                'params' => array(
                     'htmlLineBreaks' => true
-                ]
-            ]
-        ]
-    ];
+                )
+            )
+        )
+    );
 
-    private $config3 = [
-        'rootLogger' => [
-            'appenders' => ['default'],
-        ],
-        'appenders' => [
-            'default' => [
-                'class' => LoggerAppenderEcho::class,
-                'layout' => [
-                    'class' => LoggerLayoutSimple::class
-                ],
-                'params' => [
+    private $config3 = array(
+        'rootLogger' => array(
+            'appenders' => array('default'),
+        ),
+        'appenders' => array(
+            'default' => array(
+                'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                'layout' => array(
+                    'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                ),
+                'params' => array(
                     'htmlLineBreaks' => 'foo'
-                ]
-            ]
-        ]
-    ];
+                )
+            )
+        )
+    );
 
     public function testAppend()
     {
@@ -124,7 +124,7 @@ class LoggerAppenderEchoTest extends TestCase
         $appender->setLayout($layout);
         $appender->activateOptions();
         $event = new LoggerLoggingEvent(
-            LoggerAppenderEchoTest::class,
+            'LoggerAppenderEchoTest',
             new Logger("TEST"),
             LoggerLevel::getLevelError(),
             "testmessage");

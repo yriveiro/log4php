@@ -10,24 +10,24 @@ class MessageInterpolationTest extends TestCase
 {
     public function testMessageInterpolation()
     {
-        Logger::configure([
-            'rootLogger' => [
-                'appenders' => ['default'],
-            ],
-            'appenders' => [
-                'default' => [
-                    'class' => LoggerAppenderEcho::class,
-                    'layout' => [
-                        'class' => LoggerLayoutSimple::class
-                    ],
-                ]
-            ]
-        ]);
+        Logger::configure(array(
+            'rootLogger' => array(
+                'appenders' => array('default'),
+            ),
+            'appenders' => array(
+                'default' => array(
+                    'class' => 'Log4Php\Appenders\LoggerAppenderEcho',
+                    'layout' => array(
+                        'class' => 'Log4Php\Layouts\LoggerLayoutSimple'
+                    ),
+                )
+            )
+        ));
 
-        $logger = Logger::getLogger(self::class);
+        $logger = Logger::getLogger('MessageInterpolationTest');
 
         ob_start();
-        $logger->info('Message interpolation {status}', ['status' => 'successful']);
+        $logger->info('Message interpolation {status}', array('status' => 'successful'));
         $actual = trim(ob_get_clean());
 
         Assert::assertEquals('INFO - Message interpolation successful', $actual);

@@ -93,7 +93,7 @@ class LoggerNDC
 {
 
     /** This is the repository of NDC stack */
-    private static $stack = [];
+    private static $stack = array();
 
     /**
      * Clear any nested diagnostic information if any. This method is
@@ -105,7 +105,7 @@ class LoggerNDC
      */
     public static function clear()
     {
-        self::$stack = [];
+        self::$stack = array();
     }
 
     /**
@@ -171,7 +171,7 @@ class LoggerNDC
      *
      * @param string $message The new diagnostic context information.
      */
-    public static function push(string $message)
+    public static function push($message)
     {
         array_push(self::$stack, $message);
     }
@@ -198,7 +198,7 @@ class LoggerNDC
      * @param integer $maxDepth
      * @see getDepth()
      */
-    public static function setMaxDepth(int $maxDepth)
+    public static function setMaxDepth($maxDepth)
     {
         if (LoggerNDC::getDepth() > $maxDepth) {
             self::$stack = array_slice(self::$stack, 0, $maxDepth);

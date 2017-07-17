@@ -54,11 +54,11 @@ class LoggerFilterDenyAllTest extends TestCase
     public function testConfiguration()
     {
         $config = LoggerConfiguratorDefault::getDefaultConfiguration();
-        $config['appenders']['default']['filters'] = [
-            [
-                'class' => LoggerFilterDenyAll::class
-            ]
-        ];
+        $config['appenders']['default']['filters'] = array(
+            array(
+                'class' => 'Log4Php\Filters\LoggerFilterDenyAll'
+            )
+        );
 
         Logger::configure($config);
         $logger = Logger::getRootLogger();

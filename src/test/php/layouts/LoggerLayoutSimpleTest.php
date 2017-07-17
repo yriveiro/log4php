@@ -34,7 +34,7 @@ class LoggerLayoutSimpleTest extends TestCase
 
     public function testSimpleLayout()
     {
-        $event = new LoggerLoggingEvent(LoggerLayoutSimpleTest::class, new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
+        $event = new LoggerLoggingEvent('Log4Php\\Layouts\\LoggerLayoutSimpleTest', new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
 
         $layout = new LoggerLayoutSimple();
         $actual = $layout->format($event);
